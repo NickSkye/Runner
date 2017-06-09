@@ -28,7 +28,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var SpawnDelay = SKAction()
     var spawnDelayForever = SKAction()
     var spawn = SKAction()
-    
+    var time = CGFloat()
     override func didMove(to view: SKView) {
         createScene()
     }
@@ -71,7 +71,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 bird.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 40))
                //
                 distance = CGFloat(self.frame.width + wallPair.frame.width)
-                movePipes = SKAction.moveBy(x: -distance - 50, y: 0, duration: TimeInterval( (0.008 * distance) - (CGFloat(score)/10.0)))
+                if score < 75 {
+                    time = (0.008 * distance) - (CGFloat(score)/25.0)
+                }
+                else {
+                    time = 2.168
+                }
+                movePipes = SKAction.moveBy(x: -distance - 50, y: 0, duration: TimeInterval(time))
                 let removePipes = SKAction.removeFromParent()
                 moveAndRemove = SKAction.sequence([movePipes, removePipes])
             }

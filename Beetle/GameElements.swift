@@ -45,6 +45,8 @@ extension GameScene{
         self.addChild(pauseBtn)
     }
     
+    
+    
     func createScoreLabel() -> SKLabelNode {
         let scoreLbl = SKLabelNode()
         scoreLbl.position = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2 + self.frame.height / 2.6)
