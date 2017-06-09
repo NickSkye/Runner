@@ -46,6 +46,14 @@ extension GameScene{
     }
     
     
+    func createBuySkinsBtn() {
+        skinBtn = SKSpriteNode(imageNamed: "pause")
+        skinBtn.size = CGSize(width:60, height:40)
+        skinBtn.position = CGPoint(x: self.frame.width/2, y: 50)
+        skinBtn.zPosition = 7
+        self.addChild(skinBtn)
+    }
+    
     
     func createScoreLabel() -> SKLabelNode {
         let scoreLbl = SKLabelNode()
@@ -148,7 +156,12 @@ extension GameScene{
         
         let randomPosition = random(min: -200, max: 200)
         wallPair.position.y = wallPair.position.y +  randomPosition
-        wallPair.addChild(flowerNode)
+        
+        //make random here
+        let randomNumberFlower = Int(random(min: 0, max: 5))
+        if randomNumberFlower == 3 {
+            wallPair.addChild(flowerNode)
+        }
         
         wallPair.run(moveAndRemove)
         

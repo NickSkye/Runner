@@ -15,6 +15,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var taptoplayLbl = SKLabelNode()
     var restartBtn = SKSpriteNode()
     var pauseBtn = SKSpriteNode()
+    var skinBtn = SKSpriteNode()
     var logoImg = SKSpriteNode()
     var wallPair = SKNode()
     var moveAndRemove = SKAction()
@@ -40,10 +41,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             gameStarted =  true
             bird.physicsBody?.affectedByGravity = true
             createPauseBtn()
+            
             logoImg.run(SKAction.scale(to: 0.5, duration: 0.3), completion: {
                 self.logoImg.removeFromParent()
+                self.skinBtn.removeFromParent()
             })
             taptoplayLbl.removeFromParent()
+            self.skinBtn.removeFromParent()
             self.bird.run(repeatActionbird)
             
              spawn = SKAction.run({
@@ -99,15 +103,30 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     }
                     restartScene()
                 }
-            } else {
-                if pauseBtn.contains(location){
+            } else if pauseBtn.contains(location){
                     if self.isPaused == false{
                         self.isPaused = true
+                        MusicHelper.sharedHelper.stopBackgroundMusic()
                         pauseBtn.texture = SKTexture(imageNamed: "play")
                     } else {
                         self.isPaused = false
+                        MusicHelper.sharedHelper.playBackgroundMusic()
                         pauseBtn.texture = SKTexture(imageNamed: "pause")
                     }
+                }
+            
+            else {
+                if skinBtn.contains(location){
+                   // MusicHelper.sharedHelper.stopBackgroundMusic()
+                    let transition = SKTransition.reveal(with: .down, duration: 1.0)
+                    
+                    let nextScene = SkinsScene(size: scene!.size)
+                    nextScene.scaleMode = .aspectFill
+                    
+                    scene?.view?.presentScene(nextScene, transition: transition)
+                        skinBtn.texture = SKTexture(imageNamed: "play")
+                    
+                    
                 }
             }
         }
@@ -120,6 +139,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         gameStarted = false
         score = 0
         createScene()
+    }
+    
+    func createSkinScene() {
+        let background = SKSpriteNode(imageNamed: "bg")
+        background.anchorPoint = CGPoint.init(x: 0, y: 0)
+        //background.position = CGPoint(x:CGFloat(i) * self.frame.width, y:0)
+        background.name = "background"
+        background.size = (self.view?.bounds.size)!
+        self.addChild(background)
     }
     
     func createScene(){
@@ -162,6 +190,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(highscoreLbl)
         
         createLogo()
+        createBuySkinsBtn()
         
         taptoplayLbl = createTaptoplayLabel()
         self.addChild(taptoplayLbl)
@@ -200,13 +229,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
          else if firstBody.categoryBitMask == CollisionBitMask.birdCategory && secondBody.categoryBitMask == CollisionBitMask.flowerCategory {
             run(coinSound)
-            score += 1
+            score += 3
             scoreLbl.text = "\(score)"
             secondBody.node?.removeFromParent()
             
         } else if firstBody.categoryBitMask == CollisionBitMask.flowerCategory && secondBody.categoryBitMask == CollisionBitMask.birdCategory {
             run(coinSound)
-            score += 1
+            score += 3
             scoreLbl.text = "\(score)"
             firstBody.node?.removeFromParent()
         }
@@ -223,6 +252,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     bg.position = CGPoint(x: bg.position.x - 2, y: bg.position.y)
                     if bg.position.x <= -bg.size.width {
                         bg.position = CGPoint(x:bg.position.x + bg.size.width * 2, y:bg.position.y)
+                        self.score += 1
+                        self.scoreLbl.text = "\(self.score)"
                         
                     }
                 }))
