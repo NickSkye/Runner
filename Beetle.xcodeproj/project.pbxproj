@@ -18,6 +18,8 @@
 		D9E9D94D1E3484B900754A1A /* GameElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E9D94C1E3484B900754A1A /* GameElements.swift */; };
 		D9E9D94F1E34855300754A1A /* CoinSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E9D94E1E34855300754A1A /* CoinSound.mp3 */; };
 		D9E9D9531E34A13100754A1A /* player.atlas in Resources */ = {isa = PBXBuildFile; fileRef = D9E9D9521E34A13100754A1A /* player.atlas */; };
+		F32ABE391EEA69B3000A217E /* MusicHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ABE381EEA69B3000A217E /* MusicHelper.swift */; };
+		F32ABE3B1EEA6A6D000A217E /* gno.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F32ABE3A1EEA6A6D000A217E /* gno.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		D9E9D94C1E3484B900754A1A /* GameElements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameElements.swift; sourceTree = "<group>"; };
 		D9E9D94E1E34855300754A1A /* CoinSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CoinSound.mp3; sourceTree = "<group>"; };
 		D9E9D9521E34A13100754A1A /* player.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = player.atlas; sourceTree = "<group>"; };
+		F32ABE381EEA69B3000A217E /* MusicHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicHelper.swift; sourceTree = "<group>"; };
+		F32ABE3A1EEA6A6D000A217E /* gno.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = gno.mp3; path = ../gno.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +54,7 @@
 		D9E9D9281E3483A900754A1A = {
 			isa = PBXGroup;
 			children = (
+				F32ABE3A1EEA6A6D000A217E /* gno.mp3 */,
 				D9E9D9331E3483A900754A1A /* Beetle */,
 				D9E9D9321E3483A900754A1A /* Products */,
 			);
@@ -78,6 +83,7 @@
 				D9E9D9461E3483AA00754A1A /* Info.plist */,
 				D9E9D94E1E34855300754A1A /* CoinSound.mp3 */,
 				D9E9D9521E34A13100754A1A /* player.atlas */,
+				F32ABE381EEA69B3000A217E /* MusicHelper.swift */,
 			);
 			path = Beetle;
 			sourceTree = "<group>";
@@ -143,6 +149,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9E9D9531E34A13100754A1A /* player.atlas in Resources */,
+				F32ABE3B1EEA6A6D000A217E /* gno.mp3 in Resources */,
 				D9E9D9401E3483AA00754A1A /* Main.storyboard in Resources */,
 				D9E9D94F1E34855300754A1A /* CoinSound.mp3 in Resources */,
 				D9E9D9371E3483AA00754A1A /* GameScene.sks in Resources */,
@@ -159,6 +166,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F32ABE391EEA69B3000A217E /* MusicHelper.swift in Sources */,
 				D9E9D94D1E3484B900754A1A /* GameElements.swift in Sources */,
 				D9E9D93B1E3483AA00754A1A /* GameScene.swift in Sources */,
 				D9E9D93D1E3483AA00754A1A /* GameViewController.swift in Sources */,

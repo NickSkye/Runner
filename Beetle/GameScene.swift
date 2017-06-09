@@ -2,6 +2,7 @@
 
 import SpriteKit
 
+
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var gameStarted = Bool(false)
@@ -35,6 +36,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if gameStarted == false{
+            MusicHelper.sharedHelper.playBackgroundMusic()
             gameStarted =  true
             bird.physicsBody?.affectedByGravity = true
             createPauseBtn()
@@ -183,6 +185,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         } */
         if bird.position.x < 0 {
+            MusicHelper.sharedHelper.stopBackgroundMusic()
             enumerateChildNodes(withName: "wallPair", using: ({
                 (node, error) in
                 node.speed = 0
