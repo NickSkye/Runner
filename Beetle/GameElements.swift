@@ -54,6 +54,14 @@ extension GameScene{
         self.addChild(skinBtn)
     }
     
+    func createBackBtn() {
+        backBtn = SKSpriteNode(imageNamed: "pause")
+        backBtn.size = CGSize(width:60, height:40)
+        backBtn.position = CGPoint(x: self.frame.width/2, y: 200)
+        backBtn.zPosition = 8
+        self.addChild(backBtn)
+    }
+    
     
     func createScoreLabel() -> SKLabelNode {
         let scoreLbl = SKLabelNode()

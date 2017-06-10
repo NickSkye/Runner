@@ -31,9 +31,11 @@ class SkinsScene: SKScene, SKPhysicsContactDelegate {
     var spawnDelayForever = SKAction()
     var spawn = SKAction()
     var time = CGFloat()
+    var backBtn = SKSpriteNode()
     
 override func didMove(to view: SKView) {
     createSkinScene()
+    
     }
     
     func createSkinScene() {
@@ -43,6 +45,8 @@ override func didMove(to view: SKView) {
         background.name = "background"
         background.size = (self.view?.bounds.size)!
         self.addChild(background)
+        
+        
     }
     
  }

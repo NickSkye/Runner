@@ -16,6 +16,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var restartBtn = SKSpriteNode()
     var pauseBtn = SKSpriteNode()
     var skinBtn = SKSpriteNode()
+    var backBtn = SKSpriteNode()
     var logoImg = SKSpriteNode()
     var wallPair = SKNode()
     var moveAndRemove = SKAction()
@@ -32,6 +33,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var spawn = SKAction()
     var time = CGFloat()
     override func didMove(to view: SKView) {
+        print("HERE")
         createScene()
     }
     
@@ -142,12 +144,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func createSkinScene() {
-        let background = SKSpriteNode(imageNamed: "bg")
+        let background = SKSpriteNode(imageNamed: "newBG")
         background.anchorPoint = CGPoint.init(x: 0, y: 0)
         //background.position = CGPoint(x:CGFloat(i) * self.frame.width, y:0)
         background.name = "background"
         background.size = (self.view?.bounds.size)!
         self.addChild(background)
+        createBackBtn()
     }
     
     func createScene(){
@@ -168,6 +171,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             background.name = "background"
             background.size = (self.view?.bounds.size)!
             self.addChild(background)
+            //DONT KNOW WHY ADDING THIS makes it alternate backgrounds
+            /*
+            let secondBG = SKSpriteNode(imageNamed: "newBG")
+            secondBG.anchorPoint = CGPoint.init(x: 0, y: 0)
+            secondBG.position = CGPoint(x:CGFloat(i) * self.frame.width, y:0)
+            secondBG.name = "secondBG"
+            secondBG.size = (self.view?.bounds.size)!
+            self.addChild(secondBG)
+            */
+            
         }
         
         //SET UP THE BIRD SPRITES FOR ANIMATION
@@ -244,9 +257,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
+        var bgImg = "background"
+        
+    
+        
         if gameStarted == true{
             if died == false{
-                                enumerateChildNodes(withName: "background", using: ({
+               /* if score > 10 {
+                    bgImg = "backgroundTwo"
+                } */
+                    enumerateChildNodes(withName: bgImg, using: ({
                     (node, error) in
                     let bg = node as! SKSpriteNode
                     bg.position = CGPoint(x: bg.position.x - 2, y: bg.position.y)
