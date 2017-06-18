@@ -1,9 +1,10 @@
 
 
 import SpriteKit
+import Foundation
 
 
-class SkinsScene: SKScene, SKPhysicsContactDelegate {
+class SkinsScene: SKScene {
     
     var gameStarted = Bool(false)
     var died = Bool(false)
@@ -33,10 +34,8 @@ class SkinsScene: SKScene, SKPhysicsContactDelegate {
     var time = CGFloat()
     var backBtn = SKSpriteNode()
     
-override func didMove(to view: SKView) {
-    createSkinScene()
-    
-    }
+
+
     
     func createSkinScene() {
         let background = SKSpriteNode(imageNamed: "bg")

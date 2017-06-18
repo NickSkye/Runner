@@ -10,12 +10,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let coinSound = SKAction.playSoundFileNamed("CoinSound.mp3", waitForCompletion: false)
     
     var score = Int(0)
+    var running = Bool(false)
     var scoreLbl = SKLabelNode()
     var highscoreLbl = SKLabelNode()
     var taptoplayLbl = SKLabelNode()
     var restartBtn = SKSpriteNode()
     var pauseBtn = SKSpriteNode()
-    var skinBtn = SKSpriteNode()
+    //var skinBtn = SKSpriteNode()
+   // var skinBtn = UIButton()
     var backBtn = SKSpriteNode()
     var logoImg = SKSpriteNode()
     var wallPair = SKNode()
@@ -38,24 +40,35 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print("1")
+      
+        
+        // Create the method you want to call (see target before)
+        
         if gameStarted == false{
             MusicHelper.sharedHelper.playBackgroundMusic()
             gameStarted =  true
+            
             bird.physicsBody?.affectedByGravity = true
             createPauseBtn()
             
             logoImg.run(SKAction.scale(to: 0.5, duration: 0.3), completion: {
                 self.logoImg.removeFromParent()
-                self.skinBtn.removeFromParent()
+             //   self.skinBtn.removeFromParent()
+                 print("2")
+          
+                
             })
             taptoplayLbl.removeFromParent()
-            self.skinBtn.removeFromParent()
+           
             self.bird.run(repeatActionbird)
             
              spawn = SKAction.run({
                 () in
                 self.wallPair = self.createWalls()
                 self.addChild(self.wallPair)
+                
+                
             })
             
             delay = SKAction.wait(forDuration: 1.5)
@@ -75,6 +88,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         } else {
             if died == false {
                 //change speed and shit here
+                 print("3")
                 bird.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
                 bird.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 40))
                //
@@ -93,6 +107,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         for touch in touches{
             let location = touch.location(in: self)
+            //let node = self.nodes(at: location)
             if died == true{
                 if restartBtn.contains(location){
                     if UserDefaults.standard.object(forKey: "highestScore") != nil {
@@ -117,20 +132,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     }
                 }
             
-            else {
-                if skinBtn.contains(location){
-                   // MusicHelper.sharedHelper.stopBackgroundMusic()
-                    let transition = SKTransition.reveal(with: .down, duration: 1.0)
-                    
-                    let nextScene = SkinsScene(size: scene!.size)
-                    nextScene.scaleMode = .aspectFill
-                    
-                    scene?.view?.presentScene(nextScene, transition: transition)
-                        skinBtn.texture = SKTexture(imageNamed: "play")
-                    
-                    
-                }
-            }
+            
         }
     }
     
@@ -154,6 +156,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func createScene(){
+        
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
         self.physicsBody?.categoryBitMask = CollisionBitMask.groundCategory
         self.physicsBody?.collisionBitMask = CollisionBitMask.birdCategory
@@ -201,9 +204,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         highscoreLbl = createHighscoreLabel()
         self.addChild(highscoreLbl)
-        
+
         createLogo()
-        createBuySkinsBtn()
+
         
         taptoplayLbl = createTaptoplayLabel()
         self.addChild(taptoplayLbl)
@@ -212,7 +215,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact) {
         let firstBody = contact.bodyA
         let secondBody = contact.bodyB
-        
+         print("5")
       /*  if firstBody.categoryBitMask == CollisionBitMask.birdCategory && secondBody.categoryBitMask == CollisionBitMask.pillarCategory || firstBody.categoryBitMask == CollisionBitMask.pillarCategory && secondBody.categoryBitMask == CollisionBitMask.birdCategory || firstBody.categoryBitMask == CollisionBitMask.birdCategory && secondBody.categoryBitMask == CollisionBitMask.groundCategory || firstBody.categoryBitMask == CollisionBitMask.groundCategory && secondBody.categoryBitMask == CollisionBitMask.birdCategory{
             enumerateChildNodes(withName: "wallPair", using: ({
                 (node, error) in
@@ -226,7 +229,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.bird.removeAllActions()
             }
         } */
-        if bird.position.x < 0 {
+        if bird.position.x < 0 + bird.size.width/2 {
             MusicHelper.sharedHelper.stopBackgroundMusic()
             enumerateChildNodes(withName: "wallPair", using: ({
                 (node, error) in
@@ -238,6 +241,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 createRestartBtn()
                 pauseBtn.removeFromParent()
                 self.bird.removeAllActions()
+                
             }
         }
          else if firstBody.categoryBitMask == CollisionBitMask.birdCategory && secondBody.categoryBitMask == CollisionBitMask.flowerCategory {
@@ -266,6 +270,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                /* if score > 10 {
                     bgImg = "backgroundTwo"
                 } */
+            
                     enumerateChildNodes(withName: bgImg, using: ({
                     (node, error) in
                     let bg = node as! SKSpriteNode
