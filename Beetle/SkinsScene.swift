@@ -4,7 +4,7 @@ import SpriteKit
 import Foundation
 
 
-class SkinsScene: SKScene {
+class SkinsScene: UIViewController {
     
     var gameStarted = Bool(false)
     var died = Bool(false)
@@ -35,8 +35,13 @@ class SkinsScene: SKScene {
     var backBtn = SKSpriteNode()
     
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        
+    }
 
-    
+    /*
     func createSkinScene() {
         let background = SKSpriteNode(imageNamed: "bg")
         background.anchorPoint = CGPoint.init(x: 0, y: 0)
@@ -47,6 +52,7 @@ class SkinsScene: SKScene {
         
         
     }
+ */
     
  }
 

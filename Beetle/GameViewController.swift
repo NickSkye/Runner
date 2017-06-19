@@ -6,6 +6,7 @@ class GameViewController: UIViewController {
 
     
     var button = UIButton()
+    var shopbutton = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +20,7 @@ class GameViewController: UIViewController {
         skView.presentScene(scene)
  */
         
-        button = UIButton(frame: CGRect(x: self.view.frame.width/2 - 50 , y: self.view.frame.height/2, width: 100, height: 50))
+        button = UIButton(frame: CGRect(x: self.view.frame.width/2 - 50 , y: self.view.frame.height/2 - 100, width: 100, height: 50))
         self.button.isHidden = false
         self.button.isEnabled = true
         button.backgroundColor = .blue
@@ -27,6 +28,15 @@ class GameViewController: UIViewController {
         button.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
         
         self.view.addSubview(button)
+        
+        shopbutton = UIButton(frame: CGRect(x: self.view.frame.width/2 - 50 , y: self.view.frame.midY , width: 100, height: 50))
+        self.shopbutton.isHidden = false
+        self.shopbutton.isEnabled = true
+        shopbutton.backgroundColor = .blue
+        shopbutton.setTitle("SHOP", for: .normal)
+        shopbutton.addTarget(self, action: #selector(shopbuttonClicked), for: .touchUpInside)
+        
+        self.view.addSubview(shopbutton)
     }
 
     
@@ -42,6 +52,10 @@ class GameViewController: UIViewController {
         skView.presentScene(scene, transition: SKTransition.doorway(withDuration: 3))
         self.button.isHidden = true
         self.button.isEnabled = false
+    }
+    
+    func shopbuttonClicked(sender: UIButton!) {
+        self.performSegue(withIdentifier: "mainToSkins", sender: self)
     }
     
     override var shouldAutorotate: Bool {
