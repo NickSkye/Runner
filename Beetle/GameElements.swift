@@ -60,17 +60,19 @@ extension GameScene{
     func createShopBtn() {
         shopBtn = SKSpriteNode(imageNamed: "pause")
         shopBtn.size = CGSize(width:40, height:40)
-        shopBtn.position = CGPoint(x: self.frame.width / 2 , y: 30)
+        shopBtn.position = CGPoint(x: self.frame.midX / 2 , y: 30)
         shopBtn.zPosition = 7
         self.addChild(shopBtn)
     }
+    
+    
     
   
   
     func createBackBtn() {
         backBtn = SKSpriteNode(imageNamed: "pause")
         backBtn.size = CGSize(width:60, height:40)
-        backBtn.position = CGPoint(x: self.frame.width/2, y: 200)
+        backBtn.position = CGPoint(x: self.frame.midX / 6, y: self.frame.height - 50)
         backBtn.zPosition = 8
         self.addChild(backBtn)
     }

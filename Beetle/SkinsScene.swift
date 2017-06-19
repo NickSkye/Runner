@@ -34,18 +34,60 @@ class SkinsScene: SKScene {
     var time = CGFloat()
     var backBtn = SKSpriteNode()
     
-/*
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        
-    }
- */
+//add stuff to game elements such as createSkinsButton and then implement in createSkinScene.
 
     override func didMove(to view: SKView) {
         print("HERE")
         createSkinScene()
+        
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print("1")
+        
+        
+        // Create the method you want to call (see target before)
+        
+        // put all menu items on scene here as else if using same notation. CTRL-f menu items to find where to remove them on this page
+        
+        if (nodes(at: (touches.first?.location(in: self))!)[0] as? SKSpriteNode)! == backBtn {
+            let scene = GameScene(size: (view?.bounds.size)!)
+            let skView = view!
+            skView.showsFPS = false
+            skView.showsNodeCount = false
+            skView.ignoresSiblingOrder = false
+            scene.scaleMode = .resizeFill
+            skView.presentScene(scene, transition: SKTransition.doorway(withDuration: 3))
+        }
+        
+        //
+        
+        
+        
+        /// was here V
+        ///moved touches here
+        for touch in touches{
+            let location = touch.location(in: self)
+            //let node = self.nodes(at: location)
+            /* CHANGE THIS TO GO TO A NEW SCENE WITH NEW CHARACTERS
+            if (nodes(at: touch.location(in: self))[0] as? SKSpriteNode) == shopBtn {
+                let skinscene = SkinsScene(size: (view?.bounds.size)!)
+                let skinskView = view!
+                skinskView.showsFPS = false
+                skinskView.showsNodeCount = false
+                skinskView.ignoresSiblingOrder = false
+                skinscene.scaleMode = .resizeFill
+                skinskView.presentScene(skinscene, transition: SKTransition.doorway(withDuration: 2))
+                shopBtn.removeFromParent()
+            }
+            */
+            
+        }
+        
+        ////
+        //////
+    }
+
     
     func createSkinScene() {
         let background = SKSpriteNode(imageNamed: "bg")
@@ -55,10 +97,17 @@ class SkinsScene: SKScene {
         background.size = (self.view?.bounds.size)!
         self.addChild(background)
         
+        createBackBtn()
         
     }
 
-    
+    func createBackBtn() {
+        backBtn = SKSpriteNode(imageNamed: "pause")
+        backBtn.size = CGSize(width:60, height:40)
+        backBtn.position = CGPoint(x: self.frame.midX / 6, y: self.frame.height - 50)
+        backBtn.zPosition = 8
+        self.addChild(backBtn)
+    }
  }
 
 
