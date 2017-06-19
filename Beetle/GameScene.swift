@@ -11,10 +11,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var score = Int(0)
     var running = Bool(false)
-    var scoreLbl = SKLabelNode()
+    var statLbl = SKLabelNode()
     var highscoreLbl = SKLabelNode()
     var taptoplayLbl = SKLabelNode()
     var restartBtn = SKSpriteNode()
+    var scoreLbl = SKLabelNode()
     var pauseBtn = SKSpriteNode()
     //var skinBtn = SKSpriteNode()
    // var skinBtn = UIButton()
@@ -123,11 +124,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             } else if pauseBtn.contains(location){
                     if self.isPaused == false{
                         self.isPaused = true
-                        MusicHelper.sharedHelper.stopBackgroundMusic()
+                       // MusicHelper.sharedHelper.stopBackgroundMusic()
                         pauseBtn.texture = SKTexture(imageNamed: "play")
                     } else {
                         self.isPaused = false
-                        MusicHelper.sharedHelper.playBackgroundMusic()
+                      //  MusicHelper.sharedHelper.playBackgroundMusic()
                         pauseBtn.texture = SKTexture(imageNamed: "pause")
                     }
                 }

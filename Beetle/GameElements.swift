@@ -34,6 +34,16 @@ extension GameScene{
         restartBtn.zPosition = 6
         restartBtn.setScale(0)
         self.addChild(restartBtn)
+        print("restartbuttoncreated")
+        
+        statLbl = SKLabelNode(fontNamed: "Chalkduster")
+        statLbl.text = "You Win!"
+        statLbl.fontSize = 65
+        statLbl.fontColor = SKColor.green
+        statLbl.position = CGPoint(x: frame.midX, y: frame.midY)
+        
+        addChild(statLbl)
+        
         restartBtn.run(SKAction.scale(to: 1.0, duration: 0.3))
     }
     

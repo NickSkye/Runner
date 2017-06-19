@@ -39,7 +39,7 @@ class GameViewController: UIViewController {
         skView.showsNodeCount = false
         skView.ignoresSiblingOrder = false
         scene.scaleMode = .resizeFill
-        skView.presentScene(scene, transition: SKTransition.doorsOpenVertical(withDuration: 2))
+        skView.presentScene(scene, transition: SKTransition.doorway(withDuration: 3))
         self.button.isHidden = true
         self.button.isEnabled = false
     }
