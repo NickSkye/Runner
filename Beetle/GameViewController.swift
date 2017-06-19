@@ -8,6 +8,8 @@ class GameViewController: UIViewController {
     var button = UIButton()
     var shopbutton = UIButton()
     
+    @IBOutlet var bgImage: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         /*
@@ -37,6 +39,10 @@ class GameViewController: UIViewController {
         shopbutton.addTarget(self, action: #selector(shopbuttonClicked), for: .touchUpInside)
         
         self.view.addSubview(shopbutton)
+        
+        
+        
+        self.bgImage.isHidden = false
     }
 
     
@@ -50,8 +56,13 @@ class GameViewController: UIViewController {
         skView.ignoresSiblingOrder = false
         scene.scaleMode = .resizeFill
         skView.presentScene(scene, transition: SKTransition.doorway(withDuration: 3))
+        
+        //HIDES everything when play button is clicked
         self.button.isHidden = true
         self.button.isEnabled = false
+        self.bgImage.isHidden = true
+        self.shopbutton.isHidden = true
+        self.shopbutton.isEnabled = false
     }
     
     func shopbuttonClicked(sender: UIButton!) {

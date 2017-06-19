@@ -17,7 +17,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var restartBtn = SKSpriteNode()
     var scoreLbl = SKLabelNode()
     var pauseBtn = SKSpriteNode()
-    //var skinBtn = SKSpriteNode()
+    var skinBtn = SKSpriteNode()
    // var skinBtn = UIButton()
     var backBtn = SKSpriteNode()
     var logoImg = SKSpriteNode()
@@ -46,6 +46,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // Create the method you want to call (see target before)
         
+        // put all menu items on scene here as else if using same notation. CTRL-f menu items to find where to remove them on this page
+        
+        if (nodes(at: (touches.first?.location(in: self))!)[0] as? SKSpriteNode)! == skinBtn {
+            let skinscene = SkinsScene(size: (view?.bounds.size)!)
+            let skinskView = view!
+            skinskView.showsFPS = false
+            skinskView.showsNodeCount = false
+            skinskView.ignoresSiblingOrder = false
+            skinscene.scaleMode = .resizeFill
+            skinskView.presentScene(skinscene, transition: SKTransition.doorway(withDuration: 2))
+            skinBtn.removeFromParent()
+        }
+        
+        //
+        
+        
+        
         if gameStarted == false{
             MusicHelper.sharedHelper.playBackgroundMusic()
             gameStarted =  true
@@ -60,6 +77,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
           
                 
             })
+            //menu items remove here
+            skinBtn.removeFromParent()
             taptoplayLbl.removeFromParent()
            
             self.bird.run(repeatActionbird)
@@ -106,6 +125,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
         
+        /// was here V
+        ///moved touches here
         for touch in touches{
             let location = touch.location(in: self)
             //let node = self.nodes(at: location)
@@ -122,19 +143,32 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     restartScene()
                 }
             } else if pauseBtn.contains(location){
-                    if self.isPaused == false{
-                        self.isPaused = true
-                       // MusicHelper.sharedHelper.stopBackgroundMusic()
-                        pauseBtn.texture = SKTexture(imageNamed: "play")
-                    } else {
-                        self.isPaused = false
-                      //  MusicHelper.sharedHelper.playBackgroundMusic()
-                        pauseBtn.texture = SKTexture(imageNamed: "pause")
-                    }
+                if self.isPaused == false{
+                    self.isPaused = true
+                    // MusicHelper.sharedHelper.stopBackgroundMusic()
+                    pauseBtn.texture = SKTexture(imageNamed: "play")
+                } else {
+                    self.isPaused = false
+                    //  MusicHelper.sharedHelper.playBackgroundMusic()
+                    pauseBtn.texture = SKTexture(imageNamed: "pause")
                 }
+            }
+            else if (nodes(at: touch.location(in: self))[0] as? SKSpriteNode) == skinBtn {
+                let skinscene = SkinsScene(size: (view?.bounds.size)!)
+                let skinskView = view!
+                skinskView.showsFPS = false
+                skinskView.showsNodeCount = false
+                skinskView.ignoresSiblingOrder = false
+                skinscene.scaleMode = .resizeFill
+                skinskView.presentScene(skinscene, transition: SKTransition.doorway(withDuration: 2))
+                skinBtn.removeFromParent()
+            }
             
             
         }
+        
+        ////
+        //////
     }
     
     func restartScene(){
@@ -207,7 +241,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(highscoreLbl)
 
         createLogo()
-
+        //skin
+        createSkinBtn()
         
         taptoplayLbl = createTaptoplayLabel()
         self.addChild(taptoplayLbl)
