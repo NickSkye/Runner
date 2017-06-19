@@ -17,7 +17,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var restartBtn = SKSpriteNode()
     var scoreLbl = SKLabelNode()
     var pauseBtn = SKSpriteNode()
-    var skinBtn = SKSpriteNode()
+    var shopBtn = SKSpriteNode()
    // var skinBtn = UIButton()
     var backBtn = SKSpriteNode()
     var logoImg = SKSpriteNode()
@@ -48,7 +48,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // put all menu items on scene here as else if using same notation. CTRL-f menu items to find where to remove them on this page
         
-        if (nodes(at: (touches.first?.location(in: self))!)[0] as? SKSpriteNode)! == skinBtn {
+        if (nodes(at: (touches.first?.location(in: self))!)[0] as? SKSpriteNode)! == shopBtn {
             let skinscene = SkinsScene(size: (view?.bounds.size)!)
             let skinskView = view!
             skinskView.showsFPS = false
@@ -56,7 +56,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             skinskView.ignoresSiblingOrder = false
             skinscene.scaleMode = .resizeFill
             skinskView.presentScene(skinscene, transition: SKTransition.doorway(withDuration: 2))
-            skinBtn.removeFromParent()
+            shopBtn.removeFromParent()
         }
         
         //
@@ -78,7 +78,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
             })
             //menu items remove here
-            skinBtn.removeFromParent()
+            shopBtn.removeFromParent()
             taptoplayLbl.removeFromParent()
            
             self.bird.run(repeatActionbird)
@@ -153,7 +153,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     pauseBtn.texture = SKTexture(imageNamed: "pause")
                 }
             }
-            else if (nodes(at: touch.location(in: self))[0] as? SKSpriteNode) == skinBtn {
+            else if (nodes(at: touch.location(in: self))[0] as? SKSpriteNode) == shopBtn {
                 let skinscene = SkinsScene(size: (view?.bounds.size)!)
                 let skinskView = view!
                 skinskView.showsFPS = false
@@ -161,7 +161,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 skinskView.ignoresSiblingOrder = false
                 skinscene.scaleMode = .resizeFill
                 skinskView.presentScene(skinscene, transition: SKTransition.doorway(withDuration: 2))
-                skinBtn.removeFromParent()
+                shopBtn.removeFromParent()
             }
             
             
@@ -242,7 +242,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         createLogo()
         //skin
-        createSkinBtn()
+        createShopBtn()
         
         taptoplayLbl = createTaptoplayLabel()
         self.addChild(taptoplayLbl)

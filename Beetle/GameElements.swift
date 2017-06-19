@@ -56,13 +56,13 @@ extension GameScene{
     }
     
    
-
-    func createSkinBtn() {
-        skinBtn = SKSpriteNode(imageNamed: "pause")
-        skinBtn.size = CGSize(width:40, height:40)
-        skinBtn.position = CGPoint(x: self.frame.width / 2 , y: 30)
-        skinBtn.zPosition = 7
-        self.addChild(skinBtn)
+    //creates shop
+    func createShopBtn() {
+        shopBtn = SKSpriteNode(imageNamed: "pause")
+        shopBtn.size = CGSize(width:40, height:40)
+        shopBtn.position = CGPoint(x: self.frame.width / 2 , y: 30)
+        shopBtn.zPosition = 7
+        self.addChild(shopBtn)
     }
     
   
