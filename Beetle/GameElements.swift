@@ -56,7 +56,7 @@ extension GameScene{
     }
     
    
-    //creates shop
+    //creates shop on main screen
     func createShopBtn() {
         shopBtn = SKSpriteNode(imageNamed: "pause")
         shopBtn.size = CGSize(width:40, height:40)
@@ -65,10 +65,15 @@ extension GameScene{
         self.addChild(shopBtn)
     }
     
+    func createProfileBtn() {
+        profileBtn = SKSpriteNode(imageNamed: "pause")
+        profileBtn.size = CGSize(width:40, height:40)
+        profileBtn.position = CGPoint(x: self.frame.width - 50, y: self.frame.height - 50)
+        profileBtn.zPosition = 7
+        self.addChild(profileBtn)
+    }
     
     
-  
-  
     func createBackBtn() {
         backBtn = SKSpriteNode(imageNamed: "pause")
         backBtn.size = CGSize(width:60, height:40)

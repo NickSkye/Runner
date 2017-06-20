@@ -21,10 +21,11 @@
 		F32ABE3B1EEA6A6D000A217E /* gno.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F32ABE3A1EEA6A6D000A217E /* gno.mp3 */; };
 		F32ABE3D1EEB57A4000A217E /* CoinSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F32ABE3C1EEB57A4000A217E /* CoinSound.mp3 */; };
 		F32ABE3F1EEB5863000A217E /* SkinsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ABE3E1EEB5863000A217E /* SkinsScene.swift */; };
+		F37DE28A1EF8E35200FE524A /* ProfileScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37DE2891EF8E35200FE524A /* ProfileScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D9E9D9311E3483A900754A1A /* Beetle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Beetle.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D9E9D9311E3483A900754A1A /* Jumper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jumper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9E9D9341E3483A900754A1A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D9E9D9361E3483AA00754A1A /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		D9E9D9381E3483AA00754A1A /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
@@ -40,6 +41,7 @@
 		F32ABE3A1EEA6A6D000A217E /* gno.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = gno.mp3; path = ../gno.mp3; sourceTree = "<group>"; };
 		F32ABE3C1EEB57A4000A217E /* CoinSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = CoinSound.mp3; path = ../../CoinSound.mp3; sourceTree = "<group>"; };
 		F32ABE3E1EEB5863000A217E /* SkinsScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkinsScene.swift; sourceTree = "<group>"; };
+		F37DE2891EF8E35200FE524A /* ProfileScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,13 +61,14 @@
 				F32ABE3A1EEA6A6D000A217E /* gno.mp3 */,
 				D9E9D9331E3483A900754A1A /* Beetle */,
 				D9E9D9321E3483A900754A1A /* Products */,
+				F37DE2841EF8E05700FE524A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		D9E9D9321E3483A900754A1A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D9E9D9311E3483A900754A1A /* Beetle.app */,
+				D9E9D9311E3483A900754A1A /* Jumper.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -87,16 +90,24 @@
 				D9E9D9521E34A13100754A1A /* player.atlas */,
 				F32ABE381EEA69B3000A217E /* MusicHelper.swift */,
 				F32ABE3E1EEB5863000A217E /* SkinsScene.swift */,
+				F37DE2891EF8E35200FE524A /* ProfileScene.swift */,
 			);
 			path = Beetle;
+			sourceTree = "<group>";
+		};
+		F37DE2841EF8E05700FE524A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D9E9D9301E3483A900754A1A /* Beetle */ = {
+		D9E9D9301E3483A900754A1A /* Jumper */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D9E9D9491E3483AA00754A1A /* Build configuration list for PBXNativeTarget "Beetle" */;
+			buildConfigurationList = D9E9D9491E3483AA00754A1A /* Build configuration list for PBXNativeTarget "Jumper" */;
 			buildPhases = (
 				D9E9D92D1E3483A900754A1A /* Sources */,
 				D9E9D92E1E3483A900754A1A /* Frameworks */,
@@ -106,9 +117,9 @@
 			);
 			dependencies = (
 			);
-			name = Beetle;
+			name = Jumper;
 			productName = Beetle;
-			productReference = D9E9D9311E3483A900754A1A /* Beetle.app */;
+			productReference = D9E9D9311E3483A900754A1A /* Jumper.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -125,6 +136,14 @@
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 9KR276P772;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.GameCenter = {
+								enabled = 0;
+							};
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -141,7 +160,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D9E9D9301E3483A900754A1A /* Beetle */,
+				D9E9D9301E3483A900754A1A /* Jumper */,
 			);
 		};
 /* End PBXProject section */
@@ -175,6 +194,7 @@
 				D9E9D93D1E3483AA00754A1A /* GameViewController.swift in Sources */,
 				D9E9D9351E3483A900754A1A /* AppDelegate.swift in Sources */,
 				F32ABE3F1EEB5863000A217E /* SkinsScene.swift in Sources */,
+				F37DE28A1EF8E35200FE524A /* ProfileScene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,7 +353,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D9E9D9491E3483AA00754A1A /* Build configuration list for PBXNativeTarget "Beetle" */ = {
+		D9E9D9491E3483AA00754A1A /* Build configuration list for PBXNativeTarget "Jumper" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D9E9D94A1E3483AA00754A1A /* Debug */,

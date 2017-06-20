@@ -18,6 +18,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var scoreLbl = SKLabelNode()
     var pauseBtn = SKSpriteNode()
     var shopBtn = SKSpriteNode()
+    var profileBtn = SKSpriteNode()
    // var skinBtn = UIButton()
     var backBtn = SKSpriteNode()
     var logoImg = SKSpriteNode()
@@ -55,8 +56,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             skinskView.showsNodeCount = false
             skinskView.ignoresSiblingOrder = false
             skinscene.scaleMode = .resizeFill
-            skinskView.presentScene(skinscene, transition: SKTransition.doorway(withDuration: 2))
+            skinskView.presentScene(skinscene, transition: SKTransition.doorway(withDuration: 1))
             shopBtn.removeFromParent()
+        }
+        else if (nodes(at: (touches.first?.location(in: self))!)[0] as? SKSpriteNode)! == profileBtn {
+            let profilescene = ProfileScene(size: (view?.bounds.size)!)
+            let profileskView = view!
+            profileskView.showsFPS = false
+            profileskView.showsNodeCount = false
+            profileskView.ignoresSiblingOrder = false
+            profilescene.scaleMode = .resizeFill
+            profileskView.presentScene(profilescene, transition: SKTransition.doorway(withDuration: 1))
+            profileBtn.removeFromParent()
         }
         
         //
@@ -79,6 +90,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             })
             //menu items remove here
             shopBtn.removeFromParent()
+            profileBtn.removeFromParent()
             taptoplayLbl.removeFromParent()
            
             self.bird.run(repeatActionbird)
@@ -240,9 +252,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         highscoreLbl = createHighscoreLabel()
         self.addChild(highscoreLbl)
 
+        //create menu buttons here
         createLogo()
         //skin
         createShopBtn()
+        createProfileBtn()
         
         taptoplayLbl = createTaptoplayLabel()
         self.addChild(taptoplayLbl)

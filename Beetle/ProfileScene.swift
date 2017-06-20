@@ -4,7 +4,7 @@ import SpriteKit
 import Foundation
 
 
-class SkinsScene: SKScene {
+class ProfileScene: SKScene {
     
     var gameStarted = Bool(false)
     var died = Bool(false)
@@ -34,11 +34,11 @@ class SkinsScene: SKScene {
     var time = CGFloat()
     var backBtn = SKSpriteNode()
     
-//add stuff to game elements such as createSkinsButton and then implement in createSkinScene.
-
+    //add stuff to game elements such as createSkinsButton and then implement in createSkinScene.
+    
     override func didMove(to view: SKView) {
         print("HERE")
-        createSkinScene()
+        createProfileScene()
         
     }
     
@@ -70,26 +70,26 @@ class SkinsScene: SKScene {
             let location = touch.location(in: self)
             //let node = self.nodes(at: location)
             /* CHANGE THIS TO GO TO A NEW SCENE WITH NEW CHARACTERS
-            if (nodes(at: touch.location(in: self))[0] as? SKSpriteNode) == shopBtn {
-                let skinscene = SkinsScene(size: (view?.bounds.size)!)
-                let skinskView = view!
-                skinskView.showsFPS = false
-                skinskView.showsNodeCount = false
-                skinskView.ignoresSiblingOrder = false
-                skinscene.scaleMode = .resizeFill
-                skinskView.presentScene(skinscene, transition: SKTransition.doorway(withDuration: 2))
-                shopBtn.removeFromParent()
-            }
-            */
+             if (nodes(at: touch.location(in: self))[0] as? SKSpriteNode) == shopBtn {
+             let skinscene = SkinsScene(size: (view?.bounds.size)!)
+             let skinskView = view!
+             skinskView.showsFPS = false
+             skinskView.showsNodeCount = false
+             skinskView.ignoresSiblingOrder = false
+             skinscene.scaleMode = .resizeFill
+             skinskView.presentScene(skinscene, transition: SKTransition.doorway(withDuration: 2))
+             shopBtn.removeFromParent()
+             }
+             */
             
         }
         
         ////
         //////
     }
-
     
-    func createSkinScene() {
+    
+    func createProfileScene() {
         let background = SKSpriteNode(imageNamed: "bg")
         background.anchorPoint = CGPoint.init(x: 0, y: 0)
         //background.position = CGPoint(x:CGFloat(i) * self.frame.width, y:0)
@@ -99,8 +99,10 @@ class SkinsScene: SKScene {
         
         createBackBtn()
         
+       
+        
     }
-
+    
     func createBackBtn() {
         backBtn = SKSpriteNode(imageNamed: "pause")
         backBtn.size = CGSize(width:60, height:40)
@@ -108,7 +110,7 @@ class SkinsScene: SKScene {
         backBtn.zPosition = 8
         self.addChild(backBtn)
     }
- }
+}
 
 
 
