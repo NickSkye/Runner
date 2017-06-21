@@ -2,6 +2,8 @@
 
 import SpriteKit
 
+//TEST
+
 struct CollisionBitMask {
     static let birdCategory:UInt32 = 0x1 << 0
     static let pillarCategory:UInt32 = 0x1 << 1
