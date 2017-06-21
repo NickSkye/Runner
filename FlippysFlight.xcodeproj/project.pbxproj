@@ -40,7 +40,7 @@
 		D9E9D94C1E3484B900754A1A /* GameElements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameElements.swift; sourceTree = "<group>"; };
 		D9E9D9521E34A13100754A1A /* player.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = player.atlas; sourceTree = "<group>"; };
 		F32ABE381EEA69B3000A217E /* MusicHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicHelper.swift; sourceTree = "<group>"; };
-		F32ABE3A1EEA6A6D000A217E /* gno.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = gno.mp3; path = ../gno.mp3; sourceTree = "<group>"; };
+		F32ABE3A1EEA6A6D000A217E /* gno.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = gno.mp3; path = ../../gno.mp3; sourceTree = "<group>"; };
 		F32ABE3C1EEB57A4000A217E /* CoinSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = CoinSound.mp3; path = ../../CoinSound.mp3; sourceTree = "<group>"; };
 		F32ABE3E1EEB5863000A217E /* SkinsScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkinsScene.swift; sourceTree = "<group>"; };
 		F37DE2891EF8E35200FE524A /* ProfileScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileScene.swift; sourceTree = "<group>"; };
@@ -64,7 +64,6 @@
 		D9E9D9281E3483A900754A1A = {
 			isa = PBXGroup;
 			children = (
-				F32ABE3A1EEA6A6D000A217E /* gno.mp3 */,
 				D9E9D9331E3483A900754A1A /* FlippysFlight */,
 				D9E9D9321E3483A900754A1A /* Products */,
 				F37DE2841EF8E05700FE524A /* Frameworks */,
@@ -82,6 +81,7 @@
 		D9E9D9331E3483A900754A1A /* FlippysFlight */ = {
 			isa = PBXGroup;
 			children = (
+				F32ABE3A1EEA6A6D000A217E /* gno.mp3 */,
 				F32ABE3C1EEB57A4000A217E /* CoinSound.mp3 */,
 				D9E9D9341E3483A900754A1A /* AppDelegate.swift */,
 				D9E9D9361E3483AA00754A1A /* GameScene.sks */,
