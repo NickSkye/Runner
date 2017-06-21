@@ -25,7 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D9E9D9311E3483A900754A1A /* Jumper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jumper.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D9E9D9311E3483A900754A1A /* Flippys Flight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Flippys Flight.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9E9D9341E3483A900754A1A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D9E9D9361E3483AA00754A1A /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		D9E9D9381E3483AA00754A1A /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
@@ -68,7 +68,7 @@
 		D9E9D9321E3483A900754A1A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D9E9D9311E3483A900754A1A /* Jumper.app */,
+				D9E9D9311E3483A900754A1A /* Flippys Flight.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -105,9 +105,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D9E9D9301E3483A900754A1A /* Jumper */ = {
+		D9E9D9301E3483A900754A1A /* Flippys Flight */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D9E9D9491E3483AA00754A1A /* Build configuration list for PBXNativeTarget "Jumper" */;
+			buildConfigurationList = D9E9D9491E3483AA00754A1A /* Build configuration list for PBXNativeTarget "Flippys Flight" */;
 			buildPhases = (
 				D9E9D92D1E3483A900754A1A /* Sources */,
 				D9E9D92E1E3483A900754A1A /* Frameworks */,
@@ -117,9 +117,9 @@
 			);
 			dependencies = (
 			);
-			name = Jumper;
+			name = "Flippys Flight";
 			productName = Beetle;
-			productReference = D9E9D9311E3483A900754A1A /* Jumper.app */;
+			productReference = D9E9D9311E3483A900754A1A /* Flippys Flight.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -160,7 +160,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D9E9D9301E3483A900754A1A /* Jumper */,
+				D9E9D9301E3483A900754A1A /* Flippys Flight */,
 			);
 		};
 /* End PBXProject section */
@@ -321,7 +321,7 @@
 				INFOPLIST_FILE = Beetle/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = IntelliSkye.jumper;
+				PRODUCT_BUNDLE_IDENTIFIER = IntelliSkye.flippysflight;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -335,7 +335,7 @@
 				INFOPLIST_FILE = Beetle/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = IntelliSkye.jumper;
+				PRODUCT_BUNDLE_IDENTIFIER = IntelliSkye.flippysflight;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -353,7 +353,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D9E9D9491E3483AA00754A1A /* Build configuration list for PBXNativeTarget "Jumper" */ = {
+		D9E9D9491E3483AA00754A1A /* Build configuration list for PBXNativeTarget "Flippys Flight" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D9E9D94A1E3483AA00754A1A /* Debug */,
