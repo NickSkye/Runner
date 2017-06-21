@@ -22,6 +22,8 @@
 		F32ABE3D1EEB57A4000A217E /* CoinSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F32ABE3C1EEB57A4000A217E /* CoinSound.mp3 */; };
 		F32ABE3F1EEB5863000A217E /* SkinsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ABE3E1EEB5863000A217E /* SkinsScene.swift */; };
 		F37DE28A1EF8E35200FE524A /* ProfileScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37DE2891EF8E35200FE524A /* ProfileScene.swift */; };
+		F37DE28C1EFACA9A00FE524A /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F37DE28B1EFACA9A00FE524A /* GameKit.framework */; };
+		F37DE28E1EFACAAB00FE524A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F37DE28D1EFACAAB00FE524A /* StoreKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,8 @@
 		F32ABE3C1EEB57A4000A217E /* CoinSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = CoinSound.mp3; path = ../../CoinSound.mp3; sourceTree = "<group>"; };
 		F32ABE3E1EEB5863000A217E /* SkinsScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkinsScene.swift; sourceTree = "<group>"; };
 		F37DE2891EF8E35200FE524A /* ProfileScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileScene.swift; sourceTree = "<group>"; };
+		F37DE28B1EFACA9A00FE524A /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		F37DE28D1EFACAAB00FE524A /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +53,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F37DE28C1EFACA9A00FE524A /* GameKit.framework in Frameworks */,
+				F37DE28E1EFACAAB00FE524A /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,6 +104,8 @@
 		F37DE2841EF8E05700FE524A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F37DE28D1EFACAAB00FE524A /* StoreKit.framework */,
+				F37DE28B1EFACA9A00FE524A /* GameKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -138,10 +146,10 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.GameCenter = {
-								enabled = 0;
+								enabled = 1;
 							};
 							com.apple.InAppPurchase = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
