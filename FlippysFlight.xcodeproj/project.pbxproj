@@ -65,7 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				F32ABE3A1EEA6A6D000A217E /* gno.mp3 */,
-				D9E9D9331E3483A900754A1A /* Beetle */,
+				D9E9D9331E3483A900754A1A /* FlippysFlight */,
 				D9E9D9321E3483A900754A1A /* Products */,
 				F37DE2841EF8E05700FE524A /* Frameworks */,
 			);
@@ -79,7 +79,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D9E9D9331E3483A900754A1A /* Beetle */ = {
+		D9E9D9331E3483A900754A1A /* FlippysFlight */ = {
 			isa = PBXGroup;
 			children = (
 				F32ABE3C1EEB57A4000A217E /* CoinSound.mp3 */,
@@ -98,6 +98,7 @@
 				F32ABE3E1EEB5863000A217E /* SkinsScene.swift */,
 				F37DE2891EF8E35200FE524A /* ProfileScene.swift */,
 			);
+			name = FlippysFlight;
 			path = Beetle;
 			sourceTree = "<group>";
 		};
@@ -155,7 +156,7 @@
 					};
 				};
 			};
-			buildConfigurationList = D9E9D92C1E3483A900754A1A /* Build configuration list for PBXProject "Beetle" */;
+			buildConfigurationList = D9E9D92C1E3483A900754A1A /* Build configuration list for PBXProject "FlippysFlight" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -352,7 +353,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D9E9D92C1E3483A900754A1A /* Build configuration list for PBXProject "Beetle" */ = {
+		D9E9D92C1E3483A900754A1A /* Build configuration list for PBXProject "FlippysFlight" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D9E9D9471E3483AA00754A1A /* Debug */,
