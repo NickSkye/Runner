@@ -25,6 +25,7 @@
 		F37DE28C1EFACA9A00FE524A /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F37DE28B1EFACA9A00FE524A /* GameKit.framework */; };
 		F37DE28E1EFACAAB00FE524A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F37DE28D1EFACAAB00FE524A /* StoreKit.framework */; };
 		F37DE2901EFAFD2700FE524A /* NewSkinScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37DE28F1EFAFD2700FE524A /* NewSkinScene.swift */; };
+		F37DE2951EFB87FD00FE524A /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F37DE2941EFB87FD00FE524A /* iAd.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,8 @@
 		F37DE28B1EFACA9A00FE524A /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		F37DE28D1EFACAAB00FE524A /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		F37DE28F1EFAFD2700FE524A /* NewSkinScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewSkinScene.swift; sourceTree = "<group>"; };
+		F37DE2911EFB86B200FE524A /* Flippys Flight.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Flippys Flight.entitlements"; sourceTree = "<group>"; };
+		F37DE2941EFB87FD00FE524A /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F37DE2951EFB87FD00FE524A /* iAd.framework in Frameworks */,
 				F37DE28C1EFACA9A00FE524A /* GameKit.framework in Frameworks */,
 				F37DE28E1EFACAAB00FE524A /* StoreKit.framework in Frameworks */,
 			);
@@ -66,6 +70,7 @@
 		D9E9D9281E3483A900754A1A = {
 			isa = PBXGroup;
 			children = (
+				F37DE2911EFB86B200FE524A /* Flippys Flight.entitlements */,
 				D9E9D9331E3483A900754A1A /* FlippysFlight */,
 				D9E9D9321E3483A900754A1A /* Products */,
 				F37DE2841EF8E05700FE524A /* Frameworks */,
@@ -108,6 +113,7 @@
 		F37DE2841EF8E05700FE524A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F37DE2941EFB87FD00FE524A /* iAd.framework */,
 				F37DE28D1EFACAAB00FE524A /* StoreKit.framework */,
 				F37DE28B1EFACA9A00FE524A /* GameKit.framework */,
 			);
@@ -153,6 +159,12 @@
 								enabled = 1;
 							};
 							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
 								enabled = 1;
 							};
 						};
@@ -330,6 +342,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Flippys Flight.entitlements";
 				DEVELOPMENT_TEAM = 9KR276P772;
 				INFOPLIST_FILE = Beetle/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -344,6 +357,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Flippys Flight.entitlements";
 				DEVELOPMENT_TEAM = 9KR276P772;
 				INFOPLIST_FILE = Beetle/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
