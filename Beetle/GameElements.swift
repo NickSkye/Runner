@@ -60,11 +60,26 @@ extension GameScene{
    
     //creates shop on main screen
     func createShopBtn() {
+        //shows number of spendable coins in shop. NEED TO REMOVE COINS AND UPDATE USERDEFAULTS WHEN TOKENS SPENT
+        var tokensshop = Int(0)
+        if UserDefaults.standard.object(forKey: "currentTokens") != nil {
+            tokensshop = UserDefaults.standard.integer(forKey: "currentTokens")
+        } else {
+            tokensshop = 0
+        }
+        let tokenshopLbl = SKLabelNode()
+        tokenshopLbl.position = CGPoint(x: 0 , y: -30)
+        tokenshopLbl.text = "\(tokensshop)"
+        tokenshopLbl.zPosition = 5
+        tokenshopLbl.fontSize = 20
+        tokenshopLbl.fontName = "HelveticaNeue-Bold"
+        
         shopBtn = SKSpriteNode(imageNamed: "pause")
         shopBtn.size = CGSize(width:40, height:40)
         shopBtn.position = CGPoint(x: self.frame.midX / 2 , y: 30)
         shopBtn.zPosition = 7
         self.addChild(shopBtn)
+        shopBtn.addChild(tokenshopLbl)
     }
     
     func createProfileBtn() {
@@ -102,6 +117,25 @@ extension GameScene{
         scoreBg.zPosition = -1
         scoreLbl.addChild(scoreBg)
         return scoreLbl
+    }
+    
+    func createTokenCollectedLabel() -> SKLabelNode {
+        let tokenLbl = SKLabelNode()
+        tokenLbl.position = CGPoint(x: self.frame.width / 7, y: self.frame.height / 2 + self.frame.height / 2.6)
+        tokenLbl.text = "\(tokens)"
+        tokenLbl.zPosition = 5
+        tokenLbl.fontSize = 20
+        tokenLbl.fontName = "HelveticaNeue-Bold"
+        
+        let tokenBg = SKShapeNode()
+        tokenBg.position = CGPoint(x: 0, y: 0)
+        tokenBg.path = CGPath(roundedRect: CGRect(x: CGFloat(-25), y: CGFloat(-15), width: CGFloat(50), height: CGFloat(50)), cornerWidth: 25, cornerHeight: 25, transform: nil)
+        let tokenBgColor = UIColor(red: CGFloat(0.0 / 255.0), green: CGFloat(0.0 / 255.0), blue: CGFloat(0.0 / 255.0), alpha: CGFloat(0.2))
+        tokenBg.strokeColor = UIColor.clear
+        tokenBg.fillColor = tokenBgColor
+        tokenBg.zPosition = -1
+        tokenLbl.addChild(tokenBg)
+        return tokenLbl
     }
     
     func createHighscoreLabel() -> SKLabelNode {

@@ -10,12 +10,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let coinSound = SKAction.playSoundFileNamed("CoinSound.mp3", waitForCompletion: false)
     
     var score = Int(0)
+    var tokens = Int(0)
     var running = Bool(false)
     var statLbl = SKLabelNode()
     var highscoreLbl = SKLabelNode()
     var taptoplayLbl = SKLabelNode()
     var restartBtn = SKSpriteNode()
     var scoreLbl = SKLabelNode()
+    var tokenLbl = SKLabelNode()
     var pauseBtn = SKSpriteNode()
     var shopBtn = SKSpriteNode()
     var profileBtn = SKSpriteNode()
@@ -148,6 +150,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             //let node = self.nodes(at: location)
             if died == true{
                 if restartBtn.contains(location){
+                    //for score
                     if UserDefaults.standard.object(forKey: "highestScore") != nil {
                         let hscore = UserDefaults.standard.integer(forKey: "highestScore")
                         if hscore < Int(scoreLbl.text!)!{
@@ -156,6 +159,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     } else {
                         UserDefaults.standard.set(0, forKey: "highestScore")
                     }
+                    //for tokens ; currenttokens means all they have to spend ; tokens is what they have this round
+                    if UserDefaults.standard.object(forKey: "currentTokens") != nil {
+                        var currtokens = UserDefaults.standard.integer(forKey: "currentTokens")
+                        var totaltokens = Int(currtokens) + tokens
+                        UserDefaults.standard.set("\(totaltokens)", forKey: "currentTokens")
+                        
+                    } else {
+                        UserDefaults.standard.set(0, forKey: "currentTokens")
+                    }
+
+                    
                     restartScene()
                 }
             } else if pauseBtn.contains(location){
@@ -197,6 +211,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 pauseRestart.removeFromParent()
                 self.isPaused = false
                 pauseRestart.isHidden = true
+                if UserDefaults.standard.object(forKey: "highestScore") != nil {
+                    let hscore = UserDefaults.standard.integer(forKey: "highestScore")
+                    if hscore < Int(scoreLbl.text!)!{
+                        UserDefaults.standard.set(scoreLbl.text, forKey: "highestScore")
+                    }
+                } else {
+                    UserDefaults.standard.set(0, forKey: "highestScore")
+                }
+                
+                //for tokens ; currenttokens means all they have to spend ; tokens is what they have this round
+                if UserDefaults.standard.object(forKey: "currentTokens") != nil {
+                    var currtokens = UserDefaults.standard.integer(forKey: "currentTokens")
+                    var totaltokens = Int(currtokens) + tokens
+                    UserDefaults.standard.set("\(totaltokens)", forKey: "currentTokens")
+                    
+                } else {
+                    UserDefaults.standard.set(0, forKey: "currentTokens")
+                }
+
+                
                 restartScene()
                 
             }
@@ -225,6 +259,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         died = false
         gameStarted = false
         score = 0
+        tokens = 0
         createScene()
     }
     
@@ -285,6 +320,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLbl = createScoreLabel()
         self.addChild(scoreLbl)
         scoreLbl.isUserInteractionEnabled = false
+        tokenLbl = createTokenCollectedLabel()
+        self.addChild(tokenLbl)
+        tokenLbl.isUserInteractionEnabled = false
         highscoreLbl = createHighscoreLabel()
         self.addChild(highscoreLbl)
 
@@ -332,14 +370,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
          else if firstBody.categoryBitMask == CollisionBitMask.birdCategory && secondBody.categoryBitMask == CollisionBitMask.flowerCategory {
             run(coinSound)
-            score += 3
-            scoreLbl.text = "\(score)"
+            tokens += 1
+            tokenLbl.text = "\(tokens)"
             secondBody.node?.removeFromParent()
             
         } else if firstBody.categoryBitMask == CollisionBitMask.flowerCategory && secondBody.categoryBitMask == CollisionBitMask.birdCategory {
             run(coinSound)
-            score += 3
-            scoreLbl.text = "\(score)"
+            tokens += 1
+            tokenLbl.text = "\(tokens)"
             firstBody.node?.removeFromParent()
         }
 

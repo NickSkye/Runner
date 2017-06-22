@@ -109,7 +109,24 @@ class SkinsScene: SKScene {
         
         createBackBtn()
         createNewSkinBtn()
+        createCoinsAmount()
         
+    }
+    
+    func createCoinsAmount() {
+        var tokensshop = Int(0)
+        if UserDefaults.standard.object(forKey: "currentTokens") != nil {
+            tokensshop = UserDefaults.standard.integer(forKey: "currentTokens")
+        } else {
+            tokensshop = 0
+        }
+        let tokenshopLbl = SKLabelNode()
+        tokenshopLbl.position = CGPoint(x: self.frame.width - 50 , y: self.frame.height - 50)
+        tokenshopLbl.text = "\(tokensshop)"
+        tokenshopLbl.zPosition = 5
+        tokenshopLbl.fontSize = 20
+        tokenshopLbl.fontName = "HelveticaNeue-Bold"
+        self.addChild(tokenshopLbl)
     }
 
     func createBackBtn() {
