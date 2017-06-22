@@ -12,7 +12,7 @@
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <viewController id="BV1-FR-VrT" customClass="GameViewController" customModule="Beetle" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BV1-FR-VrT" customClass="GameViewController" customModule="Flippys_Flight" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8aa-yV-Osq"/>
                         <viewControllerLayoutGuide type="bottom" id="qHh-Mt-9TT"/>
@@ -20,16 +20,9 @@
                     <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="CjM-wg-EHV">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            </imageView>
-                        </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
-                        <outlet property="bgImage" destination="CjM-wg-EHV" id="zCd-Ji-st3"/>
                         <segue destination="Kgw-KH-Ps3" kind="presentation" identifier="mainToSkins" modalTransitionStyle="partialCurl" id="Bka-yM-Iw9"/>
                     </connections>
                 </viewController>
@@ -40,7 +33,7 @@
         <!--Skins Scene-->
         <scene sceneID="59x-78-HOc">
             <objects>
-                <viewController id="Kgw-KH-Ps3" customClass="SkinsScene" customModule="Beetle" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Kgw-KH-Ps3" customClass="SkinsScene" customModule="Flippys_Flight" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="q1b-1F-dvw"/>
                         <viewControllerLayoutGuide type="bottom" id="rLf-v4-jUj"/>

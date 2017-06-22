@@ -12,16 +12,16 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        /*
+        
         let scene = GameScene(size: view.bounds.size)
         let skView = view as! SKView
         skView.showsFPS = false
         skView.showsNodeCount = false
         skView.ignoresSiblingOrder = false
         scene.scaleMode = .resizeFill
-        skView.presentScene(scene)
- */
-        
+        skView.presentScene(scene, transition: SKTransition.doorway(withDuration: 3))
+ 
+        /*
         button = UIButton(frame: CGRect(x: self.view.frame.width/2 - 50 , y: self.view.frame.height/2 - 100, width: 100, height: 50))
         self.button.isHidden = false
         self.button.isEnabled = true
@@ -43,6 +43,8 @@ class GameViewController: UIViewController {
         
         
         self.bgImage.isHidden = false
+ 
+ */
     }
 
     
