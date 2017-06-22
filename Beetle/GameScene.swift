@@ -36,6 +36,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var spawnDelayForever = SKAction()
     var spawn = SKAction()
     var time = CGFloat()
+    var pauseRestart = SKSpriteNode()
     override func didMove(to view: SKView) {
         print("HERE")
         createScene()
@@ -48,7 +49,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Create the method you want to call (see target before)
         
         // put all menu items on scene here as else if using same notation. CTRL-f menu items to find where to remove them on this page
-        
+        //THIS FIRST IF ENSURES IT DOESNT CRASH
+        if type(of: nodes(at: (touches.first?.location(in: self))!)[0]) != type(of: SKLabelNode()) && type(of: nodes(at: (touches.first?.location(in: self))!)[0]) != type(of: SKShapeNode()) {
         if (nodes(at: (touches.first?.location(in: self))!)[0] as? SKSpriteNode)! == shopBtn {
             let skinscene = SkinsScene(size: (view?.bounds.size)!)
             let skinskView = view!
@@ -69,8 +71,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             profileskView.presentScene(profilescene, transition: SKTransition.doorway(withDuration: 1))
             profileBtn.removeFromParent()
         }
-        
-        //
+        }        //
         
         
         
@@ -91,7 +92,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             //menu items remove here
             shopBtn.removeFromParent()
             profileBtn.removeFromParent()
+            
             taptoplayLbl.removeFromParent()
+            shopBtn.removeAllActions()
+            profileBtn.removeAllActions()
            
             self.bird.run(repeatActionbird)
             
@@ -159,12 +163,44 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     self.isPaused = true
                     // MusicHelper.sharedHelper.stopBackgroundMusic()
                     pauseBtn.texture = SKTexture(imageNamed: "play")
+                    ////////////
+                    pauseRestart = SKSpriteNode(imageNamed: "restart")
+                    pauseRestart.size = CGSize(width:60, height:40)
+                    pauseRestart.position = CGPoint(x: self.frame.midX / 2, y: self.frame.midY)
+                    pauseRestart.zPosition = 9
+                    pauseRestart.name = "pauseRestart"
+                    pauseRestart.isHidden = false
+                   
+                    self.addChild(pauseRestart)
+                    print("HERE")
+                    
+                    
+                    
+                  
+                    /////////
+                    
+                    
                 } else {
+                    pauseRestart.isHidden = true
+                    pauseRestart.removeFromParent()
+                    pauseRestart.removeAllActions()
                     self.isPaused = false
+                    
                     //  MusicHelper.sharedHelper.playBackgroundMusic()
                     pauseBtn.texture = SKTexture(imageNamed: "pause")
+                    
                 }
             }
+                //use contains and an ishidden check to use this method
+            else if pauseRestart.contains(location) && pauseRestart.isHidden == false{
+                print("YESY")
+                pauseRestart.removeFromParent()
+                self.isPaused = false
+                pauseRestart.isHidden = true
+                restartScene()
+                
+            }
+/*
             else if (nodes(at: touch.location(in: self))[0] as? SKSpriteNode) == shopBtn {
                 let skinscene = SkinsScene(size: (view?.bounds.size)!)
                 let skinskView = view!
@@ -174,7 +210,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 skinscene.scaleMode = .resizeFill
                 skinskView.presentScene(skinscene, transition: SKTransition.doorway(withDuration: 2))
                 shopBtn.removeFromParent()
-            }
+            } */
             
             
         }
@@ -248,7 +284,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         scoreLbl = createScoreLabel()
         self.addChild(scoreLbl)
-        
+        scoreLbl.isUserInteractionEnabled = false
         highscoreLbl = createHighscoreLabel()
         self.addChild(highscoreLbl)
 
