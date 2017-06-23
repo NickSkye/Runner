@@ -68,15 +68,15 @@ extension GameScene{
             tokensshop = 0
         }
         let tokenshopLbl = SKLabelNode()
-        tokenshopLbl.position = CGPoint(x: 0 , y: -30)
+        tokenshopLbl.position = CGPoint(x: 20 , y: -30)
         tokenshopLbl.text = "\(tokensshop)"
         tokenshopLbl.zPosition = 5
         tokenshopLbl.fontSize = 20
         tokenshopLbl.fontName = "HelveticaNeue-Bold"
         
         shopBtn = SKSpriteNode(imageNamed: "pause")
-        shopBtn.size = CGSize(width:40, height:40)
-        shopBtn.position = CGPoint(x: self.frame.midX / 2 , y: 30)
+        shopBtn.size = CGSize(width:70, height:70)
+        shopBtn.position = CGPoint(x: self.frame.midX / 3 , y: 40)
         shopBtn.zPosition = 7
         self.addChild(shopBtn)
         shopBtn.addChild(tokenshopLbl)
@@ -84,8 +84,8 @@ extension GameScene{
     
     func createProfileBtn() {
         profileBtn = SKSpriteNode(imageNamed: "pause")
-        profileBtn.size = CGSize(width:40, height:40)
-        profileBtn.position = CGPoint(x: self.frame.width - 50, y: self.frame.height - 50)
+        profileBtn.size = CGSize(width:70, height:70)
+        profileBtn.position = CGPoint(x: self.frame.width - 50, y: self.frame.height - 60)
         profileBtn.zPosition = 7
         self.addChild(profileBtn)
     }
