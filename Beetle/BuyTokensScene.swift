@@ -4,7 +4,7 @@ import SpriteKit
 import Foundation
 
 
-class NewSkinScene: SKScene {
+class BuyTokensScene: SKScene {
     
     var gameStarted = Bool(false)
     var died = Bool(false)
@@ -90,7 +90,7 @@ class NewSkinScene: SKScene {
     
     
     func createProfileScene() {
-       
+        
         let hour = Calendar.current.component(.hour, from: Date())
         print("hour \(hour)")
         var background = SKSpriteNode(imageNamed: "bg")
@@ -105,25 +105,9 @@ class NewSkinScene: SKScene {
         self.addChild(background)
         
         createBackBtn()
-        createCoinsAmount()
         
         
-    }
-    
-    func createCoinsAmount() {
-        var tokensshop = Int(0)
-        if UserDefaults.standard.object(forKey: "currentTokens") != nil {
-            tokensshop = UserDefaults.standard.integer(forKey: "currentTokens")
-        } else {
-            tokensshop = 0
-        }
-        let tokenshopLbl = SKLabelNode()
-        tokenshopLbl.position = CGPoint(x: self.frame.width - 50 , y: self.frame.height - 50)
-        tokenshopLbl.text = "\(tokensshop)"
-        tokenshopLbl.zPosition = 5
-        tokenshopLbl.fontSize = 20
-        tokenshopLbl.fontName = "HelveticaNeue-Bold"
-        self.addChild(tokenshopLbl)
+        
     }
     
     func createBackBtn() {

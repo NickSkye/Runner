@@ -90,7 +90,13 @@ class ProfileScene: SKScene {
     
     
     func createProfileScene() {
-        let background = SKSpriteNode(imageNamed: "bg")
+        let hour = Calendar.current.component(.hour, from: Date())
+        print("hour \(hour)")
+        var background = SKSpriteNode(imageNamed: "bg")
+        if hour > 19 || hour < 7 {
+            background = SKSpriteNode(imageNamed: "newBG")
+        }
+       // let background = SKSpriteNode(imageNamed: "bg")
         background.anchorPoint = CGPoint.init(x: 0, y: 0)
         //background.position = CGPoint(x:CGFloat(i) * self.frame.width, y:0)
         background.name = "background"

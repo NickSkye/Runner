@@ -34,6 +34,7 @@ class SkinsScene: SKScene {
     var time = CGFloat()
     var backBtn = SKSpriteNode()
     var newSkinBtn = SKSpriteNode()
+    var buyTokensBtn = SKSpriteNode()
     
 //add stuff to game elements such as createSkinsButton and then implement in createSkinScene.
 
@@ -61,6 +62,15 @@ class SkinsScene: SKScene {
             skView.presentScene(scene, transition: SKTransition.doorway(withDuration: 1))
         }
         else if (nodes(at: (touches.first?.location(in: self))!)[0] as? SKSpriteNode)! == newSkinBtn {
+            let scene = NewSkinScene(size: (view?.bounds.size)!)
+            let skView = view!
+            skView.showsFPS = false
+            skView.showsNodeCount = false
+            skView.ignoresSiblingOrder = false
+            scene.scaleMode = .resizeFill
+            skView.presentScene(scene, transition: SKTransition.doorway(withDuration: 1))
+        }
+        else if (nodes(at: (touches.first?.location(in: self))!)[0] as? SKSpriteNode)! == buyTokensBtn {
             let scene = NewSkinScene(size: (view?.bounds.size)!)
             let skView = view!
             skView.showsFPS = false
@@ -100,7 +110,13 @@ class SkinsScene: SKScene {
 
     
     func createSkinScene() {
-        let background = SKSpriteNode(imageNamed: "bg")
+        let hour = Calendar.current.component(.hour, from: Date())
+        print("hour \(hour)")
+        var background = SKSpriteNode(imageNamed: "bg")
+        if hour > 19 || hour < 7 {
+            background = SKSpriteNode(imageNamed: "newBG")
+        }
+       // let background = SKSpriteNode(imageNamed: "bg")
         background.anchorPoint = CGPoint.init(x: 0, y: 0)
         //background.position = CGPoint(x:CGFloat(i) * self.frame.width, y:0)
         background.name = "background"
@@ -110,6 +126,7 @@ class SkinsScene: SKScene {
         createBackBtn()
         createNewSkinBtn()
         createCoinsAmount()
+        createBuyTokensBtn()
         
     }
     
@@ -140,9 +157,17 @@ class SkinsScene: SKScene {
     func createNewSkinBtn() {
         newSkinBtn = SKSpriteNode(imageNamed: "play")
         newSkinBtn.size = CGSize(width:70, height:70)
-        newSkinBtn.position = CGPoint(x: self.frame.midX / 3, y: self.frame.height - 150)
+        newSkinBtn.position = CGPoint(x: self.frame.width / 4, y: self.frame.height - 150)
         newSkinBtn.zPosition = 8
         self.addChild(newSkinBtn)
+    }
+    
+    func createBuyTokensBtn() {
+        buyTokensBtn = SKSpriteNode(imageNamed: "play")
+        buyTokensBtn.size = CGSize(width:70, height:70)
+        buyTokensBtn.position = CGPoint(x: self.frame.width * 0.75, y: self.frame.height - 150)
+        buyTokensBtn.zPosition = 8
+        self.addChild(buyTokensBtn)
     }
  }
 

@@ -26,6 +26,7 @@
 		F37DE28E1EFACAAB00FE524A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F37DE28D1EFACAAB00FE524A /* StoreKit.framework */; };
 		F37DE2901EFAFD2700FE524A /* NewSkinScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37DE28F1EFAFD2700FE524A /* NewSkinScene.swift */; };
 		F37DE2951EFB87FD00FE524A /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F37DE2941EFB87FD00FE524A /* iAd.framework */; };
+		F3BD4CFD1EFD69C50016DC52 /* BuyTokensScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3BD4CFC1EFD69C50016DC52 /* BuyTokensScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		F37DE28F1EFAFD2700FE524A /* NewSkinScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewSkinScene.swift; sourceTree = "<group>"; };
 		F37DE2911EFB86B200FE524A /* Flippys Flight.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Flippys Flight.entitlements"; sourceTree = "<group>"; };
 		F37DE2941EFB87FD00FE524A /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		F3BD4CFC1EFD69C50016DC52 /* BuyTokensScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuyTokensScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 				F32ABE3E1EEB5863000A217E /* SkinsScene.swift */,
 				F37DE2891EF8E35200FE524A /* ProfileScene.swift */,
 				F37DE28F1EFAFD2700FE524A /* NewSkinScene.swift */,
+				F3BD4CFC1EFD69C50016DC52 /* BuyTokensScene.swift */,
 			);
 			name = FlippysFlight;
 			path = Beetle;
@@ -216,6 +219,7 @@
 				D9E9D94D1E3484B900754A1A /* GameElements.swift in Sources */,
 				F37DE2901EFAFD2700FE524A /* NewSkinScene.swift in Sources */,
 				D9E9D93B1E3483AA00754A1A /* GameScene.swift in Sources */,
+				F3BD4CFD1EFD69C50016DC52 /* BuyTokensScene.swift in Sources */,
 				D9E9D93D1E3483AA00754A1A /* GameViewController.swift in Sources */,
 				D9E9D9351E3483A900754A1A /* AppDelegate.swift in Sources */,
 				F32ABE3F1EEB5863000A217E /* SkinsScene.swift in Sources */,
