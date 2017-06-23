@@ -4,7 +4,7 @@ import SpriteKit
 import Foundation
 
 
-class SkinsScene: SKScene {
+class ShopScene: SKScene {
     
     var gameStarted = Bool(false)
     var died = Bool(false)

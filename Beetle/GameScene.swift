@@ -75,7 +75,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //THIS FIRST IF ENSURES IT DOESNT CRASH
         if type(of: nodes(at: (touches.first?.location(in: self))!)[0]) != type(of: SKLabelNode()) && type(of: nodes(at: (touches.first?.location(in: self))!)[0]) != type(of: SKShapeNode()) {
         if (nodes(at: (touches.first?.location(in: self))!)[0] as? SKSpriteNode)! == shopBtn {
-            let skinscene = SkinsScene(size: (view?.bounds.size)!)
+            let skinscene = ShopScene(size: (view?.bounds.size)!)
             let skinskView = view!
             skinskView.showsFPS = false
             skinskView.showsNodeCount = false
