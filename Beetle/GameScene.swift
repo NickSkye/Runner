@@ -417,6 +417,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             tokens += 1
             tokenLbl.text = "\(tokens)"
             firstBody.node?.removeFromParent()
+        }  else if firstBody.categoryBitMask == CollisionBitMask.birdCategory && secondBody.categoryBitMask == CollisionBitMask.boostCategory {
+            //BOOST HIT
+            run(coinSound) //boostsound
+            //do something
+            
+            secondBody.node?.removeFromParent()
+            
+        } else if firstBody.categoryBitMask == CollisionBitMask.boostCategory && secondBody.categoryBitMask == CollisionBitMask.birdCategory {
+            //BOOST HIT
+            run(coinSound) //boostsound
+            //do something
+            
+            firstBody.node?.removeFromParent()
         }
 
     }

@@ -9,6 +9,7 @@ struct CollisionBitMask {
     static let pillarCategory:UInt32 = 0x1 << 1
     static let flowerCategory:UInt32 = 0x1 << 2
     static let groundCategory:UInt32 = 0x1 << 3
+    static let boostCategory:UInt32 = 0x1 << 4
 }
 
 extension GameScene{
@@ -22,7 +23,7 @@ extension GameScene{
         bird.physicsBody?.restitution = 0
         bird.physicsBody?.categoryBitMask = CollisionBitMask.birdCategory
         bird.physicsBody?.collisionBitMask = CollisionBitMask.pillarCategory | CollisionBitMask.groundCategory
-        bird.physicsBody?.contactTestBitMask = CollisionBitMask.pillarCategory | CollisionBitMask.flowerCategory | CollisionBitMask.groundCategory
+        bird.physicsBody?.contactTestBitMask = CollisionBitMask.pillarCategory | CollisionBitMask.flowerCategory | CollisionBitMask.groundCategory | CollisionBitMask.boostCategory
         bird.physicsBody?.affectedByGravity = false
         bird.physicsBody?.isDynamic = true
         
@@ -185,6 +186,19 @@ extension GameScene{
         coinNode.physicsBody?.contactTestBitMask = CollisionBitMask.birdCategory
         coinNode.color = SKColor.blue
         
+        ///////
+        let boostNode = SKSpriteNode(imageNamed: "pause")
+        boostNode.size = CGSize(width: 40, height: 40)
+        boostNode.position = CGPoint(x: self.frame.width + 25, y: self.frame.height / 2)
+        boostNode.physicsBody = SKPhysicsBody(rectangleOf: boostNode.size)
+        boostNode.physicsBody?.affectedByGravity = false
+        boostNode.physicsBody?.isDynamic = false
+        boostNode.physicsBody?.categoryBitMask = CollisionBitMask.boostCategory
+        boostNode.physicsBody?.collisionBitMask = 0
+        boostNode.physicsBody?.contactTestBitMask = CollisionBitMask.birdCategory
+        boostNode.color = SKColor.blue
+        ///////
+        
         wallPair = SKNode()
         wallPair.name = "wallPair"
         
@@ -216,11 +230,12 @@ extension GameScene{
         topWall.zRotation = CGFloat(M_PI)
         
         //Randomly removes top or bottom wall or both// can change to different type of wall
-        let randomTopWall = Int(random(min: 0, max: 15))
+        let randomTopWall = Int(random(min: 0, max: 20))
         if randomTopWall != 5 {
             wallPair.addChild(topWall)
+            
         }
-        let randomBottomWall = Int(random(min: 0, max: 15))
+        let randomBottomWall = Int(random(min: 0, max: 20))
         if randomBottomWall != 5 {
             wallPair.addChild(btmWall)
         }
@@ -230,9 +245,14 @@ extension GameScene{
         wallPair.position.y = wallPair.position.y +  randomPosition
         
         //make random here
-        let randomNumberFlower = Int(random(min: 0, max: 7))
-        if randomNumberFlower == 3 {
+        let randomNumberFlower = Int(random(min: 0, max: 15))
+        if randomNumberFlower == 5 {
             wallPair.addChild(coinNode)
+        }
+        
+        let randomNumberBoost = Int(random(min: 0, max: 50))
+        if randomNumberBoost == 25 && randomNumberBoost != randomNumberFlower {
+            wallPair.addChild(boostNode)
         }
         
         wallPair.run(moveAndRemove)
