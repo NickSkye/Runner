@@ -42,6 +42,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func didMove(to view: SKView) {
         print("HERE")
         createScene()
+        
+        if UserDefaults.standard.object(forKey: "highestScore") != nil {
+            print("ERROR1")
+            let hscore = UserDefaults.standard.integer(forKey: "highestScore")
+            if hscore < Int(scoreLbl.text!)!{
+                UserDefaults.standard.set(scoreLbl.text, forKey: "highestScore")
+            }
+        } else {
+            UserDefaults.standard.set(0, forKey: "highestScore")
+        }
+        //for tokens ; currenttokens means all they have to spend ; tokens is what they have this round
+        if UserDefaults.standard.object(forKey: "currentTokens") != nil {
+            print("ERROR2")
+            var currtokens = UserDefaults.standard.integer(forKey: "currentTokens")
+            var totaltokens = Int(currtokens) + tokens
+            UserDefaults.standard.set("\(totaltokens)", forKey: "currentTokens")
+            
+        } else {
+            UserDefaults.standard.set(0, forKey: "currentTokens")
+        }
+
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -152,6 +173,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 if restartBtn.contains(location){
                     //for score
                     if UserDefaults.standard.object(forKey: "highestScore") != nil {
+                        print("ERROR1")
                         let hscore = UserDefaults.standard.integer(forKey: "highestScore")
                         if hscore < Int(scoreLbl.text!)!{
                             UserDefaults.standard.set(scoreLbl.text, forKey: "highestScore")
@@ -161,6 +183,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     }
                     //for tokens ; currenttokens means all they have to spend ; tokens is what they have this round
                     if UserDefaults.standard.object(forKey: "currentTokens") != nil {
+                        print("ERROR2")
                         var currtokens = UserDefaults.standard.integer(forKey: "currentTokens")
                         var totaltokens = Int(currtokens) + tokens
                         UserDefaults.standard.set("\(totaltokens)", forKey: "currentTokens")

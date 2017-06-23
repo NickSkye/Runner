@@ -5,10 +5,9 @@ import SpriteKit
 class GameViewController: UIViewController {
 
     
-    var button = UIButton()
-    var shopbutton = UIButton()
+   
     
-    @IBOutlet var bgImage: UIImageView!
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,28 +49,7 @@ class GameViewController: UIViewController {
     
     
     
-    func buttonClicked(sender: UIButton!) {
-        let scene = GameScene(size: view.bounds.size)
-        let skView = view as! SKView
-        skView.showsFPS = false
-        skView.showsNodeCount = false
-        skView.ignoresSiblingOrder = false
-        scene.scaleMode = .resizeFill
-        skView.presentScene(scene, transition: SKTransition.doorway(withDuration: 3))
-        
-        //HIDES everything when play button is clicked
-        self.button.isHidden = true
-        self.button.isEnabled = false
-        self.bgImage.isHidden = true
-        self.shopbutton.isHidden = true
-        self.shopbutton.isEnabled = false
-    }
-    
-    func shopbuttonClicked(sender: UIButton!) {
-        self.performSegue(withIdentifier: "mainToSkins", sender: self)
-    }
-    
-    override var shouldAutorotate: Bool {
+      override var shouldAutorotate: Bool {
         return false
     }
   /*

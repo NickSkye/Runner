@@ -22,40 +22,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <connections>
-                        <segue destination="Kgw-KH-Ps3" kind="presentation" identifier="mainToSkins" modalTransitionStyle="partialCurl" id="Bka-yM-Iw9"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-231.19999999999999" y="154.27286356821591"/>
         </scene>
-        <!--Skins Scene-->
-        <scene sceneID="59x-78-HOc">
-            <objects>
-                <viewController id="Kgw-KH-Ps3" customClass="SkinsScene" customModule="Flippys_Flight" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="q1b-1F-dvw"/>
-                        <viewControllerLayoutGuide type="bottom" id="rLf-v4-jUj"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="E5j-Jy-hSc">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="Myx-Re-XfO">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mdk-tb-FfZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="665" y="154"/>
-        </scene>
     </scenes>
-    <resources>
-        <image name="bg" width="750" height="1334"/>
-    </resources>
 </document>
