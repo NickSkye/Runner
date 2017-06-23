@@ -174,16 +174,16 @@ extension GameScene{
     }
     
     func createWalls() -> SKNode  {
-        let flowerNode = SKSpriteNode(imageNamed: "flower")
-        flowerNode.size = CGSize(width: 40, height: 40)
-        flowerNode.position = CGPoint(x: self.frame.width + 25, y: self.frame.height / 2)
-        flowerNode.physicsBody = SKPhysicsBody(rectangleOf: flowerNode.size)
-        flowerNode.physicsBody?.affectedByGravity = false
-        flowerNode.physicsBody?.isDynamic = false
-        flowerNode.physicsBody?.categoryBitMask = CollisionBitMask.flowerCategory
-        flowerNode.physicsBody?.collisionBitMask = 0
-        flowerNode.physicsBody?.contactTestBitMask = CollisionBitMask.birdCategory
-        flowerNode.color = SKColor.blue
+        let coinNode = SKSpriteNode(imageNamed: "flower")
+        coinNode.size = CGSize(width: 40, height: 40)
+        coinNode.position = CGPoint(x: self.frame.width + 25, y: self.frame.height / 2)
+        coinNode.physicsBody = SKPhysicsBody(rectangleOf: coinNode.size)
+        coinNode.physicsBody?.affectedByGravity = false
+        coinNode.physicsBody?.isDynamic = false
+        coinNode.physicsBody?.categoryBitMask = CollisionBitMask.flowerCategory
+        coinNode.physicsBody?.collisionBitMask = 0
+        coinNode.physicsBody?.contactTestBitMask = CollisionBitMask.birdCategory
+        coinNode.color = SKColor.blue
         
         wallPair = SKNode()
         wallPair.name = "wallPair"
@@ -222,9 +222,9 @@ extension GameScene{
         wallPair.position.y = wallPair.position.y +  randomPosition
         
         //make random here
-        let randomNumberFlower = Int(random(min: 0, max: 5))
+        let randomNumberFlower = Int(random(min: 0, max: 7))
         if randomNumberFlower == 3 {
-            wallPair.addChild(flowerNode)
+            wallPair.addChild(coinNode)
         }
         
         wallPair.run(moveAndRemove)

@@ -39,9 +39,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var spawn = SKAction()
     var time = CGFloat()
     var pauseRestart = SKSpriteNode()
+    
+    
     override func didMove(to view: SKView) {
-        print("HERE")
         createScene()
+        
+       
+        
         
         if UserDefaults.standard.object(forKey: "highestScore") != nil {
             print("ERROR1")
@@ -67,7 +71,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         print("1")
-      
+        
         
         // Create the method you want to call (see target before)
         
@@ -130,7 +134,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
             })
             
-            delay = SKAction.wait(forDuration: 1.5)
+            
+            
+            delay = SKAction.wait(forDuration: 2)
             SpawnDelay = SKAction.sequence([spawn, delay])
             spawnDelayForever = SKAction.repeatForever(SpawnDelay)
             self.run(spawnDelayForever)
@@ -148,6 +154,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if died == false {
                 //change speed and shit here
                  print("3")
+                
+                
+                
                 bird.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
                 bird.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 40))
                //
@@ -220,6 +229,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 } else {
                     pauseRestart.isHidden = true
                     pauseRestart.removeFromParent()
+                    pauseRestart.removeAllChildren()
                     pauseRestart.removeAllActions()
                     self.isPaused = false
                     
