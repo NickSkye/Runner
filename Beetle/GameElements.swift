@@ -191,8 +191,10 @@ extension GameScene{
         let topWall = SKSpriteNode(imageNamed: "pillar")
         let btmWall = SKSpriteNode(imageNamed: "pillar")
         
-        topWall.position = CGPoint(x: self.frame.width + 25, y: self.frame.height / 2 + 420)
-        btmWall.position = CGPoint(x: self.frame.width + 25, y: self.frame.height / 2 - 420)
+        let randomWidth = random(min: 380, max: 440)
+        
+        topWall.position = CGPoint(x: self.frame.width + 25, y: self.frame.height / 2 + randomWidth)
+        btmWall.position = CGPoint(x: self.frame.width + 25, y: self.frame.height / 2 - randomWidth)
         
         topWall.setScale(0.5)
         btmWall.setScale(0.5)
@@ -213,12 +215,18 @@ extension GameScene{
         
         topWall.zRotation = CGFloat(M_PI)
         
-        wallPair.addChild(topWall)
-        wallPair.addChild(btmWall)
-        
+        //Randomly removes top or bottom wall or both// can change to different type of wall
+        let randomTopWall = Int(random(min: 0, max: 15))
+        if randomTopWall != 5 {
+            wallPair.addChild(topWall)
+        }
+        let randomBottomWall = Int(random(min: 0, max: 15))
+        if randomBottomWall != 5 {
+            wallPair.addChild(btmWall)
+        }
         wallPair.zPosition = 1
         
-        let randomPosition = random(min: -200, max: 200)
+        let randomPosition = random(min: -250, max: 250)
         wallPair.position.y = wallPair.position.y +  randomPosition
         
         //make random here
