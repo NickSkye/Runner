@@ -50,6 +50,8 @@ extension GameScene{
         restartBtn.run(SKAction.scale(to: 1.0, duration: 0.3))
     }
     
+    
+    
     func createPauseBtn() {
         pauseBtn = SKSpriteNode(imageNamed: "pause")
         pauseBtn.size = CGSize(width:40, height:40)
