@@ -320,7 +320,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let hour = Calendar.current.component(.hour, from: Date())
         print("hour \(hour)")
         for i in 0..<2 {
-            var background = SKSpriteNode(imageNamed: "bg")
+            var background = SKSpriteNode(imageNamed: "city")
             if hour > 19 || hour < 7 {
                 background = SKSpriteNode(imageNamed: "newBG")
             }
@@ -391,7 +391,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.bird.removeAllActions()
             }
         } */
-        if bird.position.x < 0 + bird.size.width/2 {
+        if bird.position.x <= 0 {
             MusicHelper.sharedHelper.stopBackgroundMusic()
             enumerateChildNodes(withName: "wallPair", using: ({
                 (node, error) in
@@ -420,8 +420,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }  else if firstBody.categoryBitMask == CollisionBitMask.birdCategory && secondBody.categoryBitMask == CollisionBitMask.boostCategory {
             //BOOST HIT
             run(coinSound) //boostsound
-            //do something
             
+            //do something
+            bird.physicsBody?.velocity = CGVector(dx: 70, dy: 0)
             secondBody.node?.removeFromParent()
             
         } else if firstBody.categoryBitMask == CollisionBitMask.boostCategory && secondBody.categoryBitMask == CollisionBitMask.birdCategory {
@@ -429,6 +430,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             run(coinSound) //boostsound
             //do something
             
+            bird.physicsBody?.velocity = CGVector(dx: 70, dy: 0)
             firstBody.node?.removeFromParent()
         }
 

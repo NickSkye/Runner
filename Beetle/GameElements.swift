@@ -40,7 +40,7 @@ extension GameScene{
         print("restartbuttoncreated")
         
         statLbl = SKLabelNode(fontNamed: "Chalkduster")
-        statLbl.text = "You Win!"
+        statLbl.text = "" //You Win!"
         statLbl.fontSize = 65
         statLbl.fontColor = SKColor.green
         statLbl.position = CGPoint(x: frame.midX, y: frame.midY)
@@ -69,24 +69,24 @@ extension GameScene{
             tokensshop = 0
         }
         let tokenshopLbl = SKLabelNode()
-        tokenshopLbl.position = CGPoint(x: 20 , y: -30)
-        tokenshopLbl.text = "\(tokensshop)"
+        tokenshopLbl.position = CGPoint(x: 0 , y: -30)
+        tokenshopLbl.text = "\(tokensshop) Tokens"
         tokenshopLbl.zPosition = 5
-        tokenshopLbl.fontSize = 20
+        tokenshopLbl.fontSize = 12
         tokenshopLbl.fontName = "HelveticaNeue-Bold"
         
-        shopBtn = SKSpriteNode(imageNamed: "pause")
+        shopBtn = SKSpriteNode(imageNamed: "shop")
         shopBtn.size = CGSize(width:70, height:70)
-        shopBtn.position = CGPoint(x: self.frame.midX / 3 , y: 40)
+        shopBtn.position = CGPoint(x: self.frame.midX / 3 , y: 50)
         shopBtn.zPosition = 7
         self.addChild(shopBtn)
         shopBtn.addChild(tokenshopLbl)
     }
     
     func createProfileBtn() {
-        profileBtn = SKSpriteNode(imageNamed: "pause")
+        profileBtn = SKSpriteNode(imageNamed: "profile")
         profileBtn.size = CGSize(width:70, height:70)
-        profileBtn.position = CGPoint(x: self.frame.width - 50, y: self.frame.height - 60)
+        profileBtn.position = CGPoint(x: self.frame.width - 50, y: self.frame.height - 70)
         profileBtn.zPosition = 7
         self.addChild(profileBtn)
     }
