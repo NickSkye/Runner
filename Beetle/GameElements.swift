@@ -247,13 +247,14 @@ extension GameScene{
         wallPair.position.y = wallPair.position.y +  randomPosition
         
         //make random here
+        //TOKEN
         let randomNumberFlower = Int(random(min: 0, max: 15))
         if randomNumberFlower == 5 {
             wallPair.addChild(coinNode)
         }
-        
+        //BOOST
         let randomNumberBoost = Int(random(min: 0, max: 50))
-        if randomNumberBoost == 25 && randomNumberBoost != randomNumberFlower {
+        if randomNumberBoost == 25 && randomNumberBoost != 5 {
             wallPair.addChild(boostNode)
         }
         

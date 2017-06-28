@@ -39,7 +39,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var spawn = SKAction()
     var time = CGFloat()
     var pauseRestart = SKSpriteNode()
-    
+    var feedback = UIImpactFeedbackGenerator(style: .heavy)
     
     override func didMove(to view: SKView) {
         createScene()
@@ -392,6 +392,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         } */
         if bird.position.x <= 0 {
+            feedback.impactOccurred()
+            
             MusicHelper.sharedHelper.stopBackgroundMusic()
             enumerateChildNodes(withName: "wallPair", using: ({
                 (node, error) in
@@ -410,18 +412,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             run(coinSound)
             tokens += 1
             tokenLbl.text = "\(tokens)"
+            feedback.impactOccurred()
             secondBody.node?.removeFromParent()
             
         } else if firstBody.categoryBitMask == CollisionBitMask.flowerCategory && secondBody.categoryBitMask == CollisionBitMask.birdCategory {
             run(coinSound)
             tokens += 1
             tokenLbl.text = "\(tokens)"
+            feedback.impactOccurred()
             firstBody.node?.removeFromParent()
         }  else if firstBody.categoryBitMask == CollisionBitMask.birdCategory && secondBody.categoryBitMask == CollisionBitMask.boostCategory {
             //BOOST HIT
             run(coinSound) //boostsound
             
             //do something
+            feedback.impactOccurred()
+            
             bird.physicsBody?.velocity = CGVector(dx: 70, dy: 0)
             secondBody.node?.removeFromParent()
             
@@ -429,7 +435,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             //BOOST HIT
             run(coinSound) //boostsound
             //do something
-            
+            feedback.impactOccurred()
             bird.physicsBody?.velocity = CGVector(dx: 70, dy: 0)
             firstBody.node?.removeFromParent()
         }
