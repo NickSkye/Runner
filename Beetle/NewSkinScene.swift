@@ -106,6 +106,7 @@ class NewSkinScene: SKScene {
         
         createBackBtn()
         createCoinsAmount()
+        createLogo()
         
         
     }
@@ -132,6 +133,16 @@ class NewSkinScene: SKScene {
         backBtn.position = CGPoint(x: self.frame.midX / 6, y: self.frame.height - 50)
         backBtn.zPosition = 8
         self.addChild(backBtn)
+    }
+    
+    func createLogo() {
+        logoImg = SKSpriteNode()
+        logoImg = SKSpriteNode(imageNamed: "flippysfriends")
+        logoImg.size = CGSize(width: 272, height: 150)
+        logoImg.position = CGPoint(x:self.frame.midX, y:self.frame.height * 0.9)
+        logoImg.setScale(0.5)
+        self.addChild(logoImg)
+        logoImg.run(SKAction.scale(to: 1.0, duration: 0.5))
     }
 }
 
