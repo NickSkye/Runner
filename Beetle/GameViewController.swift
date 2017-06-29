@@ -5,13 +5,16 @@ import SpriteKit
 class GameViewController: UIViewController {
 
     
-   
+   let notificationName = Notification.Name("NotificationIdentifier")
     
    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        // Register to receive notification
+        NotificationCenter.default.addObserver(self, selector: #selector(self.playVungleAd), name: notificationName, object: nil)
         let scene = GameScene(size: view.bounds.size)
         let skView = view as! SKView
         skView.showsFPS = false
@@ -47,7 +50,18 @@ class GameViewController: UIViewController {
     }
 
 
+    func playVungleAd() {
+        do {
+        var sdk = VungleSDK.shared()
+        try sdk?.playAd(self, withOptions: nil)
+        } catch {
+            print("ERROR")
+        }
+        
+    }
     
+    
+
     
       override var shouldAutorotate: Bool {
         return false

@@ -11,6 +11,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var score = Int(0)
     var tokens = Int(0)
+    //let notificationName = Notification.Name("NotificationIdentifier")
     var running = Bool(false)
     var statLbl = SKLabelNode()
     var highscoreLbl = SKLabelNode()
@@ -209,6 +210,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     //for score
                     ////////////////PUT AD HERE?
                     
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NotificationIdentifier"), object: nil)
+                    
                     
                     
                     if UserDefaults.standard.object(forKey: "highestScore") != nil {
@@ -315,6 +318,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         ////
         //////
     }
+    
+    
     
     func restartScene(){
         self.removeAllChildren()

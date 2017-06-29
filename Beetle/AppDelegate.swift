@@ -8,9 +8,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]!) -> Bool {
         // Override point for customization after application launch.
         //MusicHelper.sharedHelper.playBackgroundMusic()
+        var appID = "595477026774dd563a000694"
+        var sdk = VungleSDK.shared()
+        // start vungle publisher library
+        sdk?.start(withAppId: appID)
         return true
     }
 

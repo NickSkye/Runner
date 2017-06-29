@@ -27,7 +27,6 @@
 		F37DE2901EFAFD2700FE524A /* NewSkinScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37DE28F1EFAFD2700FE524A /* NewSkinScene.swift */; };
 		F37DE2951EFB87FD00FE524A /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F37DE2941EFB87FD00FE524A /* iAd.framework */; };
 		F3BD4CFD1EFD69C50016DC52 /* BuyTokensScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3BD4CFC1EFD69C50016DC52 /* BuyTokensScene.swift */; };
-		F3D619561F04AF2A00090217 /* VungleSDK.embeddedframework in Resources */ = {isa = PBXBuildFile; fileRef = F3D619551F04AF2A00090217 /* VungleSDK.embeddedframework */; };
 		F3D619581F04AF5300090217 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3D619571F04AF5300090217 /* AdSupport.framework */; };
 		F3D6195A1F04AFB500090217 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3D619591F04AFB500090217 /* AudioToolbox.framework */; };
 		F3D6195C1F04AFF900090217 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3D6195B1F04AFF900090217 /* AVFoundation.framework */; };
@@ -42,6 +41,7 @@
 		F3D6196E1F04B08300090217 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3D6196D1F04B08300090217 /* SystemConfiguration.framework */; };
 		F3D619701F04B08A00090217 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3D6196F1F04B08A00090217 /* UIKit.framework */; };
 		F3D619721F04B09100090217 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3D619711F04B09100090217 /* WebKit.framework */; };
+		F3D6197B1F04BC3200090217 /* VungleSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3D6197A1F04BC3200090217 /* VungleSDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,7 +68,6 @@
 		F37DE2911EFB86B200FE524A /* Flippys Flight.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Flippys Flight.entitlements"; sourceTree = "<group>"; };
 		F37DE2941EFB87FD00FE524A /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		F3BD4CFC1EFD69C50016DC52 /* BuyTokensScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuyTokensScene.swift; sourceTree = "<group>"; };
-		F3D619551F04AF2A00090217 /* VungleSDK.embeddedframework */ = {isa = PBXFileReference; lastKnownFileType = folder; name = VungleSDK.embeddedframework; path = ../vungle410/VungleSDK.embeddedframework; sourceTree = "<group>"; };
 		F3D619571F04AF5300090217 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		F3D619591F04AFB500090217 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		F3D6195B1F04AFF900090217 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -83,6 +82,8 @@
 		F3D6196D1F04B08300090217 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		F3D6196F1F04B08A00090217 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F3D619711F04B09100090217 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		F3D619731F04B4D500090217 /* Flippys Flight-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Flippys Flight-Bridging-Header.h"; sourceTree = "<group>"; };
+		F3D6197A1F04BC3200090217 /* VungleSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VungleSDK.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +99,7 @@
 				F3D6196A1F04B06E00090217 /* MediaPlayer.framework in Frameworks */,
 				F3D619681F04B06600090217 /* libz.tbd in Frameworks */,
 				F3D619661F04B05A00090217 /* libsqlite3.tbd in Frameworks */,
+				F3D6197B1F04BC3200090217 /* VungleSDK.framework in Frameworks */,
 				F3D619641F04B01E00090217 /* Foundation.framework in Frameworks */,
 				F3D619621F04B01700090217 /* CoreMedia.framework in Frameworks */,
 				F3D619601F04B00C00090217 /* CoreGraphics.framework in Frameworks */,
@@ -120,6 +122,7 @@
 				D9E9D9331E3483A900754A1A /* FlippysFlight */,
 				D9E9D9321E3483A900754A1A /* Products */,
 				F37DE2841EF8E05700FE524A /* Frameworks */,
+				F3D619731F04B4D500090217 /* Flippys Flight-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -160,6 +163,7 @@
 		F37DE2841EF8E05700FE524A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F3D619781F04BC3200090217 /* VungleSDK.embeddedframework */,
 				F3D619711F04B09100090217 /* WebKit.framework */,
 				F3D6196F1F04B08A00090217 /* UIKit.framework */,
 				F3D6196D1F04B08300090217 /* SystemConfiguration.framework */,
@@ -174,12 +178,27 @@
 				F3D6195B1F04AFF900090217 /* AVFoundation.framework */,
 				F3D619591F04AFB500090217 /* AudioToolbox.framework */,
 				F3D619571F04AF5300090217 /* AdSupport.framework */,
-				F3D619551F04AF2A00090217 /* VungleSDK.embeddedframework */,
 				F37DE2941EFB87FD00FE524A /* iAd.framework */,
 				F37DE28D1EFACAAB00FE524A /* StoreKit.framework */,
 				F37DE28B1EFACA9A00FE524A /* GameKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F3D619781F04BC3200090217 /* VungleSDK.embeddedframework */ = {
+			isa = PBXGroup;
+			children = (
+				F3D619791F04BC3200090217 /* Resources */,
+				F3D6197A1F04BC3200090217 /* VungleSDK.framework */,
+			);
+			path = VungleSDK.embeddedframework;
+			sourceTree = "<group>";
+		};
+		F3D619791F04BC3200090217 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,6 +234,7 @@
 					D9E9D9301E3483A900754A1A = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 9KR276P772;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.GameCenter = {
@@ -257,7 +277,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9E9D9531E34A13100754A1A /* player.atlas in Resources */,
-				F3D619561F04AF2A00090217 /* VungleSDK.embeddedframework in Resources */,
 				F32ABE3B1EEA6A6D000A217E /* gno.mp3 in Resources */,
 				D9E9D9401E3483AA00754A1A /* Main.storyboard in Resources */,
 				F32ABE3D1EEB57A4000A217E /* CoinSound.mp3 in Resources */,
@@ -335,6 +354,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = Beetle;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -385,6 +405,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = Beetle;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -406,14 +427,21 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Flippys Flight.entitlements";
 				DEVELOPMENT_TEAM = 9KR276P772;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/VungleSDK.embeddedframework",
+				);
 				INFOPLIST_FILE = Beetle/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = IntelliSkye.flippysflight;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Flippys Flight-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -423,14 +451,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Flippys Flight.entitlements";
 				DEVELOPMENT_TEAM = 9KR276P772;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/VungleSDK.embeddedframework",
+				);
 				INFOPLIST_FILE = Beetle/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = IntelliSkye.flippysflight;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Flippys Flight-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
