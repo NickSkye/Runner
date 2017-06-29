@@ -33,12 +33,20 @@ extension GameScene{
     func createRestartBtn() {
         restartBtn = SKSpriteNode(imageNamed: "restart")
         restartBtn.size = CGSize(width:100, height:100)
-        restartBtn.position = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2)
+        restartBtn.position = CGPoint(x: self.frame.width / 4, y: self.frame.height / 2)
         restartBtn.zPosition = 6
         restartBtn.setScale(0)
         self.addChild(restartBtn)
         print("restartbuttoncreated")
         
+        adBtn = SKSpriteNode(imageNamed: "play")
+        adBtn.size = CGSize(width:100, height:100)
+        adBtn.position = CGPoint(x: self.frame.width * 0.75, y: self.frame.height / 2)
+        adBtn.zPosition = 6
+        adBtn.setScale(0)
+        self.addChild(adBtn)
+        print("restartbuttoncreated")
+        /*
         statLbl = SKLabelNode(fontNamed: "Chalkduster")
         statLbl.text = "" //You Win!"
         statLbl.fontSize = 65
@@ -46,7 +54,8 @@ extension GameScene{
         statLbl.position = CGPoint(x: frame.midX, y: frame.midY)
         
         addChild(statLbl)
-        
+        */
+        adBtn.run(SKAction.scale(to: 1.0, duration: 0.3))
         restartBtn.run(SKAction.scale(to: 1.0, duration: 0.3))
     }
     
@@ -75,10 +84,11 @@ extension GameScene{
         tokenshopLbl.text = "\(tokensshop) Tokens"
         tokenshopLbl.zPosition = 5
         tokenshopLbl.fontSize = 12
+        tokenshopLbl.fontColor = UIColor(red: 238/255, green: 221/255, blue: 130/255, alpha: 1)
         tokenshopLbl.fontName = "HelveticaNeue-Bold"
         
         shopBtn = SKSpriteNode(imageNamed: "shop")
-        shopBtn.size = CGSize(width:70, height:70)
+        shopBtn.size = CGSize(width:80, height:80)
         shopBtn.position = CGPoint(x: self.frame.midX / 3 , y: 50)
         shopBtn.zPosition = 7
         self.addChild(shopBtn)

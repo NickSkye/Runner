@@ -16,6 +16,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var highscoreLbl = SKLabelNode()
     var taptoplayLbl = SKLabelNode()
     var restartBtn = SKSpriteNode()
+    var adBtn = SKSpriteNode()
     var scoreLbl = SKLabelNode()
     var tokenLbl = SKLabelNode()
     var pauseBtn = SKSpriteNode()
@@ -201,6 +202,35 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         UserDefaults.standard.set(0, forKey: "currentTokens")
                     }
 
+                    
+                    restartScene()
+                }
+                else if adBtn.contains(location){
+                    //for score
+                    ////////////////PUT AD HERE?
+                    
+                    
+                    
+                    if UserDefaults.standard.object(forKey: "highestScore") != nil {
+                        print("ERROR1")
+                        let hscore = UserDefaults.standard.integer(forKey: "highestScore")
+                        if hscore < Int(scoreLbl.text!)!{
+                            UserDefaults.standard.set(scoreLbl.text, forKey: "highestScore")
+                        }
+                    } else {
+                        UserDefaults.standard.set(0, forKey: "highestScore")
+                    }
+                    //for tokens ; currenttokens means all they have to spend ; tokens is what they have this round
+                    if UserDefaults.standard.object(forKey: "currentTokens") != nil {
+                        print("ERROR2")
+                        var currtokens = UserDefaults.standard.integer(forKey: "currentTokens")
+                        var totaltokens = Int(currtokens) + (tokens * 2) //Gives double tokens if ad watched
+                        UserDefaults.standard.set("\(totaltokens)", forKey: "currentTokens")
+                        
+                    } else {
+                        UserDefaults.standard.set(0, forKey: "currentTokens")
+                    }
+                    
                     
                     restartScene()
                 }
