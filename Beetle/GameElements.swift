@@ -39,7 +39,7 @@ extension GameScene{
         self.addChild(restartBtn)
         print("restartbuttoncreated")
         
-        adBtn = SKSpriteNode(imageNamed: "play")
+        adBtn = SKSpriteNode(imageNamed: "double-coins")
         adBtn.size = CGSize(width:100, height:100)
         adBtn.position = CGPoint(x: self.frame.width * 0.75, y: self.frame.height / 2)
         adBtn.zPosition = 6
