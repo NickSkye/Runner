@@ -81,7 +81,7 @@ extension GameScene{
         }
         let tokenshopLbl = SKLabelNode()
         tokenshopLbl.position = CGPoint(x: 0 , y: -30)
-        tokenshopLbl.text = "\(tokensshop) Tokens"
+        tokenshopLbl.text = "\(tokensshop) Coins"
         tokenshopLbl.zPosition = 5
         tokenshopLbl.fontSize = 12
         tokenshopLbl.fontColor = UIColor(red: 238/255, green: 221/255, blue: 130/255, alpha: 1)

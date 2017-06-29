@@ -40,7 +40,7 @@ class ShopScene: SKScene {
 
     override func didMove(to view: SKView) {
         print("HERE")
-        createSkinScene()
+        createShopScene()
         
     }
     
@@ -71,7 +71,7 @@ class ShopScene: SKScene {
             skView.presentScene(scene, transition: SKTransition.doorway(withDuration: 1))
         }
         else if (nodes(at: (touches.first?.location(in: self))!)[0] as? SKSpriteNode)! == buyTokensBtn {
-            let scene = NewSkinScene(size: (view?.bounds.size)!)
+            let scene = BuyTokensScene(size: (view?.bounds.size)!)
             let skView = view!
             skView.showsFPS = false
             skView.showsNodeCount = false
@@ -109,7 +109,7 @@ class ShopScene: SKScene {
     }
 
     
-    func createSkinScene() {
+    func createShopScene() {
         let hour = Calendar.current.component(.hour, from: Date())
         print("hour \(hour)")
         var background = SKSpriteNode(imageNamed: "bg")
