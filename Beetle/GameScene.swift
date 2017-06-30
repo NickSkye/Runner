@@ -8,6 +8,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var gameStarted = Bool(false)
     var died = Bool(false)
     let coinSound = SKAction.playSoundFileNamed("CoinSound.mp3", waitForCompletion: false)
+    let teleport = SKAction.playSoundFileNamed("teleport.mp3", waitForCompletion: false)
     
     var score = Int(0)
     var tokens = Int(0)
@@ -460,20 +461,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             firstBody.node?.removeFromParent()
         }  else if firstBody.categoryBitMask == CollisionBitMask.birdCategory && secondBody.categoryBitMask == CollisionBitMask.boostCategory {
             //BOOST HIT
-            run(coinSound) //boostsound
+            run(teleport) //boostsound
             
             //do something
             feedback.impactOccurred()
             
-            bird.physicsBody?.velocity = CGVector(dx: 70, dy: 0)
+            //bird.physicsBody?.velocity = CGVector(dx: 70, dy: 0)
+            bird.run(SKAction .moveTo(x: self.frame.width , duration: 0.01))
             secondBody.node?.removeFromParent()
             
         } else if firstBody.categoryBitMask == CollisionBitMask.boostCategory && secondBody.categoryBitMask == CollisionBitMask.birdCategory {
             //BOOST HIT
-            run(coinSound) //boostsound
+            run(teleport) //boostsound
             //do something
+            
             feedback.impactOccurred()
-            bird.physicsBody?.velocity = CGVector(dx: 70, dy: 0)
+            
+             bird.run(SKAction .moveTo(x: self.frame.width * 0.95 , duration: 0.02))
             firstBody.node?.removeFromParent()
         }
 

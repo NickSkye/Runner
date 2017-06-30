@@ -199,16 +199,18 @@ extension GameScene{
         coinNode.color = SKColor.blue
         
         ///////
-        let boostNode = SKSpriteNode(imageNamed: "pause")
-        boostNode.size = CGSize(width: 40, height: 40)
+        let boostNode = SKSpriteNode(imageNamed: "portal")
+        boostNode.size = CGSize(width: 70, height: 100)
         boostNode.position = CGPoint(x: self.frame.width + 25, y: self.frame.height / 2)
         boostNode.physicsBody = SKPhysicsBody(rectangleOf: boostNode.size)
         boostNode.physicsBody?.affectedByGravity = false
         boostNode.physicsBody?.isDynamic = false
+        boostNode.setScale(0.2)
         boostNode.physicsBody?.categoryBitMask = CollisionBitMask.boostCategory
         boostNode.physicsBody?.collisionBitMask = 0
         boostNode.physicsBody?.contactTestBitMask = CollisionBitMask.birdCategory
         boostNode.color = SKColor.blue
+        
         ///////
         
         wallPair = SKNode()
@@ -253,7 +255,7 @@ extension GameScene{
         }
         wallPair.zPosition = 1
         
-        let randomPosition = random(min: -250, max: 250)
+        let randomPosition = random(min: -225, max: 225)
         wallPair.position.y = wallPair.position.y +  randomPosition
         
         //make random here
@@ -261,11 +263,25 @@ extension GameScene{
         let randomNumberFlower = Int(random(min: 0, max: 15))
         if randomNumberFlower == 5 {
             wallPair.addChild(coinNode)
+            
         }
+        let randomWallMove = Int(random(min: 0, max: 8))
+        if randomWallMove == 6 {
+            //wallPair.run(SKAction .moveTo(y: wallPair.position.y + 150, duration: 4.0))
+            wallPair.run(SKAction .moveBy(x: 0, y: 150, duration: 4.0))
+            
+        }
+        
+        if randomWallMove == 4 {
+            //wallPair.run(SKAction .moveTo(y: wallPair.position.y - 150, duration: 4.0))
+            wallPair.run(SKAction .moveBy(x: 0, y: -150, duration: 4.0))
+        }
+        
         //BOOST
         let randomNumberBoost = Int(random(min: 0, max: 50))
         if randomNumberBoost == 25 && randomNumberBoost != 5 {
             wallPair.addChild(boostNode)
+            boostNode.run(SKAction.scale(to: 1.0, duration: 1.5))
         }
         
         wallPair.run(moveAndRemove)

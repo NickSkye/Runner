@@ -316,7 +316,7 @@ class BuyTokensScene: SKScene, SKPaymentTransactionObserver, SKProductsRequestDe
     }
     
     func createBackBtn() {
-        backBtn = SKSpriteNode(imageNamed: "pause")
+        backBtn = SKSpriteNode(imageNamed: "backbutton")
         backBtn.size = CGSize(width:60, height:40)
         backBtn.position = CGPoint(x: self.frame.midX / 6, y: self.frame.height - 50)
         backBtn.zPosition = 8

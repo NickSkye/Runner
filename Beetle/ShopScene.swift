@@ -147,7 +147,7 @@ class ShopScene: SKScene {
     }
 
     func createBackBtn() {
-        backBtn = SKSpriteNode(imageNamed: "pause")
+        backBtn = SKSpriteNode(imageNamed: "backbutton")
         backBtn.size = CGSize(width:60, height:40)
         backBtn.position = CGPoint(x: self.frame.midX / 6, y: self.frame.height - 50)
         backBtn.zPosition = 8
@@ -155,7 +155,7 @@ class ShopScene: SKScene {
     }
     
     func createNewSkinBtn() {
-        newSkinBtn = SKSpriteNode(imageNamed: "play")
+        newSkinBtn = SKSpriteNode(imageNamed: "flippys-friends")
         newSkinBtn.size = CGSize(width:70, height:70)
         newSkinBtn.position = CGPoint(x: self.frame.width / 4, y: self.frame.height - 150)
         newSkinBtn.zPosition = 8
@@ -163,7 +163,7 @@ class ShopScene: SKScene {
     }
     
     func createBuyTokensBtn() {
-        buyTokensBtn = SKSpriteNode(imageNamed: "play")
+        buyTokensBtn = SKSpriteNode(imageNamed: "buy-coins")
         buyTokensBtn.size = CGSize(width:70, height:70)
         buyTokensBtn.position = CGPoint(x: self.frame.width * 0.75, y: self.frame.height - 150)
         buyTokensBtn.zPosition = 8
