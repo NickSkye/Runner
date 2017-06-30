@@ -142,41 +142,41 @@ class BuyTokensScene: SKScene, SKPaymentTransactionObserver, SKProductsRequestDe
                     
                     //Here you should put the function you want to execute when the purchase is complete
                     var currtokens = UserDefaults.standard.integer(forKey: "currentTokens")
-                    var totaltokens = Int(currtokens) + 5
+                    var totaltokens = Int(currtokens) + 20
                     UserDefaults.standard.set("\(totaltokens)", forKey: "currentTokens")
                     tokenshopLbl.text = "\(totaltokens)"
                     
-                    var alert = UIAlertView(title: "Thank You", message: "You now have 5 more coins!", delegate: nil, cancelButtonTitle: "OK")
+                    var alert = UIAlertView(title: "Thank You", message: "You now have 20 more coins!", delegate: nil, cancelButtonTitle: "OK")
                     alert.show()
                 case "com.flippysflight.purchasethirty":
                     
                     //Here you should put the function you want to execute when the purchase is complete
                     var currtokens = UserDefaults.standard.integer(forKey: "currentTokens")
-                    var totaltokens = Int(currtokens) + 30
+                    var totaltokens = Int(currtokens) + 110
                     UserDefaults.standard.set("\(totaltokens)", forKey: "currentTokens")
                     tokenshopLbl.text = "\(totaltokens)"
                     
-                    var alert = UIAlertView(title: "Thank You", message: "You now have 30 more coins!", delegate: nil, cancelButtonTitle: "OK")
+                    var alert = UIAlertView(title: "Thank You", message: "You now have 110 more coins!", delegate: nil, cancelButtonTitle: "OK")
                     alert.show()
                 case "com.flippysflight.purchaseseventyfive":
                     
                     //Here you should put the function you want to execute when the purchase is complete
                     var currtokens = UserDefaults.standard.integer(forKey: "currentTokens")
-                    var totaltokens = Int(currtokens) + 75
+                    var totaltokens = Int(currtokens) + 300
                     UserDefaults.standard.set("\(totaltokens)", forKey: "currentTokens")
                     tokenshopLbl.text = "\(totaltokens)"
                     
-                    var alert = UIAlertView(title: "Thank You", message: "You now have 75 more coins!", delegate: nil, cancelButtonTitle: "OK")
+                    var alert = UIAlertView(title: "Thank You", message: "You now have 300 more coins!", delegate: nil, cancelButtonTitle: "OK")
                     alert.show()
                 case "com.flippysflight.purchasetwohundred":
                     
                     //Here you should put the function you want to execute when the purchase is complete
                     var currtokens = UserDefaults.standard.integer(forKey: "currentTokens")
-                    var totaltokens = Int(currtokens) + 200
+                    var totaltokens = Int(currtokens) + 1000
                     UserDefaults.standard.set("\(totaltokens)", forKey: "currentTokens")
                     tokenshopLbl.text = "\(totaltokens)"
                     
-                    var alert = UIAlertView(title: "Thank You", message: "You now have 200 more coins!", delegate: nil, cancelButtonTitle: "OK")
+                    var alert = UIAlertView(title: "Thank You", message: "You now have 1000 more coins!", delegate: nil, cancelButtonTitle: "OK")
                     alert.show()
                 default:
                     print("IAP not setup")

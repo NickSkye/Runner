@@ -10,6 +10,7 @@ struct CollisionBitMask {
     static let flowerCategory:UInt32 = 0x1 << 2
     static let groundCategory:UInt32 = 0x1 << 3
     static let boostCategory:UInt32 = 0x1 << 4
+   
 }
 
 extension GameScene{
@@ -211,8 +212,12 @@ extension GameScene{
         boostNode.physicsBody?.contactTestBitMask = CollisionBitMask.birdCategory
         boostNode.color = SKColor.blue
         
+        
         ///////
         
+        
+        
+        //////
         wallPair = SKNode()
         wallPair.name = "wallPair"
         
@@ -252,7 +257,8 @@ extension GameScene{
         let randomBottomWall = Int(random(min: 0, max: 20))
         if randomBottomWall != 5 {
             wallPair.addChild(btmWall)
-        }
+            
+        } 
         wallPair.zPosition = 1
         
         let randomPosition = random(min: -225, max: 225)
@@ -278,8 +284,8 @@ extension GameScene{
         }
         
         //BOOST
-        let randomNumberBoost = Int(random(min: 0, max: 50))
-        if randomNumberBoost == 25 && randomNumberBoost != 5 {
+        let randomNumberBoost = Int(random(min: 0, max: 25))
+        if randomNumberBoost == 15 && randomNumberBoost != 5 {
             wallPair.addChild(boostNode)
             boostNode.run(SKAction.scale(to: 1.0, duration: 1.5))
         }

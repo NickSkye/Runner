@@ -24,6 +24,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var pauseBtn = SKSpriteNode()
     var shopBtn = SKSpriteNode()
     var profileBtn = SKSpriteNode()
+    var background = SKSpriteNode(imageNamed: "city")
    // var skinBtn = UIButton()
     var backBtn = SKSpriteNode()
     var logoImg = SKSpriteNode()
@@ -35,6 +36,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let birdAtlas = SKTextureAtlas(named:"player")
     var birdSprites = Array<SKTexture>()
     var bird = SKSpriteNode()
+    
     var repeatActionbird = SKAction()
     var delay = SKAction()
     var SpawnDelay = SKAction()
@@ -47,7 +49,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func didMove(to view: SKView) {
         createScene()
         
-       
+     
         
         
         if UserDefaults.standard.object(forKey: "highestScore") != nil {
@@ -161,7 +163,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                  print("3")
                 
                 
-                
+               
                 bird.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
                 bird.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 40))
                //
@@ -345,7 +347,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func createScene(){
-        
+        print("CREATESCENECALLED")
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
         self.physicsBody?.categoryBitMask = CollisionBitMask.groundCategory
         self.physicsBody?.collisionBitMask = CollisionBitMask.birdCategory
@@ -358,7 +360,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let hour = Calendar.current.component(.hour, from: Date())
         print("hour \(hour)")
         for i in 0..<2 {
-            var background = SKSpriteNode(imageNamed: "city")
+            
+            background = SKSpriteNode(imageNamed: "city")
             if hour > 19 || hour < 7 {
                 background = SKSpriteNode(imageNamed: "newBG")
             }
@@ -465,9 +468,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             //do something
             feedback.impactOccurred()
-            
+            self.score += 2
+            self.scoreLbl.text = "\(self.score)"
             //bird.physicsBody?.velocity = CGVector(dx: 70, dy: 0)
-            bird.run(SKAction .moveTo(x: self.frame.width , duration: 0.01))
+            bird.run(SKAction .moveTo(x: self.frame.width , duration: 0.05))
+            
+            
             secondBody.node?.removeFromParent()
             
         } else if firstBody.categoryBitMask == CollisionBitMask.boostCategory && secondBody.categoryBitMask == CollisionBitMask.birdCategory {
@@ -476,8 +482,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             //do something
             
             feedback.impactOccurred()
-            
-             bird.run(SKAction .moveTo(x: self.frame.width * 0.95 , duration: 0.02))
+            self.score += 2
+            self.scoreLbl.text = "\(self.score)"
+             bird.run(SKAction .moveTo(x: self.frame.width , duration: 0.05))
             firstBody.node?.removeFromParent()
         }
 
@@ -494,10 +501,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                /* if score > 10 {
                     bgImg = "backgroundTwo"
                 } */
-            
+                
                     enumerateChildNodes(withName: bgImg, using: ({
                     (node, error) in
                     let bg = node as! SKSpriteNode
+                        //THIS IS WHERE BACKGROUND CHANGES WITH SCORE
+                        if self.score > 10 && self.score < 30{
+                        bg.texture = SKTexture(imageNamed: "newBG")
+                        }
+                        else if self.score >= 30 {
+                            //THIS GETS BUGGY HERE
+                            bg.texture = SKTexture(imageNamed: "city")
+                        }
                     bg.position = CGPoint(x: bg.position.x - 2, y: bg.position.y)
                     if bg.position.x <= -bg.size.width {
                         bg.position = CGPoint(x:bg.position.x + bg.size.width * 2, y:bg.position.y)
