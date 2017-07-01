@@ -12,6 +12,10 @@ class NewSkinScene: SKScene {
     
     var score = Int(0)
     var scoreLbl = SKLabelNode()
+    var buyFirstBtn = SKSpriteNode()
+    var buySecondBtn = SKSpriteNode()
+    var buyThirdBtn = SKSpriteNode()
+    var buyFourthBtn = SKSpriteNode()
     var highscoreLbl = SKLabelNode()
     var taptoplayLbl = SKLabelNode()
     var restartBtn = SKSpriteNode()
@@ -59,7 +63,34 @@ class NewSkinScene: SKScene {
             scene.scaleMode = .resizeFill
             skView.presentScene(scene, transition: SKTransition.doorway(withDuration: 1))
         }
-        
+        else if (nodes(at: (touches.first?.location(in: self))!)[0] as? SKSpriteNode)! == buyFirstBtn {
+            
+            /*
+            let alert = UIAlertController(title: "UIAlertController", message: "Would you like to unlock Flippy's friend for 100 coins?", preferredStyle: UIAlertControllerStyle.alert)
+            
+            // add the actions (buttons)
+            alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.default, handler: { action in
+                print("Click of default button")
+            }))
+            alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.cancel, handler: { action in
+                print("Click of default button")
+            }))
+            
+            // show the alert
+            self.present(alert, animated: true, completion: nil) */
+        }
+        else if (nodes(at: (touches.first?.location(in: self))!)[0] as? SKSpriteNode)! == buySecondBtn {
+            
+            
+        }
+        else if (nodes(at: (touches.first?.location(in: self))!)[0] as? SKSpriteNode)! == buyThirdBtn {
+            
+            
+        }
+        else if (nodes(at: (touches.first?.location(in: self))!)[0] as? SKSpriteNode)! == buyFourthBtn {
+            
+            
+        }
         //
         
         
@@ -107,6 +138,10 @@ class NewSkinScene: SKScene {
         createBackBtn()
         createCoinsAmount()
         createLogo()
+        createFirstFriendBtn()
+        createSecondFriendBtn()
+        createThirdFriendBtn()
+        createFourthFriendBtn()
         
         
     }
@@ -144,6 +179,46 @@ class NewSkinScene: SKScene {
         self.addChild(logoImg)
         logoImg.run(SKAction.scale(to: 1.0, duration: 0.5))
     }
+    
+    func createFirstFriendBtn() {
+        buyFirstBtn = SKSpriteNode(imageNamed: "play")
+        buyFirstBtn.size = CGSize(width:100, height:100)
+        buyFirstBtn.position = CGPoint(x: self.frame.midX / 2, y: self.frame.height * 0.7)
+        buyFirstBtn.zPosition = 8
+        buyFirstBtn.name = "buyFirstButton"
+        self.addChild(buyFirstBtn)
+    }
+    
+    func createSecondFriendBtn() {
+        buySecondBtn = SKSpriteNode(imageNamed: "play")
+        buySecondBtn.size = CGSize(width:100, height:100)
+        buySecondBtn.position = CGPoint(x: self.frame.width * 0.75, y: self.frame.height * 0.7)
+        buySecondBtn.zPosition = 8
+        buySecondBtn.name = "buySecondButton"
+        self.addChild(buySecondBtn)
+    }
+    
+    func createThirdFriendBtn() {
+        buyThirdBtn = SKSpriteNode(imageNamed: "play")
+        buyThirdBtn.size = CGSize(width:100, height:100)
+        buyThirdBtn.position = CGPoint(x: self.frame.midX / 2, y: self.frame.midY / 2)
+        buyThirdBtn.zPosition = 8
+        buyThirdBtn.name = "buyThirdButton"
+        self.addChild(buyThirdBtn)
+    }
+    
+    func createFourthFriendBtn() {
+        buyFourthBtn = SKSpriteNode(imageNamed: "play")
+        buyFourthBtn.size = CGSize(width:100, height:100)
+        buyFourthBtn.position = CGPoint(x: self.frame.width * 0.75, y: self.frame.midY / 2)
+        buyFourthBtn.zPosition = 8
+        buyFourthBtn.name = "buyFourthButton"
+        self.addChild(buyFourthBtn)
+    }
+
+    
+    
+    
 }
 
 
