@@ -45,6 +45,7 @@
 		F3D619721F04B09100090217 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3D619711F04B09100090217 /* WebKit.framework */; };
 		F3D6197B1F04BC3200090217 /* VungleSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3D6197A1F04BC3200090217 /* VungleSDK.framework */; };
 		F3FEED431F073701009F3ADC /* scream.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F3FEED421F073701009F3ADC /* scream.mp3 */; };
+		F3FEED491F075119009F3ADC /* saber.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F3FEED481F075119009F3ADC /* saber.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +91,7 @@
 		F3D619731F04B4D500090217 /* Flippys Flight-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Flippys Flight-Bridging-Header.h"; sourceTree = "<group>"; };
 		F3D6197A1F04BC3200090217 /* VungleSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VungleSDK.framework; sourceTree = "<group>"; };
 		F3FEED421F073701009F3ADC /* scream.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = scream.mp3; sourceTree = "<group>"; };
+		F3FEED481F075119009F3ADC /* saber.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = saber.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +145,7 @@
 		D9E9D9331E3483A900754A1A /* FlippysFlight */ = {
 			isa = PBXGroup;
 			children = (
+				F3FEED481F075119009F3ADC /* saber.mp3 */,
 				F3FEED421F073701009F3ADC /* scream.mp3 */,
 				F3B4609A1F05F15A00AEBEF0 /* Arabesque.mp3 */,
 				F3B460981F05EC5800AEBEF0 /* teleport.mp3 */,
@@ -293,6 +296,7 @@
 				F3FEED431F073701009F3ADC /* scream.mp3 in Resources */,
 				D9E9D9371E3483AA00754A1A /* GameScene.sks in Resources */,
 				D9E9D9421E3483AA00754A1A /* Assets.xcassets in Resources */,
+				F3FEED491F075119009F3ADC /* saber.mp3 in Resources */,
 				D9E9D9451E3483AA00754A1A /* LaunchScreen.storyboard in Resources */,
 				D9E9D9391E3483AA00754A1A /* Actions.sks in Resources */,
 				F3B460991F05EC5800AEBEF0 /* teleport.mp3 in Resources */,

@@ -10,6 +10,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let coinSound = SKAction.playSoundFileNamed("CoinSound.mp3", waitForCompletion: false)
     let teleport = SKAction.playSoundFileNamed("teleport.mp3", waitForCompletion: false)
     let scream = SKAction.playSoundFileNamed("scream.mp3", waitForCompletion: false)
+    let saberSound = SKAction.playSoundFileNamed("saber.mp3", waitForCompletion: false)
     
     var score = Int(0)
     var tokens = Int(0)
@@ -162,18 +163,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if died == false {
                 //change speed and shit here
                  print("3")
-                
+                if self.bird.position.x > self.frame.width {
+                    print("ERRORRRRR")
+                }
                 
                
                 bird.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
                 bird.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 40))
                //
                 distance = CGFloat(self.frame.width + wallPair.frame.width)
-                if score < 75 {
+                
+                if score < 50 {
                     time = (0.008 * distance) - (CGFloat(score)/25.0)
                 }
                 else {
-                    time = 2.168
+                    time = 1.312 //2.168
                 }
                 movePipes = SKAction.moveBy(x: -distance - 50, y: 0, duration: TimeInterval(time))
                 let removePipes = SKAction.removeFromParent()
@@ -433,7 +437,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.bird.removeAllActions()
             }
         } */
-        if bird.position.x <= 20 {
+        if bird.position.x <= 10 {
             
             feedback.impactOccurred()
             MusicHelper.sharedHelper.stopBackgroundMusic()
@@ -503,6 +507,44 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.scoreLbl.text = "\(self.score)"
             firstBody.node?.removeFromParent()
         }
+        else if firstBody.categoryBitMask == CollisionBitMask.birdCategory && secondBody.categoryBitMask == CollisionBitMask.killerPillarCategory {
+            //killer Laser
+            feedback.impactOccurred()
+            MusicHelper.sharedHelper.stopBackgroundMusic()
+            enumerateChildNodes(withName: "wallPair", using: ({
+                (node, error) in
+                node.speed = 0
+                self.removeAllActions()
+            }))
+            if died == false{
+                run(scream)
+                died = true
+                createRestartBtn()
+                pauseBtn.removeFromParent()
+                self.bird.removeAllActions()
+                
+            }
+            
+            
+        } else if firstBody.categoryBitMask == CollisionBitMask.killerPillarCategory && secondBody.categoryBitMask == CollisionBitMask.birdCategory {
+            //killer Laser
+            feedback.impactOccurred()
+            MusicHelper.sharedHelper.stopBackgroundMusic()
+            enumerateChildNodes(withName: "wallPair", using: ({
+                (node, error) in
+                node.speed = 0
+                self.removeAllActions()
+            }))
+            if died == false{
+                run(scream)
+                died = true
+                createRestartBtn()
+                pauseBtn.removeFromParent()
+                self.bird.removeAllActions()
+                
+            }
+            
+        }
 
     }
     
@@ -517,6 +559,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                /* if score > 10 {
                     bgImg = "backgroundTwo"
                 } */
+                
+                if bird.position.x <= 10 {
+                    
+                    feedback.impactOccurred()
+                    MusicHelper.sharedHelper.stopBackgroundMusic()
+                    enumerateChildNodes(withName: "wallPair", using: ({
+                        (node, error) in
+                        node.speed = 0
+                        self.removeAllActions()
+                    }))
+                    if died == false{
+                        run(scream)
+                        died = true
+                        createRestartBtn()
+                        pauseBtn.removeFromParent()
+                        self.bird.removeAllActions()
+                        
+                    }
+                }
+                
+                
                 
                     enumerateChildNodes(withName: bgImg, using: ({
                     (node, error) in

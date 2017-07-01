@@ -11,11 +11,14 @@ struct CollisionBitMask {
     static let groundCategory:UInt32 = 0x1 << 3
     static let boostCategory:UInt32 = 0x1 << 4
     static let scoreCategory:UInt32 = 0x1 << 5
-    
+    static let killerPillarCategory:UInt32 = 0x1 << 6
    
 }
 
+
+
 extension GameScene{
+    
     func createBird() -> SKSpriteNode {
         let bird = SKSpriteNode(texture: SKTextureAtlas(named:"player").textureNamed("bird1"))
         bird.size = CGSize(width: 50, height: 50)
@@ -26,7 +29,7 @@ extension GameScene{
         bird.physicsBody?.restitution = 0
         bird.physicsBody?.categoryBitMask = CollisionBitMask.birdCategory
         bird.physicsBody?.collisionBitMask = CollisionBitMask.pillarCategory | CollisionBitMask.groundCategory
-        bird.physicsBody?.contactTestBitMask = CollisionBitMask.pillarCategory | CollisionBitMask.flowerCategory | CollisionBitMask.groundCategory | CollisionBitMask.boostCategory
+        bird.physicsBody?.contactTestBitMask = CollisionBitMask.pillarCategory | CollisionBitMask.flowerCategory | CollisionBitMask.groundCategory | CollisionBitMask.boostCategory | CollisionBitMask.killerPillarCategory
         bird.physicsBody?.affectedByGravity = false
         bird.physicsBody?.isDynamic = true
         
@@ -231,6 +234,34 @@ extension GameScene{
         
         
         //////
+        let killerPillarNode = SKSpriteNode(imageNamed: "laserbeam")
+        killerPillarNode.size = CGSize(width: 40, height: self.frame.height)
+        killerPillarNode.position = CGPoint(x: self.frame.width + 25, y: self.frame.height / 2)
+        killerPillarNode.physicsBody = SKPhysicsBody(rectangleOf: killerPillarNode.size)
+        killerPillarNode.physicsBody?.affectedByGravity = false
+        killerPillarNode.physicsBody?.isDynamic = false
+        killerPillarNode.setScale(1)
+        killerPillarNode.physicsBody?.categoryBitMask = CollisionBitMask.killerPillarCategory
+        killerPillarNode.physicsBody?.collisionBitMask = 0
+        killerPillarNode.physicsBody?.contactTestBitMask = CollisionBitMask.birdCategory
+        killerPillarNode.color = SKColor.blue
+        
+        
+        let killerPillarTopNode = SKSpriteNode(imageNamed: "laserbeam")
+        killerPillarTopNode.size = CGSize(width: 40, height: self.frame.height)
+        killerPillarTopNode.position = CGPoint(x: self.frame.width + 25, y: self.frame.height / 2)
+        killerPillarTopNode.physicsBody = SKPhysicsBody(rectangleOf: killerPillarTopNode.size)
+        killerPillarTopNode.physicsBody?.affectedByGravity = false
+        killerPillarTopNode.physicsBody?.isDynamic = false
+        killerPillarTopNode.setScale(1)
+        killerPillarTopNode.physicsBody?.categoryBitMask = CollisionBitMask.killerPillarCategory
+        killerPillarTopNode.physicsBody?.collisionBitMask = 0
+        killerPillarTopNode.physicsBody?.contactTestBitMask = CollisionBitMask.birdCategory
+        killerPillarTopNode.color = SKColor.blue
+        
+        killerPillarTopNode.zRotation = CGFloat(M_PI)
+        
+        /////
         wallPair = SKNode()
         wallPair.name = "wallPair"
         
@@ -241,7 +272,8 @@ extension GameScene{
         
         topWall.position = CGPoint(x: self.frame.width + 25, y: self.frame.height / 2 + randomWidth)
         btmWall.position = CGPoint(x: self.frame.width + 25, y: self.frame.height / 2 - randomWidth)
-        
+        killerPillarNode.position = CGPoint(x: self.frame.width + 25, y: self.frame.height / 2 - 450)
+        killerPillarTopNode.position = CGPoint(x: self.frame.width + 25, y: self.frame.height / 2 + 450)
         topWall.setScale(0.5)
         btmWall.setScale(0.5)
         
@@ -267,11 +299,26 @@ extension GameScene{
             wallPair.addChild(topWall)
             
         }
-        let randomBottomWall = Int(random(min: 0, max: 20))
+        let randomBottomWall = Int(random(min: 0, max: 10))
         if randomBottomWall != 5 {
             wallPair.addChild(btmWall)
             
-        } 
+        } else {
+            wallPair.addChild(killerPillarNode)
+            run(saberSound)
+        }
+        
+         let randomDoubleLaser = Int(random(min: 0, max: 30))
+        if randomDoubleLaser == 15 {
+            wallPair.removeAllChildren()
+            run(saberSound)
+            
+            wallPair.addChild(killerPillarNode)
+            wallPair.addChild(killerPillarTopNode)
+        }
+        
+        
+        
         wallPair.zPosition = 1
         
         let randomPosition = random(min: -225, max: 225)
@@ -300,7 +347,7 @@ extension GameScene{
         let randomNumberBoost = Int(random(min: 0, max: 25))
         if randomNumberBoost == 15 && randomNumberBoost != 5 {
             wallPair.addChild(boostNode)
-            boostNode.run(SKAction.scale(to: 1.0, duration: 1.5))
+            boostNode.run(SKAction.scale(to: 1.5, duration: 1))
         }
         wallPair.addChild(scorerNode)
         
