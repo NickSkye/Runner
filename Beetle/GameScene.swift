@@ -9,6 +9,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var died = Bool(false)
     let coinSound = SKAction.playSoundFileNamed("CoinSound.mp3", waitForCompletion: false)
     let teleport = SKAction.playSoundFileNamed("teleport.mp3", waitForCompletion: false)
+    let scream = SKAction.playSoundFileNamed("scream.mp3", waitForCompletion: false)
     
     var score = Int(0)
     var tokens = Int(0)
@@ -432,9 +433,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.bird.removeAllActions()
             }
         } */
-        if bird.position.x <= 0 {
-            feedback.impactOccurred()
+        if bird.position.x <= 20 {
             
+            feedback.impactOccurred()
             MusicHelper.sharedHelper.stopBackgroundMusic()
             enumerateChildNodes(withName: "wallPair", using: ({
                 (node, error) in
@@ -442,6 +443,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.removeAllActions()
             }))
             if died == false{
+                run(scream)
                 died = true
                 createRestartBtn()
                 pauseBtn.removeFromParent()
@@ -487,6 +489,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
              bird.run(SKAction .moveTo(x: self.frame.width , duration: 0.05))
             firstBody.node?.removeFromParent()
         }
+        else if firstBody.categoryBitMask == CollisionBitMask.birdCategory && secondBody.categoryBitMask == CollisionBitMask.scoreCategory {
+            //INCREASE SCORE
+            
+            self.score += 1
+            self.scoreLbl.text = "\(self.score)"
+            secondBody.node?.removeFromParent()
+            
+        } else if firstBody.categoryBitMask == CollisionBitMask.scoreCategory && secondBody.categoryBitMask == CollisionBitMask.birdCategory {
+            //INCREASE SCORE
+           
+            self.score += 1
+            self.scoreLbl.text = "\(self.score)"
+            firstBody.node?.removeFromParent()
+        }
 
     }
     
@@ -516,8 +532,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     bg.position = CGPoint(x: bg.position.x - 2, y: bg.position.y)
                     if bg.position.x <= -bg.size.width {
                         bg.position = CGPoint(x:bg.position.x + bg.size.width * 2, y:bg.position.y)
-                        self.score += 1
-                        self.scoreLbl.text = "\(self.score)"
+                        //self.score += 1
+                       // self.scoreLbl.text = "\(self.score)"
                         
                     }
                 }))

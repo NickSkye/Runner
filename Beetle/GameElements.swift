@@ -10,6 +10,8 @@ struct CollisionBitMask {
     static let flowerCategory:UInt32 = 0x1 << 2
     static let groundCategory:UInt32 = 0x1 << 3
     static let boostCategory:UInt32 = 0x1 << 4
+    static let scoreCategory:UInt32 = 0x1 << 5
+    
    
 }
 
@@ -214,7 +216,18 @@ extension GameScene{
         
         
         ///////
-        
+        let scorerNode = SKSpriteNode(imageNamed: "pillar")
+        scorerNode.size = CGSize(width: 10, height: self.frame.height * 2)
+        scorerNode.position = CGPoint(x: self.frame.width + 25, y: self.frame.height / 2)
+        scorerNode.physicsBody = SKPhysicsBody(rectangleOf: scorerNode.size)
+        scorerNode.physicsBody?.affectedByGravity = false
+        scorerNode.physicsBody?.isDynamic = false
+        scorerNode.setScale(1)
+        scorerNode.physicsBody?.categoryBitMask = CollisionBitMask.scoreCategory
+        scorerNode.physicsBody?.collisionBitMask = 0
+        scorerNode.physicsBody?.contactTestBitMask = CollisionBitMask.birdCategory
+        scorerNode.color = SKColor.blue
+        scorerNode.alpha = 0.2
         
         
         //////
@@ -289,6 +302,7 @@ extension GameScene{
             wallPair.addChild(boostNode)
             boostNode.run(SKAction.scale(to: 1.0, duration: 1.5))
         }
+        wallPair.addChild(scorerNode)
         
         wallPair.run(moveAndRemove)
         
