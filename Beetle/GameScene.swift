@@ -551,6 +551,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             run(teleport) //boostsound
             
             //do something
+            //wallPair.run(SKAction .hide())
             feedback.impactOccurred()
             self.score += 2
             self.scoreLbl.text = "\(self.score)"
@@ -564,7 +565,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             //BOOST HIT
             run(teleport) //boostsound
             //do something
-            
+           // wallPair.run(SKAction .hide())
             feedback.impactOccurred()
             self.score += 2
             self.scoreLbl.text = "\(self.score)"

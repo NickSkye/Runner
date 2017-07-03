@@ -345,8 +345,8 @@ extension GameScene{
         }
         
         //BOOST
-        let randomNumberBoost = Int(random(min: 0, max: 10))
-        if randomNumberBoost == 6 && randomNumberBoost != 5 {
+        let randomNumberBoost = Int(random(min: 0, max: 30))
+        if randomNumberBoost == 15 && randomNumberBoost != 5 {
             wallPair.addChild(boostNode)
             boostNode.run(SKAction.scale(to: 1.0, duration: 1))
         }
@@ -385,7 +385,7 @@ extension GameScene{
         
         
         //Randomly removes top or bottom wall or both// can change to different type of wall
-        let randomBigBird = Int(random(min: 0, max: 15))
+        let randomBigBird = Int(random(min: 0, max: 20))
         if randomBigBird == 10 {
             bigBirdObstacle.addChild(bigBirdNode)
             print("BIG BIRD CREATED")
