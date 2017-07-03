@@ -205,9 +205,10 @@ extension GameScene{
         coinNode.color = SKColor.blue
         
         ///////
+        let boostChange = CGFloat(random(min: -100.0, max: 100.0))
         let boostNode = SKSpriteNode(imageNamed: "portal")
         boostNode.size = CGSize(width: 70, height: 100)
-        boostNode.position = CGPoint(x: self.frame.width + 25, y: self.frame.height / 2)
+        boostNode.position = CGPoint(x: self.frame.width + 25, y: (self.frame.height / 2) + boostChange)
         boostNode.physicsBody = SKPhysicsBody(rectangleOf: boostNode.size)
         boostNode.physicsBody?.affectedByGravity = false
         boostNode.physicsBody?.isDynamic = false
@@ -344,10 +345,10 @@ extension GameScene{
         }
         
         //BOOST
-        let randomNumberBoost = Int(random(min: 0, max: 25))
-        if randomNumberBoost == 15 && randomNumberBoost != 5 {
+        let randomNumberBoost = Int(random(min: 0, max: 10))
+        if randomNumberBoost == 6 && randomNumberBoost != 5 {
             wallPair.addChild(boostNode)
-            boostNode.run(SKAction.scale(to: 1.5, duration: 1))
+            boostNode.run(SKAction.scale(to: 1.0, duration: 1))
         }
         wallPair.addChild(scorerNode)
         
