@@ -91,9 +91,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("1")
-        
-        
+       
         // Create the method you want to call (see target before)
         
         // put all menu items on scene here as else if using same notation. CTRL-f menu items to find where to remove them on this page
@@ -134,7 +132,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             logoImg.run(SKAction.scale(to: 0.5, duration: 0.3), completion: {
                 self.logoImg.removeFromParent()
              //   self.skinBtn.removeFromParent()
-                 print("2")
+                
           
                 
             })
@@ -199,7 +197,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         } else {
             if died == false {
                 //change speed and shit here
-                 print("3")
+                
                 if self.bird.position.x > self.frame.width {
                     print("ERRORRRRR")
                 }

@@ -386,7 +386,7 @@ extension GameScene{
         
         //Randomly removes top or bottom wall or both// can change to different type of wall
         let randomBigBird = Int(random(min: 0, max: 20))
-        if randomBigBird == 10 {
+        if randomBigBird == 10 && score > 10{
             bigBirdObstacle.addChild(bigBirdNode)
             print("BIG BIRD CREATED")
             run(hawk)
