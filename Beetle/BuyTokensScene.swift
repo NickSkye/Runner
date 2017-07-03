@@ -371,6 +371,7 @@ class BuyTokensScene: SKScene, SKPaymentTransactionObserver, SKProductsRequestDe
         tokenshopLbl.text = "\(tokensshop) Coins"
         tokenshopLbl.zPosition = 5
         tokenshopLbl.fontSize = 40
+        tokenshopLbl.fontColor = UIColor(red: 238/255, green: 221/255, blue: 130/255, alpha: 1)
         tokenshopLbl.fontName = "HelveticaNeue-Bold"
         self.addChild(tokenshopLbl)
     }

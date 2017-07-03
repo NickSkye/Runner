@@ -12,15 +12,15 @@ struct CollisionBitMask {
     static let boostCategory:UInt32 = 0x1 << 4
     static let scoreCategory:UInt32 = 0x1 << 5
     static let killerPillarCategory:UInt32 = 0x1 << 6
-   
+    static let bigBirdCategory:UInt32 = 0x1 << 7
 }
 
 
 
 extension GameScene{
     
-    func createBird() -> SKSpriteNode {
-        let bird = SKSpriteNode(texture: SKTextureAtlas(named:"player").textureNamed("bird1"))
+    func createBird(birdType: String) -> SKSpriteNode {
+        let bird = SKSpriteNode(texture: SKTextureAtlas(named:"player").textureNamed(birdType)) //pass first bird
         bird.size = CGSize(width: 50, height: 50)
         bird.position = CGPoint(x:self.frame.midX, y:self.frame.midY)
         
@@ -29,7 +29,7 @@ extension GameScene{
         bird.physicsBody?.restitution = 0
         bird.physicsBody?.categoryBitMask = CollisionBitMask.birdCategory
         bird.physicsBody?.collisionBitMask = CollisionBitMask.pillarCategory | CollisionBitMask.groundCategory
-        bird.physicsBody?.contactTestBitMask = CollisionBitMask.pillarCategory | CollisionBitMask.flowerCategory | CollisionBitMask.groundCategory | CollisionBitMask.boostCategory | CollisionBitMask.killerPillarCategory
+        bird.physicsBody?.contactTestBitMask = CollisionBitMask.pillarCategory | CollisionBitMask.flowerCategory | CollisionBitMask.groundCategory | CollisionBitMask.boostCategory | CollisionBitMask.killerPillarCategory | CollisionBitMask.bigBirdCategory
         bird.physicsBody?.affectedByGravity = false
         bird.physicsBody?.isDynamic = true
         
@@ -321,7 +321,7 @@ extension GameScene{
         
         wallPair.zPosition = 1
         
-        let randomPosition = random(min: -225, max: 225)
+        let randomPosition = random(min: -210, max: 210)
         wallPair.position.y = wallPair.position.y +  randomPosition
         
         //make random here
@@ -355,6 +355,67 @@ extension GameScene{
         
         return wallPair
     }
+    
+    // Create bigger bird
+    func createBigBird() -> SKNode  {
+        
+        
+        let bigBirdNode = SKSpriteNode(imageNamed: "eagle")
+        bigBirdNode.size = CGSize(width: 50, height: 50)
+        
+        bigBirdNode.physicsBody = SKPhysicsBody(rectangleOf: bigBirdNode.size)
+        bigBirdNode.physicsBody?.affectedByGravity = false
+        bigBirdNode.physicsBody?.isDynamic = false
+        bigBirdNode.physicsBody?.categoryBitMask = CollisionBitMask.bigBirdCategory
+        bigBirdNode.physicsBody?.collisionBitMask = 0
+        bigBirdNode.physicsBody?.contactTestBitMask = CollisionBitMask.birdCategory
+        bigBirdNode.color = SKColor.blue
+        bigBirdNode.zPosition = 10
+        bigBirdNode.setScale(2.0)
+        /////
+        bigBirdObstacle = SKNode()
+        bigBirdObstacle.name = "bigBird"
+        
+       
+        
+        //let randomWidthBird = random(min: -150, max: 150)
+        
+       bigBirdNode.position = CGPoint(x: self.frame.width - 25, y: self.frame.midY) // + randomWidthBird)
+        
+        
+        //Randomly removes top or bottom wall or both// can change to different type of wall
+        let randomBigBird = Int(random(min: 0, max: 15))
+        if randomBigBird == 10 {
+            bigBirdObstacle.addChild(bigBirdNode)
+            print("BIG BIRD CREATED")
+            run(hawk)
+            
+        }
+        
+        
+        
+        bigBirdObstacle.zPosition = 10
+        
+        let randomPosition = random(min: -250, max: 250)
+        bigBirdObstacle.position.y = bigBirdObstacle.position.y +  randomPosition
+        
+        //make random here
+        //TOKEN
+       
+        
+        
+        
+        
+        //bigBirdObstacle.addChild(bigBirdNode)
+        
+        bigBirdObstacle.run(moveAndRemoveBigBird)
+        
+        return bigBirdObstacle
+    }
+
+    
+    
+    ////
  
     
     func random() -> CGFloat{

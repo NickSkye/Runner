@@ -16,6 +16,8 @@ class NewSkinScene: SKScene {
     var buySecondBtn = SKSpriteNode()
     var buyThirdBtn = SKSpriteNode()
     var buyFourthBtn = SKSpriteNode()
+    var buyFifthBtn = SKSpriteNode()
+    var buySixthBtn = SKSpriteNode()
     var highscoreLbl = SKLabelNode()
     var taptoplayLbl = SKLabelNode()
     var restartBtn = SKSpriteNode()
@@ -47,7 +49,6 @@ class NewSkinScene: SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("1")
         
         
         // Create the method you want to call (see target before)
@@ -78,18 +79,31 @@ class NewSkinScene: SKScene {
             
             // show the alert
             self.present(alert, animated: true, completion: nil) */
+            
+            //if bought && if selected
+            //UserDefaults.standard.set("robobird1", forKey: "birdType")
+            print("1")
+            
         }
         else if (nodes(at: (touches.first?.location(in: self))!)[0] as? SKSpriteNode)! == buySecondBtn {
-            
+            print("2")
             
         }
         else if (nodes(at: (touches.first?.location(in: self))!)[0] as? SKSpriteNode)! == buyThirdBtn {
             
-            
+            print("3")
         }
         else if (nodes(at: (touches.first?.location(in: self))!)[0] as? SKSpriteNode)! == buyFourthBtn {
             
+            print("4")
+        }
+        else if (nodes(at: (touches.first?.location(in: self))!)[0] as? SKSpriteNode)! == buyFifthBtn {
             
+            print("5")
+        }
+        else if (nodes(at: (touches.first?.location(in: self))!)[0] as? SKSpriteNode)! == buySixthBtn {
+            
+            print("6")
         }
         //
         
@@ -142,8 +156,8 @@ class NewSkinScene: SKScene {
         createSecondFriendBtn()
         createThirdFriendBtn()
         createFourthFriendBtn()
-        
-        
+        createFifthFriendBtn()
+        createSixthFriendBtn()
     }
     
     func createCoinsAmount() {
@@ -156,6 +170,7 @@ class NewSkinScene: SKScene {
         let tokenshopLbl = SKLabelNode()
         tokenshopLbl.position = CGPoint(x: self.frame.width - 50 , y: self.frame.height - 50)
         tokenshopLbl.text = "\(tokensshop)"
+        tokenshopLbl.fontColor = UIColor(red: 238/255, green: 221/255, blue: 130/255, alpha: 1)
         tokenshopLbl.zPosition = 5
         tokenshopLbl.fontSize = 20
         tokenshopLbl.fontName = "HelveticaNeue-Bold"
@@ -201,7 +216,7 @@ class NewSkinScene: SKScene {
     func createThirdFriendBtn() {
         buyThirdBtn = SKSpriteNode(imageNamed: "play")
         buyThirdBtn.size = CGSize(width:100, height:100)
-        buyThirdBtn.position = CGPoint(x: self.frame.midX / 2, y: self.frame.midY / 2)
+        buyThirdBtn.position = CGPoint(x: self.frame.midX / 2, y: self.frame.midY)
         buyThirdBtn.zPosition = 8
         buyThirdBtn.name = "buyThirdButton"
         self.addChild(buyThirdBtn)
@@ -210,12 +225,29 @@ class NewSkinScene: SKScene {
     func createFourthFriendBtn() {
         buyFourthBtn = SKSpriteNode(imageNamed: "play")
         buyFourthBtn.size = CGSize(width:100, height:100)
-        buyFourthBtn.position = CGPoint(x: self.frame.width * 0.75, y: self.frame.midY / 2)
+        buyFourthBtn.position = CGPoint(x: self.frame.width * 0.75, y: self.frame.midY)
         buyFourthBtn.zPosition = 8
         buyFourthBtn.name = "buyFourthButton"
         self.addChild(buyFourthBtn)
     }
+    
+    func createFifthFriendBtn() {
+        buyFifthBtn = SKSpriteNode(imageNamed: "play")
+        buyFifthBtn.size = CGSize(width:100, height:100)
+        buyFifthBtn.position = CGPoint(x: self.frame.midX / 2, y: self.frame.midY / 2)
+        buyFifthBtn.zPosition = 8
+        buyFifthBtn.name = "buyFifthButton"
+        self.addChild(buyFifthBtn)
+    }
 
+    func createSixthFriendBtn() {
+        buySixthBtn = SKSpriteNode(imageNamed: "play")
+        buySixthBtn.size = CGSize(width:100, height:100)
+        buySixthBtn.position = CGPoint(x: self.frame.width * 0.75, y: self.frame.midY / 2)
+        buySixthBtn.zPosition = 8
+        buySixthBtn.name = "buySixthButton"
+        self.addChild(buySixthBtn)
+    }
     
     
     

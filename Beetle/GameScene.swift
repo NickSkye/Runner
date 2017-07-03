@@ -11,11 +11,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let teleport = SKAction.playSoundFileNamed("teleport.mp3", waitForCompletion: false)
     let scream = SKAction.playSoundFileNamed("scream.mp3", waitForCompletion: false)
     let saberSound = SKAction.playSoundFileNamed("saber.mp3", waitForCompletion: false)
+    let hawk = SKAction.playSoundFileNamed("hawk.mp3", waitForCompletion: false)
+    let chomp = SKAction.playSoundFileNamed("chomp.mp3", waitForCompletion: false)
     
     var score = Int(0)
     var tokens = Int(0)
     //let notificationName = Notification.Name("NotificationIdentifier")
     var running = Bool(false)
+    var birdType = "bird1"
     var statLbl = SKLabelNode()
     var highscoreLbl = SKLabelNode()
     var taptoplayLbl = SKLabelNode()
@@ -31,9 +34,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var backBtn = SKSpriteNode()
     var logoImg = SKSpriteNode()
     var wallPair = SKNode()
+    var bigBirdObstacle = SKNode()
     var moveAndRemove = SKAction()
+    var moveAndRemoveBigBird = SKAction()
    var movePipes = SKAction()
+    var moveBigBird = SKAction()
     var distance = CGFloat()
+    var distanceBigBird = CGFloat()
     //CREATE THE BIRD ATLAS FOR ANIMATION
     let birdAtlas = SKTextureAtlas(named:"player")
     var birdSprites = Array<SKTexture>()
@@ -41,10 +48,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var repeatActionbird = SKAction()
     var delay = SKAction()
+    var delayBigBird = SKAction()
     var SpawnDelay = SKAction()
+    var SpawnDelayBigBird = SKAction()
     var spawnDelayForever = SKAction()
+    var spawnDelayBigBirdForever = SKAction()
     var spawn = SKAction()
+    var spawnBigBird = SKAction()
     var time = CGFloat()
+    var timeBigBird = CGFloat()
     var pauseRestart = SKSpriteNode()
     var feedback = UIImpactFeedbackGenerator(style: .heavy)
     
@@ -107,6 +119,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             profileskView.presentScene(profilescene, transition: SKTransition.doorway(withDuration: 1))
             profileBtn.removeFromParent()
         }
+        
         }        //
         
         
@@ -135,6 +148,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
            
             self.bird.run(repeatActionbird)
             
+            
+            //spawns and creates pipes/walls and all items such as coins and boosts and sabers
              spawn = SKAction.run({
                 () in
                 self.wallPair = self.createWalls()
@@ -142,20 +157,42 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
                 
             })
+            ///maybe delete this and just spawn them randomly in ^ spawn
+            spawnBigBird = SKAction.run({
+                () in
+                self.bigBirdObstacle = self.createBigBird()
+                self.addChild(self.bigBirdObstacle)
+                
+                
+            })
             
             
-            
+            //runs spawn and creates new pipes/walls and all items such as coins and boosts and sabers
             delay = SKAction.wait(forDuration: 1.5)
             SpawnDelay = SKAction.sequence([spawn, delay])
             spawnDelayForever = SKAction.repeatForever(SpawnDelay)
             self.run(spawnDelayForever)
             
+            //runs spawn and creates Big Bird
+            
+            delayBigBird = SKAction.wait(forDuration: 1.5)
+            SpawnDelayBigBird = SKAction.sequence([spawnBigBird, delayBigBird])
+            spawnDelayBigBirdForever = SKAction.repeatForever(SpawnDelayBigBird)
+            self.run(spawnDelayBigBirdForever)
+            
+            
+            //moves pipes/walls and all items such as coins and boosts and sabers across and off the screen
             distance = CGFloat(self.frame.width + wallPair.frame.width)
-            ///
-            //print(distance)
             movePipes = SKAction.moveBy(x: -distance - 50, y: 0, duration: TimeInterval(0.008 * distance))
             let removePipes = SKAction.removeFromParent()
             moveAndRemove = SKAction.sequence([movePipes, removePipes])
+            
+            
+            //moves Big Bird
+            distanceBigBird = CGFloat(self.frame.width + bigBirdObstacle.frame.width)
+            moveBigBird = SKAction.moveBy(x: -distanceBigBird - 50, y: 0, duration: TimeInterval(0.008 * distanceBigBird))
+            let removeBigBird = SKAction.removeFromParent()
+            moveAndRemoveBigBird = SKAction.sequence([moveBigBird, removeBigBird])
             
             bird.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
             bird.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 40))
@@ -170,7 +207,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                
                 bird.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
                 bird.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 40))
-               //
+               
+                
                 distance = CGFloat(self.frame.width + wallPair.frame.width)
                 
                 if score < 50 {
@@ -179,9 +217,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 else {
                     time = 1.312 //2.168
                 }
+                //moves pipes/walls and all items such as coins and boosts and sabers across and off the screen
                 movePipes = SKAction.moveBy(x: -distance - 50, y: 0, duration: TimeInterval(time))
                 let removePipes = SKAction.removeFromParent()
                 moveAndRemove = SKAction.sequence([movePipes, removePipes])
+                
+                //move big bird
+                
+                let randomBirdMove = Int(random(min: 0, max: 3))
+                if randomBirdMove == 2 {
+                    moveBigBird = SKAction.moveBy(x: -(self.frame.width * 2), y: 250, duration: TimeInterval(time))
+                }
+                else if randomBirdMove == 3 {
+                    moveBigBird = SKAction.moveBy(x: -(self.frame.width * 2), y: -250, duration: TimeInterval(time))
+                }
+                
+                let pauser = SKAction.wait(forDuration: 1)
+                
+                let removeBigBird = SKAction.removeFromParent()
+                
+                moveAndRemoveBigBird = SKAction.sequence([pauser, moveBigBird, removeBigBird])
+                
             }
         }
         
@@ -388,13 +444,32 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
         }
         
+        // CHECKS WHAT BIRD IS BEING USED
+        if UserDefaults.standard.object(forKey: "birdType") != nil {
+            birdType = UserDefaults.standard.string(forKey: "birdType")!
+        } else {
+            UserDefaults.standard.set("bird1", forKey: "birdType")
+        }
+        
+        //////
+        
+        
+        
         //SET UP THE BIRD SPRITES FOR ANIMATION
+        if birdType == "bird1" {
         birdSprites.append(birdAtlas.textureNamed("bird1"))
         birdSprites.append(birdAtlas.textureNamed("bird2"))
         birdSprites.append(birdAtlas.textureNamed("bird3"))
         birdSprites.append(birdAtlas.textureNamed("bird4"))
+        }
+        else if birdType == "robobird1" {
+            birdSprites.append(birdAtlas.textureNamed("robobird1"))
+            birdSprites.append(birdAtlas.textureNamed("robobird2"))
+            birdSprites.append(birdAtlas.textureNamed("robobird3"))
+            birdSprites.append(birdAtlas.textureNamed("robobird4"))
+        }
         
-        self.bird = createBird()
+        self.bird = createBird(birdType: birdType)
         self.addChild(bird)
         
         //ANIMATE THE BIRD AND REPEAT THE ANIMATION FOREVER
@@ -455,6 +530,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
             }
         }
+        else if bird.position.x >= (self.frame.width * 0.75) {
+            bird.position.x = self.frame.width * 0.74
+        }
          else if firstBody.categoryBitMask == CollisionBitMask.birdCategory && secondBody.categoryBitMask == CollisionBitMask.flowerCategory {
             run(coinSound)
             tokens += 1
@@ -477,7 +555,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.score += 2
             self.scoreLbl.text = "\(self.score)"
             //bird.physicsBody?.velocity = CGVector(dx: 70, dy: 0)
-            bird.run(SKAction .moveTo(x: self.frame.width , duration: 0.05))
+            bird.run(SKAction .moveTo(x: self.frame.width * 0.74 , duration: 0.05))
             
             
             secondBody.node?.removeFromParent()
@@ -490,7 +568,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             feedback.impactOccurred()
             self.score += 2
             self.scoreLbl.text = "\(self.score)"
-             bird.run(SKAction .moveTo(x: self.frame.width , duration: 0.05))
+             bird.run(SKAction .moveTo(x: self.frame.width * 0.74 , duration: 0.05))
             firstBody.node?.removeFromParent()
         }
         else if firstBody.categoryBitMask == CollisionBitMask.birdCategory && secondBody.categoryBitMask == CollisionBitMask.scoreCategory {
@@ -537,6 +615,47 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }))
             if died == false{
                 run(scream)
+                died = true
+                createRestartBtn()
+                pauseBtn.removeFromParent()
+                self.bird.removeAllActions()
+                
+            }
+            
+        }
+        else if firstBody.categoryBitMask == CollisionBitMask.birdCategory && secondBody.categoryBitMask == CollisionBitMask.bigBirdCategory {
+            //BIG BIRD
+            feedback.impactOccurred()
+            self.bird.removeFromParent()
+            MusicHelper.sharedHelper.stopBackgroundMusic()
+            enumerateChildNodes(withName: "wallPair", using: ({
+                (node, error) in
+                node.speed = 0
+                self.removeAllActions()
+            }))
+            if died == false{
+                run(chomp)
+                died = true
+                createRestartBtn()
+                pauseBtn.removeFromParent()
+                self.bird.removeAllActions()
+                
+            }
+            
+            
+        } else if firstBody.categoryBitMask == CollisionBitMask.bigBirdCategory && secondBody.categoryBitMask == CollisionBitMask.birdCategory {
+            //BIG BIRD
+            feedback.impactOccurred()
+            self.bird.removeFromParent()
+            MusicHelper.sharedHelper.stopBackgroundMusic()
+            enumerateChildNodes(withName: "wallPair", using: ({
+                (node, error) in
+                node.speed = 0
+                self.removeAllActions()
+            }))
+            if died == false{
+                run(chomp)
+                
                 died = true
                 createRestartBtn()
                 pauseBtn.removeFromParent()

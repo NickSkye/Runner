@@ -139,7 +139,7 @@ class ShopScene: SKScene {
         }
         let tokenshopLbl = SKLabelNode()
         tokenshopLbl.position = CGPoint(x: self.frame.width - 50 , y: self.frame.height - 50)
-        tokenshopLbl.text = "\(tokensshop)"
+        tokenshopLbl.text = "\(tokensshop) Coins"
         tokenshopLbl.zPosition = 5
         tokenshopLbl.fontSize = 20
         tokenshopLbl.fontName = "HelveticaNeue-Bold"
@@ -156,7 +156,7 @@ class ShopScene: SKScene {
     
     func createNewSkinBtn() {
         newSkinBtn = SKSpriteNode(imageNamed: "flippys-friends")
-        newSkinBtn.size = CGSize(width:70, height:70)
+        newSkinBtn.size = CGSize(width:100, height:100)
         newSkinBtn.position = CGPoint(x: self.frame.width / 4, y: self.frame.height - 150)
         newSkinBtn.zPosition = 8
         self.addChild(newSkinBtn)
@@ -164,7 +164,7 @@ class ShopScene: SKScene {
     
     func createBuyTokensBtn() {
         buyTokensBtn = SKSpriteNode(imageNamed: "buy-coins")
-        buyTokensBtn.size = CGSize(width:70, height:70)
+        buyTokensBtn.size = CGSize(width:100, height:100)
         buyTokensBtn.position = CGPoint(x: self.frame.width * 0.75, y: self.frame.height - 150)
         buyTokensBtn.zPosition = 8
         self.addChild(buyTokensBtn)
