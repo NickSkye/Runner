@@ -92,7 +92,7 @@ class ProfileScene: SKScene {
     func createProfileScene() {
         let hour = Calendar.current.component(.hour, from: Date())
         print("hour \(hour)")
-        var background = SKSpriteNode(imageNamed: "bg")
+        var background = SKSpriteNode(imageNamed: "city")
         if hour > 19 || hour < 7 {
             background = SKSpriteNode(imageNamed: "newBG")
         }

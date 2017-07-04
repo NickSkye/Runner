@@ -466,6 +466,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             birdSprites.append(birdAtlas.textureNamed("robobird3"))
             birdSprites.append(birdAtlas.textureNamed("robobird4"))
         }
+        else if birdType == "rainbowbird1" {
+            birdSprites.append(birdAtlas.textureNamed("rainbowbird1"))
+            birdSprites.append(birdAtlas.textureNamed("rainbowbird2"))
+            birdSprites.append(birdAtlas.textureNamed("rainbowbird3"))
+            birdSprites.append(birdAtlas.textureNamed("rainbowbird4"))
+        }
         
         self.bird = createBird(birdType: birdType)
         self.addChild(bird)
