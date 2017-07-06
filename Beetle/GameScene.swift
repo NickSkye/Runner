@@ -150,7 +150,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             //menu items remove here
             shopBtn.removeFromParent()
             profileBtn.removeFromParent()
-            
+            gcBtn.removeFromParent()
             taptoplayLbl.removeFromParent()
             shopBtn.removeAllActions()
             profileBtn.removeAllActions()
