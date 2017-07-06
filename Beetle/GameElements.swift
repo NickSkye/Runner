@@ -19,9 +19,11 @@ struct CollisionBitMask {
 
 extension GameScene{
     
+    //CHANGE all values affecting size x,y to be x/414 * width or y/736 * height
+    
     func createBird(birdType: String) -> SKSpriteNode {
         let bird = SKSpriteNode(texture: SKTextureAtlas(named:"player").textureNamed(birdType)) //pass first bird
-        bird.size = CGSize(width: 50, height: 50)
+        bird.size = CGSize(width: (self.frame.width * 0.121), height: (self.frame.height * 0.068))
         bird.position = CGPoint(x:self.frame.midX, y:self.frame.midY)
         
         bird.physicsBody = SKPhysicsBody(circleOfRadius: bird.size.width / 2)
@@ -32,6 +34,7 @@ extension GameScene{
         bird.physicsBody?.contactTestBitMask = CollisionBitMask.pillarCategory | CollisionBitMask.flowerCategory | CollisionBitMask.groundCategory | CollisionBitMask.boostCategory | CollisionBitMask.killerPillarCategory | CollisionBitMask.bigBirdCategory
         bird.physicsBody?.affectedByGravity = false
         bird.physicsBody?.isDynamic = true
+        print("\(self.frame.width) X \(self.frame.height)")
         
         return bird
     }
@@ -95,7 +98,7 @@ extension GameScene{
         
         shopBtn = SKSpriteNode(imageNamed: "shop")
         shopBtn.size = CGSize(width:80, height:80)
-        shopBtn.position = CGPoint(x: self.frame.midX / 3 , y: 50)
+        shopBtn.position = CGPoint(x: self.frame.midX / 3 , y: self.frame.height * 0.1)
         shopBtn.zPosition = 7
         self.addChild(shopBtn)
         shopBtn.addChild(tokenshopLbl)
@@ -109,6 +112,13 @@ extension GameScene{
         self.addChild(profileBtn)
     }
     
+    func createGameCenterBtn() {
+        gcBtn = SKSpriteNode(imageNamed: "gamecenter")
+        gcBtn.size = CGSize(width:70, height:70)
+        gcBtn.position = CGPoint(x: self.frame.width * 0.8 , y: self.frame.height * 0.1)
+        gcBtn.zPosition = 7
+        self.addChild(gcBtn)
+    }
     
     func createBackBtn() {
         backBtn = SKSpriteNode(imageNamed: "pause")
@@ -203,6 +213,7 @@ extension GameScene{
         coinNode.physicsBody?.collisionBitMask = 0
         coinNode.physicsBody?.contactTestBitMask = CollisionBitMask.birdCategory
         coinNode.color = SKColor.blue
+        coinNode.name = "backgroundStuff"
         
         ///////
         let boostChange = CGFloat(random(min: -100.0, max: 100.0))
@@ -217,6 +228,7 @@ extension GameScene{
         boostNode.physicsBody?.collisionBitMask = 0
         boostNode.physicsBody?.contactTestBitMask = CollisionBitMask.birdCategory
         boostNode.color = SKColor.blue
+        boostNode.name = "backgroundStuff"
         
         
         ///////
@@ -232,6 +244,7 @@ extension GameScene{
         scorerNode.physicsBody?.contactTestBitMask = CollisionBitMask.birdCategory
         scorerNode.color = SKColor.blue
         scorerNode.alpha = 0.2
+        scorerNode.name = "backgroundStuff"
         
         
         //////
@@ -246,6 +259,7 @@ extension GameScene{
         killerPillarNode.physicsBody?.collisionBitMask = 0
         killerPillarNode.physicsBody?.contactTestBitMask = CollisionBitMask.birdCategory
         killerPillarNode.color = SKColor.blue
+        killerPillarNode.name = "backgroundStuff"
         
         
         let killerPillarTopNode = SKSpriteNode(imageNamed: "laserbeam")
@@ -261,6 +275,7 @@ extension GameScene{
         killerPillarTopNode.color = SKColor.blue
         
         killerPillarTopNode.zRotation = CGFloat(M_PI)
+        killerPillarTopNode.name = "backgroundStuff"
         
         /////
         wallPair = SKNode()
@@ -284,6 +299,7 @@ extension GameScene{
         topWall.physicsBody?.contactTestBitMask = CollisionBitMask.birdCategory
         topWall.physicsBody?.isDynamic = false
         topWall.physicsBody?.affectedByGravity = false
+        topWall.name = "backgroundStuff"
         
         btmWall.physicsBody = SKPhysicsBody(rectangleOf: btmWall.size)
         btmWall.physicsBody?.categoryBitMask = CollisionBitMask.pillarCategory
@@ -291,6 +307,7 @@ extension GameScene{
         btmWall.physicsBody?.contactTestBitMask = CollisionBitMask.birdCategory
         btmWall.physicsBody?.isDynamic = false
         btmWall.physicsBody?.affectedByGravity = false
+        btmWall.name = "backgroundStuff"
         
         topWall.zRotation = CGFloat(M_PI)
         

@@ -21,6 +21,7 @@
 		F32ABE3B1EEA6A6D000A217E /* gno.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F32ABE3A1EEA6A6D000A217E /* gno.mp3 */; };
 		F32ABE3D1EEB57A4000A217E /* CoinSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F32ABE3C1EEB57A4000A217E /* CoinSound.mp3 */; };
 		F32ABE3F1EEB5863000A217E /* ShopScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F32ABE3E1EEB5863000A217E /* ShopScene.swift */; };
+		F3675AC01F0DEF9E00B17007 /* GameCenterScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3675ABF1F0DEF9E00B17007 /* GameCenterScene.swift */; };
 		F37DE28A1EF8E35200FE524A /* ProfileScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37DE2891EF8E35200FE524A /* ProfileScene.swift */; };
 		F37DE28C1EFACA9A00FE524A /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F37DE28B1EFACA9A00FE524A /* GameKit.framework */; };
 		F37DE28E1EFACAAB00FE524A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F37DE28D1EFACAAB00FE524A /* StoreKit.framework */; };
@@ -68,6 +69,7 @@
 		F32ABE3A1EEA6A6D000A217E /* gno.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = gno.mp3; path = ../../gno.mp3; sourceTree = "<group>"; };
 		F32ABE3C1EEB57A4000A217E /* CoinSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = CoinSound.mp3; path = ../../CoinSound.mp3; sourceTree = "<group>"; };
 		F32ABE3E1EEB5863000A217E /* ShopScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopScene.swift; sourceTree = "<group>"; };
+		F3675ABF1F0DEF9E00B17007 /* GameCenterScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCenterScene.swift; sourceTree = "<group>"; };
 		F37DE2891EF8E35200FE524A /* ProfileScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileScene.swift; sourceTree = "<group>"; };
 		F37DE28B1EFACA9A00FE524A /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		F37DE28D1EFACAAB00FE524A /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -176,6 +178,7 @@
 				F37DE2891EF8E35200FE524A /* ProfileScene.swift */,
 				F37DE28F1EFAFD2700FE524A /* NewSkinScene.swift */,
 				F3BD4CFC1EFD69C50016DC52 /* BuyTokensScene.swift */,
+				F3675ABF1F0DEF9E00B17007 /* GameCenterScene.swift */,
 			);
 			name = FlippysFlight;
 			path = Beetle;
@@ -331,6 +334,7 @@
 				D9E9D9351E3483A900754A1A /* AppDelegate.swift in Sources */,
 				F32ABE3F1EEB5863000A217E /* ShopScene.swift in Sources */,
 				F37DE28A1EF8E35200FE524A /* ProfileScene.swift in Sources */,
+				F3675AC01F0DEF9E00B17007 /* GameCenterScene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

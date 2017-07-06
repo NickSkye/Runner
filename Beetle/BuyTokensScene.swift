@@ -219,7 +219,7 @@ class BuyTokensScene: SKScene, SKPaymentTransactionObserver, SKProductsRequestDe
             skView.showsNodeCount = false
             skView.ignoresSiblingOrder = false
             scene.scaleMode = .resizeFill
-            skView.presentScene(scene, transition: SKTransition.doorway(withDuration: 1))
+            skView.presentScene(scene, transition: SKTransition.doorsCloseHorizontal(withDuration: 1))
         }
         else if (nodes(at: (touches.first?.location(in: self))!)[0] as? SKSpriteNode)! == buyFiveBtn {
             for product in list {

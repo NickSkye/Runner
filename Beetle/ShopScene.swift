@@ -59,7 +59,7 @@ class ShopScene: SKScene {
             skView.showsNodeCount = false
             skView.ignoresSiblingOrder = false
             scene.scaleMode = .resizeFill
-            skView.presentScene(scene, transition: SKTransition.doorway(withDuration: 1))
+            skView.presentScene(scene, transition: SKTransition.doorsCloseHorizontal(withDuration: 1))
         }
         else if (nodes(at: (touches.first?.location(in: self))!)[0] as? SKSpriteNode)! == newSkinBtn {
             let scene = NewSkinScene(size: (view?.bounds.size)!)
@@ -68,7 +68,7 @@ class ShopScene: SKScene {
             skView.showsNodeCount = false
             skView.ignoresSiblingOrder = false
             scene.scaleMode = .resizeFill
-            skView.presentScene(scene, transition: SKTransition.doorway(withDuration: 1))
+            skView.presentScene(scene, transition: SKTransition.doorsOpenHorizontal(withDuration: 1))
         }
         else if (nodes(at: (touches.first?.location(in: self))!)[0] as? SKSpriteNode)! == buyTokensBtn {
             let scene = BuyTokensScene(size: (view?.bounds.size)!)
@@ -77,7 +77,7 @@ class ShopScene: SKScene {
             skView.showsNodeCount = false
             skView.ignoresSiblingOrder = false
             scene.scaleMode = .resizeFill
-            skView.presentScene(scene, transition: SKTransition.doorway(withDuration: 1))
+            skView.presentScene(scene, transition: SKTransition.doorsOpenHorizontal(withDuration: 1))
         }
         
         //
@@ -123,11 +123,22 @@ class ShopScene: SKScene {
         background.size = (self.view?.bounds.size)!
         self.addChild(background)
         
+        createLogo()
         createBackBtn()
         createNewSkinBtn()
         createCoinsAmount()
         createBuyTokensBtn()
         
+    }
+    
+    func createLogo() {
+        logoImg = SKSpriteNode()
+        logoImg = SKSpriteNode(imageNamed: "shopLbl")
+        logoImg.size = CGSize(width: 272, height: 150)
+        logoImg.position = CGPoint(x:self.frame.midX, y:self.frame.height * 0.9)
+        logoImg.setScale(0.2)
+        self.addChild(logoImg)
+        logoImg.run(SKAction.scale(to: 0.6, duration: 0.5))
     }
     
     func createCoinsAmount() {
@@ -137,9 +148,14 @@ class ShopScene: SKScene {
         } else {
             tokensshop = 0
         }
+        
         let tokenshopLbl = SKLabelNode()
-        tokenshopLbl.position = CGPoint(x: self.frame.width - 50 , y: self.frame.height - 50)
-        tokenshopLbl.text = "\(tokensshop) Coins"
+        tokenshopLbl.position = CGPoint(x: self.frame.width - 75 , y: self.frame.height - 50)
+        if tokensshop < 1000 {
+            tokenshopLbl.text = "\(tokensshop) Coins"
+        } else {
+            tokenshopLbl.text = "\((Double(tokensshop / 1000)).rounded())k Coins"
+        }
         tokenshopLbl.zPosition = 5
         tokenshopLbl.fontSize = 20
         tokenshopLbl.fontName = "HelveticaNeue-Bold"
@@ -157,7 +173,7 @@ class ShopScene: SKScene {
     func createNewSkinBtn() {
         newSkinBtn = SKSpriteNode(imageNamed: "flippys-friends")
         newSkinBtn.size = CGSize(width:100, height:100)
-        newSkinBtn.position = CGPoint(x: self.frame.width / 4, y: self.frame.height - 150)
+        newSkinBtn.position = CGPoint(x: self.frame.width / 4, y: self.frame.height * 0.75)
         newSkinBtn.zPosition = 8
         self.addChild(newSkinBtn)
     }
@@ -165,7 +181,7 @@ class ShopScene: SKScene {
     func createBuyTokensBtn() {
         buyTokensBtn = SKSpriteNode(imageNamed: "buy-coins")
         buyTokensBtn.size = CGSize(width:100, height:100)
-        buyTokensBtn.position = CGPoint(x: self.frame.width * 0.75, y: self.frame.height - 150)
+        buyTokensBtn.position = CGPoint(x: self.frame.width * 0.75, y: self.frame.height * 0.75)
         buyTokensBtn.zPosition = 8
         self.addChild(buyTokensBtn)
     }

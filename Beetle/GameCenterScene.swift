@@ -1,10 +1,9 @@
 
-
 import SpriteKit
 import Foundation
 
 
-class ProfileScene: SKScene {
+class GameCenterScene: SKScene {
     
     var gameStarted = Bool(false)
     var died = Bool(false)
@@ -38,7 +37,7 @@ class ProfileScene: SKScene {
     
     override func didMove(to view: SKView) {
         print("HERE")
-        createProfileScene()
+        createGCScene()
         
     }
     
@@ -89,14 +88,14 @@ class ProfileScene: SKScene {
     }
     
     
-    func createProfileScene() {
+    func createGCScene() {
         let hour = Calendar.current.component(.hour, from: Date())
         print("hour \(hour)")
         var background = SKSpriteNode(imageNamed: "city")
         if hour > 19 || hour < 7 {
             background = SKSpriteNode(imageNamed: "plainstars")
         }
-       // let background = SKSpriteNode(imageNamed: "bg")
+        // let background = SKSpriteNode(imageNamed: "bg")
         background.anchorPoint = CGPoint.init(x: 0, y: 0)
         //background.position = CGPoint(x:CGFloat(i) * self.frame.width, y:0)
         background.name = "background"
@@ -105,7 +104,7 @@ class ProfileScene: SKScene {
         
         createBackBtn()
         
-       
+        
         
     }
     

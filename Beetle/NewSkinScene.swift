@@ -79,7 +79,7 @@ class NewSkinScene: SKScene {
             skView.showsNodeCount = false
             skView.ignoresSiblingOrder = false
             scene.scaleMode = .resizeFill
-            skView.presentScene(scene, transition: SKTransition.doorway(withDuration: 1))
+            skView.presentScene(scene, transition: SKTransition.doorsCloseHorizontal(withDuration: 1))
         }
         else if (nodes(at: (touches.first?.location(in: self))!)[0] as? SKSpriteNode)! == buyFirstBtn {
             //THIS FUNCTION WILL ALLOW USERS TO ALWAYS SELECT FLIPPY
@@ -203,13 +203,55 @@ class NewSkinScene: SKScene {
         }
         else if (nodes(at: (touches.first?.location(in: self))!)[0] as? SKSpriteNode)! == buyFourthBtn {
             
-            print("4")
-            characters.append("robobird1")
-            UserDefaults.standard.set(characters, forKey: "characters")
-            // if not bought, pop up alert asking if want to buy for coins or cancel
-            // if want to buy, subtract coins from total and add skin to owned characters in userdefaults, change image to one saying play as or something
-            //if not do nothing
-            //else if bought and clicked, set birdType in userdefaults to that bird type.
+            if !(characters.contains("steveBird1")) {
+                
+                var tokensshop = Int(0)
+                if UserDefaults.standard.object(forKey: "currentTokens") != nil {
+                    tokensshop = UserDefaults.standard.integer(forKey: "currentTokens")
+                } else {
+                    tokensshop = 0
+                }
+                
+                if tokensshop < 200 {
+                    var alert = UIAlertView(title: "Not Enough Coins", message: "You need 200 coins to buy Flippy's friend", delegate: nil, cancelButtonTitle: "OK")
+                    alert.show()
+                }
+                else {
+                    //alert asking to buy
+                    let alert = UIAlertController(title: "Buy Friend?", message: "Are you sure you want to buy Steve?", preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { action in
+                        //run your function here
+                        print("BOUGHT")
+                        tokensshop -= 200
+                        UserDefaults.standard.set(tokensshop, forKey: "currentTokens")
+                        self.characters.append("steveBird1")
+                        UserDefaults.standard.set(self.characters, forKey: "characters")
+                        self.tokenshopLbl.text = "\(tokensshop)"
+                    }))
+                    alert.addAction(UIAlertAction(title: "No", style: .destructive, handler: nil))
+                    self.view?.window?.rootViewController?.present(alert, animated: true, completion: nil)
+                    //if alert answer == yes  {
+                    
+                    
+                    
+                }
+                
+                
+                
+            }
+            else { //if already bought this will enable it
+                if (UserDefaults.standard.object(forKey: "birdType") as! String) != "steveBird1" {
+                    //if robobird not selected, select it
+                    UserDefaults.standard.set("steveBird1", forKey: "birdType")
+                }
+                else {
+                    //if robobird is selected, and clicked, unselect it and go back to default bird.
+                    UserDefaults.standard.set("bird1", forKey: "birdType")
+                    
+                }
+            }
+            // still need to change image
+
         }
         else if (nodes(at: (touches.first?.location(in: self))!)[0] as? SKSpriteNode)! == buyFifthBtn {
             characters.append("robobird1")
@@ -347,7 +389,7 @@ class NewSkinScene: SKScene {
     }
     
     func createFourthFriendBtn() {
-        buyFourthBtn = SKSpriteNode(imageNamed: "play")
+        buyFourthBtn = SKSpriteNode(imageNamed: "steveBird1")
         buyFourthBtn.size = CGSize(width:100, height:100)
         buyFourthBtn.position = CGPoint(x: self.frame.width * 0.75, y: self.frame.midY)
         buyFourthBtn.zPosition = 8

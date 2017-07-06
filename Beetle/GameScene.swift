@@ -29,6 +29,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var pauseBtn = SKSpriteNode()
     var shopBtn = SKSpriteNode()
     var profileBtn = SKSpriteNode()
+    var gcBtn = SKSpriteNode()
     var background = SKSpriteNode(imageNamed: "city")
    // var skinBtn = UIButton()
     var backBtn = SKSpriteNode()
@@ -63,7 +64,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func didMove(to view: SKView) {
         createScene()
         
-     
+        
         
         
         if UserDefaults.standard.object(forKey: "highestScore") != nil {
@@ -104,7 +105,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             skinskView.showsNodeCount = false
             skinskView.ignoresSiblingOrder = false
             skinscene.scaleMode = .resizeFill
-            skinskView.presentScene(skinscene, transition: SKTransition.doorway(withDuration: 1))
+            skinskView.presentScene(skinscene, transition: SKTransition.doorsOpenHorizontal(withDuration: 1))
             shopBtn.removeFromParent()
         }
         else if (nodes(at: (touches.first?.location(in: self))!)[0] as? SKSpriteNode)! == profileBtn {
@@ -114,9 +115,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             profileskView.showsNodeCount = false
             profileskView.ignoresSiblingOrder = false
             profilescene.scaleMode = .resizeFill
-            profileskView.presentScene(profilescene, transition: SKTransition.doorway(withDuration: 1))
+            profileskView.presentScene(profilescene, transition: SKTransition.push(with: .down, duration: 1))
             profileBtn.removeFromParent()
         }
+        else if (nodes(at: (touches.first?.location(in: self))!)[0] as? SKSpriteNode)! == gcBtn {
+            let gcscene = GameCenterScene(size: (view?.bounds.size)!)
+            let gckView = view!
+            gckView.showsFPS = false
+            gckView.showsNodeCount = false
+            gckView.ignoresSiblingOrder = false
+            gcscene.scaleMode = .resizeFill
+            gckView.presentScene(gcscene, transition: SKTransition.push(with: .left, duration: 1))
+            gcBtn.removeFromParent()
+            }
         
         }        //
         
@@ -226,7 +237,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 if randomBirdMove == 2 {
                     moveBigBird = SKAction.moveBy(x: -(self.frame.width * 2), y: 250, duration: TimeInterval(time))
                 }
-                else if randomBirdMove == 3 {
+                else if randomBirdMove == 1 {
                     moveBigBird = SKAction.moveBy(x: -(self.frame.width * 2), y: -250, duration: TimeInterval(time))
                 }
                 
@@ -450,7 +461,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         //////
-        
+        print(UserDefaults.standard.string(forKey: "birdType")!)
         
         
         //SET UP THE BIRD SPRITES FOR ANIMATION
@@ -472,6 +483,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             birdSprites.append(birdAtlas.textureNamed("rainbowbird3"))
             birdSprites.append(birdAtlas.textureNamed("rainbowbird4"))
         }
+        else if birdType == "steveBird1" {
+            birdSprites.append(birdAtlas.textureNamed("steveBird1"))
+            birdSprites.append(birdAtlas.textureNamed("steveBird1"))
+            birdSprites.append(birdAtlas.textureNamed("steveBird1"))
+            birdSprites.append(birdAtlas.textureNamed("steveBird1"))
+        }
         
         self.bird = createBird(birdType: birdType)
         self.addChild(bird)
@@ -488,12 +505,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         tokenLbl.isUserInteractionEnabled = false
         highscoreLbl = createHighscoreLabel()
         self.addChild(highscoreLbl)
-
+       
         //create menu buttons here
         createLogo()
         //skin
         createShopBtn()
         createProfileBtn()
+        createGameCenterBtn()
         
         taptoplayLbl = createTaptoplayLabel()
         self.addChild(taptoplayLbl)
@@ -503,6 +521,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let firstBody = contact.bodyA
         let secondBody = contact.bodyB
          print("5")
+        
+        
       /*  if firstBody.categoryBitMask == CollisionBitMask.birdCategory && secondBody.categoryBitMask == CollisionBitMask.pillarCategory || firstBody.categoryBitMask == CollisionBitMask.pillarCategory && secondBody.categoryBitMask == CollisionBitMask.birdCategory || firstBody.categoryBitMask == CollisionBitMask.birdCategory && secondBody.categoryBitMask == CollisionBitMask.groundCategory || firstBody.categoryBitMask == CollisionBitMask.groundCategory && secondBody.categoryBitMask == CollisionBitMask.birdCategory{
             enumerateChildNodes(withName: "wallPair", using: ({
                 (node, error) in
@@ -676,6 +696,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Called before each frame is rendered
         var bgImg = "background"
         
+        
     
         
         if gameStarted == true{
@@ -702,30 +723,69 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         
                     }
                 }
+                else if bird.position.x >= (self.frame.width * 0.75) {
+                    bird.position.x = self.frame.width * 0.74
+                }
                 
                 
                 
+               
+                if pauseRestart.isHidden == false && isPaused == false{
+                    pauseRestart.isHidden = true
+                    pauseRestart.removeFromParent()
+                    pauseRestart.removeAllChildren()
+                    pauseRestart.removeAllActions()
+                    self.isPaused = false
+                    
+                    //  MusicHelper.sharedHelper.playBackgroundMusic()
+                    pauseBtn.texture = SKTexture(imageNamed: "pause")
+                }
+                
+ 
                     enumerateChildNodes(withName: bgImg, using: ({
                     (node, error) in
                     let bg = node as! SKSpriteNode
                         //THIS IS WHERE BACKGROUND CHANGES WITH SCORE
-                        if self.score > 10 && self.score < 30{
+                        
+                        if self.score > 40 {
                         bg.texture = SKTexture(imageNamed: "newBG")
                         }
-                        else if self.score >= 30 {
-                            //THIS GETS BUGGY HERE
-                            bg.texture = SKTexture(imageNamed: "city")
-                        }
+                         
                     bg.position = CGPoint(x: bg.position.x - 2, y: bg.position.y)
                     if bg.position.x <= -bg.size.width {
                         bg.position = CGPoint(x:bg.position.x + bg.size.width * 2, y:bg.position.y)
+                       // bg.removeFromParent()
+                        print("node")
                         //self.score += 1
                        // self.scoreLbl.text = "\(self.score)"
                         
                     }
                 }))
-                //let distance = CGFloat(self.frame.width + wallPair.frame.width)
-            //    let movePipes = SKAction.moveBy(x: -distance - 50, y: 0, duration: TimeInterval((0.008 * distance) - (CGFloat)(score/100)))
+                
+                print("Amount of nodes \(self.children.count)")
+                
+                
+                /*
+                //Unnecessary because the above function deletes all wallpairs and all the other items are children of wallpairs
+                enumerateChildNodes(withName: "backgroundStuff", using: ({
+                    (node, error) in
+                    let bgstuff = node as! SKSpriteNode
+                    //THIS IS WHERE BACKGROUND CHANGES WITH SCORE
+                    
+                   
+                    bgstuff.position = CGPoint(x: bgstuff.position.x - 2, y: bgstuff.position.y)
+                    if bgstuff.position.x <= -50 {
+                        //bgstuff.position = CGPoint(x:bgstuff.position.x + bgstuff.size.width * 2, y:bgstuff.position.y)
+                        bgstuff.removeFromParent()
+                        print("node")
+                        //self.score += 1
+                        // self.scoreLbl.text = "\(self.score)"
+                        
+                    }
+                }))
+                */
+
+                ////
             }
         }
     }
