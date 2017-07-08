@@ -23,6 +23,7 @@ extension GameScene{
     //CHANGE all values affecting size x,y to be x/414 * width or y/736 * height
     
     func createBird(birdType: String) -> SKSpriteNode {
+        //navar
         let bird = SKSpriteNode(texture: SKTextureAtlas(named:"player").textureNamed(birdType)) //pass first bird
         bird.size = CGSize(width: (self.frame.width * 0.121), height: (self.frame.height * 0.068))
         bird.position = CGPoint(x:self.frame.midX, y:self.frame.midY)
@@ -36,6 +37,7 @@ extension GameScene{
         bird.physicsBody?.affectedByGravity = false
         bird.physicsBody?.isDynamic = true
         print("\(self.frame.width) X \(self.frame.height)")
+        
         
         return bird
     }
@@ -147,6 +149,19 @@ extension GameScene{
         scoreBg.zPosition = -1
         scoreLbl.addChild(scoreBg)
         return scoreLbl
+    }
+    
+    func createInvincibleBall() {
+        
+        //invincibleBall = SKShapeNode()
+        invincibleBall.position = CGPoint(x: 0, y: 0)
+        invincibleBall.path = CGPath(roundedRect: CGRect(x: CGFloat(-50), y: CGFloat(-30), width: CGFloat(100), height: CGFloat(100)), cornerWidth: 50, cornerHeight: 50, transform: nil)
+        let scoreBgColor = UIColor(red: CGFloat(0.0 / 255.0), green: CGFloat(0.0 / 255.0), blue: CGFloat(150.0 / 255.0), alpha: CGFloat(0.0))
+        //invincibleBall.strokeColor = UIColor.clear
+        invincibleBall.fillColor = scoreBgColor
+        invincibleBall.zPosition = 9
+        bird.addChild(invincibleBall)
+        
     }
     
     func createTokenCollectedLabel() -> SKLabelNode {

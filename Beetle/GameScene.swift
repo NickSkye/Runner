@@ -16,6 +16,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var score = Int(0)
     var invincibleCounter = Int(0)
+    let invincibleBall = SKShapeNode()
     var invincible = false
     var tokens = Int(0)
     //let notificationName = Notification.Name("NotificationIdentifier")
@@ -504,7 +505,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.bird = createBird(birdType: birdType)
         self.addChild(bird)
-        
+        createInvincibleBall()
+        invincibleBall.alpha = 0.0
         //ANIMATE THE BIRD AND REPEAT THE ANIMATION FOREVER
         let animatebird = SKAction.animate(with: self.birdSprites, timePerFrame: 0.1)
         self.repeatActionbird = SKAction.repeatForever(animatebird)
@@ -590,6 +592,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }  else if firstBody.categoryBitMask == CollisionBitMask.birdCategory && secondBody.categoryBitMask == CollisionBitMask.boostCategory {
             //BOOST HIT
             invincibleCounter = 0
+            invincibleBall.fillColor = UIColor(red: CGFloat(0.0 / 255.0), green: CGFloat(0.0 / 255.0), blue: CGFloat(150.0 / 255.0), alpha: CGFloat(0.5))
+            invincibleBall.alpha = 0.5
             run(teleport) //boostsound
             invincible = true            //do something
             //wallPair.run(SKAction .hide())
@@ -605,6 +609,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         } else if firstBody.categoryBitMask == CollisionBitMask.boostCategory && secondBody.categoryBitMask == CollisionBitMask.birdCategory {
             //BOOST HIT
             invincibleCounter = 0
+            invincibleBall.fillColor = UIColor(red: CGFloat(0.0 / 255.0), green: CGFloat(0.0 / 255.0), blue: CGFloat(150.0 / 255.0), alpha: CGFloat(0.5))
+            invincibleBall.alpha = 0.5
             run(teleport) //boostsound
             invincible = true
            // wallPair.run(SKAction .hide())
@@ -626,6 +632,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if invincibleCounter >= 5 {
                 invincible = false
                 invincibleCounter = 0
+                invincibleBall.alpha = 0.0
+                
             }
 
             
@@ -641,6 +649,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if invincibleCounter >= 5 {
                 invincible = false
                 invincibleCounter = 0
+                invincibleBall.alpha = 0.0
             }
 
         }
