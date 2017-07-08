@@ -15,6 +15,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let chomp = SKAction.playSoundFileNamed("chomp.mp3", waitForCompletion: false)
     
     var score = Int(0)
+    var invincibleCounter = Int(0)
+    var invincible = false
     var tokens = Int(0)
     //let notificationName = Notification.Name("NotificationIdentifier")
     var running = Bool(false)
@@ -485,10 +487,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         else if birdType == "steveBird1" {
             birdSprites.append(birdAtlas.textureNamed("steveBird1"))
-            birdSprites.append(birdAtlas.textureNamed("steveBird1"))
-            birdSprites.append(birdAtlas.textureNamed("steveBird1"))
-            birdSprites.append(birdAtlas.textureNamed("steveBird1"))
+            birdSprites.append(birdAtlas.textureNamed("steveBird2"))
+            birdSprites.append(birdAtlas.textureNamed("steveBird3"))
+            birdSprites.append(birdAtlas.textureNamed("steveBird4"))
+            
         }
+        else if birdType == "derpyBird1" {
+            birdSprites.append(birdAtlas.textureNamed("derpyBird1"))
+            birdSprites.append(birdAtlas.textureNamed("derpyBird1"))
+            birdSprites.append(birdAtlas.textureNamed("derpyBird1"))
+            birdSprites.append(birdAtlas.textureNamed("derpyBird1"))
+            
+        }
+        
+        
         
         self.bird = createBird(birdType: birdType)
         self.addChild(bird)
@@ -520,6 +532,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact) {
         let firstBody = contact.bodyA
         let secondBody = contact.bodyB
+        
          print("5")
         
         
@@ -559,22 +572,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
          else if firstBody.categoryBitMask == CollisionBitMask.birdCategory && secondBody.categoryBitMask == CollisionBitMask.flowerCategory {
             run(coinSound)
+            
             tokens += 1
             tokenLbl.text = "\(tokens)"
             feedback.impactOccurred()
             secondBody.node?.removeFromParent()
+           
             
         } else if firstBody.categoryBitMask == CollisionBitMask.flowerCategory && secondBody.categoryBitMask == CollisionBitMask.birdCategory {
             run(coinSound)
+            
             tokens += 1
             tokenLbl.text = "\(tokens)"
             feedback.impactOccurred()
             firstBody.node?.removeFromParent()
+            
         }  else if firstBody.categoryBitMask == CollisionBitMask.birdCategory && secondBody.categoryBitMask == CollisionBitMask.boostCategory {
             //BOOST HIT
+            invincibleCounter = 0
             run(teleport) //boostsound
-            
-            //do something
+            invincible = true            //do something
             //wallPair.run(SKAction .hide())
             feedback.impactOccurred()
             self.score += 2
@@ -587,8 +604,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
         } else if firstBody.categoryBitMask == CollisionBitMask.boostCategory && secondBody.categoryBitMask == CollisionBitMask.birdCategory {
             //BOOST HIT
+            invincibleCounter = 0
             run(teleport) //boostsound
-            //do something
+            invincible = true
            // wallPair.run(SKAction .hide())
             feedback.impactOccurred()
             self.score += 2
@@ -598,19 +616,35 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         else if firstBody.categoryBitMask == CollisionBitMask.birdCategory && secondBody.categoryBitMask == CollisionBitMask.scoreCategory {
             //INCREASE SCORE
-            
+            print("GETTING HERE")
+            if invincible {
+                invincibleCounter += 1
+            }
             self.score += 1
             self.scoreLbl.text = "\(self.score)"
             secondBody.node?.removeFromParent()
+            if invincibleCounter >= 5 {
+                invincible = false
+                invincibleCounter = 0
+            }
+
             
         } else if firstBody.categoryBitMask == CollisionBitMask.scoreCategory && secondBody.categoryBitMask == CollisionBitMask.birdCategory {
             //INCREASE SCORE
-           
+            print("GETTING HERE")
+            if invincible {
+                invincibleCounter += 1
+            }
             self.score += 1
             self.scoreLbl.text = "\(self.score)"
             firstBody.node?.removeFromParent()
+            if invincibleCounter >= 5 {
+                invincible = false
+                invincibleCounter = 0
+            }
+
         }
-        else if firstBody.categoryBitMask == CollisionBitMask.birdCategory && secondBody.categoryBitMask == CollisionBitMask.killerPillarCategory {
+        else if firstBody.categoryBitMask == CollisionBitMask.birdCategory && secondBody.categoryBitMask == CollisionBitMask.killerPillarCategory  && invincible == false {
             //killer Laser
             feedback.impactOccurred()
             MusicHelper.sharedHelper.stopBackgroundMusic()
@@ -629,7 +663,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             
             
-        } else if firstBody.categoryBitMask == CollisionBitMask.killerPillarCategory && secondBody.categoryBitMask == CollisionBitMask.birdCategory {
+        } else if firstBody.categoryBitMask == CollisionBitMask.killerPillarCategory && secondBody.categoryBitMask == CollisionBitMask.birdCategory && invincible == false {
             //killer Laser
             feedback.impactOccurred()
             MusicHelper.sharedHelper.stopBackgroundMusic()
@@ -648,7 +682,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             
         }
-        else if firstBody.categoryBitMask == CollisionBitMask.birdCategory && secondBody.categoryBitMask == CollisionBitMask.bigBirdCategory {
+        else if firstBody.categoryBitMask == CollisionBitMask.birdCategory && secondBody.categoryBitMask == CollisionBitMask.bigBirdCategory && invincible == false {
             //BIG BIRD
             feedback.impactOccurred()
             self.bird.removeFromParent()
@@ -668,7 +702,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             
             
-        } else if firstBody.categoryBitMask == CollisionBitMask.bigBirdCategory && secondBody.categoryBitMask == CollisionBitMask.birdCategory {
+        } else if firstBody.categoryBitMask == CollisionBitMask.bigBirdCategory && secondBody.categoryBitMask == CollisionBitMask.birdCategory && invincible == false {
             //BIG BIRD
             feedback.impactOccurred()
             self.bird.removeFromParent()
@@ -689,6 +723,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             
         }
+        
+        
 
     }
     
@@ -762,8 +798,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     }
                 }))
                 
-                print("Amount of nodes \(self.children.count)")
-                
+               // print("Amount of nodes \(self.children.count)")
+           
                 
                 /*
                 //Unnecessary because the above function deletes all wallpairs and all the other items are children of wallpairs

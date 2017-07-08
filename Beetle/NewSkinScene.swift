@@ -212,7 +212,7 @@ class NewSkinScene: SKScene {
                     tokensshop = 0
                 }
                 
-                if tokensshop < 200 {
+                if tokensshop < 2  { //change to 200
                     var alert = UIAlertView(title: "Not Enough Coins", message: "You need 200 coins to buy Flippy's friend", delegate: nil, cancelButtonTitle: "OK")
                     alert.show()
                 }
@@ -222,7 +222,7 @@ class NewSkinScene: SKScene {
                     alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { action in
                         //run your function here
                         print("BOUGHT")
-                        tokensshop -= 200
+                        tokensshop -= 2
                         UserDefaults.standard.set(tokensshop, forKey: "currentTokens")
                         self.characters.append("steveBird1")
                         UserDefaults.standard.set(self.characters, forKey: "characters")
@@ -254,14 +254,54 @@ class NewSkinScene: SKScene {
 
         }
         else if (nodes(at: (touches.first?.location(in: self))!)[0] as? SKSpriteNode)! == buyFifthBtn {
-            characters.append("robobird1")
-            UserDefaults.standard.set(characters, forKey: "characters")
-            print("5")
-            // if not bought, pop up alert asking if want to buy for coins or cancel
-            // if want to buy, subtract coins from total and add skin to owned characters in userdefaults, change image to one saying play as or something
-            //if not do nothing
-            //else if bought and clicked, set birdType in userdefaults to that bird type.
-        }
+            if !(characters.contains("derpyBird1")) {
+                
+                var tokensshop = Int(0)
+                if UserDefaults.standard.object(forKey: "currentTokens") != nil {
+                    tokensshop = UserDefaults.standard.integer(forKey: "currentTokens")
+                } else {
+                    tokensshop = 0
+                }
+                
+                if tokensshop < 5  { //change to 200
+                    var alert = UIAlertView(title: "Not Enough Coins", message: "You need 5 coins to buy Flippy's friend", delegate: nil, cancelButtonTitle: "OK")
+                    alert.show()
+                }
+                else {
+                    //alert asking to buy
+                    let alert = UIAlertController(title: "Buy Friend?", message: "Are you sure you want to buy Derp?", preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { action in
+                        //run your function here
+                        print("BOUGHT")
+                        tokensshop -= 5
+                        UserDefaults.standard.set(tokensshop, forKey: "currentTokens")
+                        self.characters.append("derpyBird1")
+                        UserDefaults.standard.set(self.characters, forKey: "characters")
+                        self.tokenshopLbl.text = "\(tokensshop)"
+                    }))
+                    alert.addAction(UIAlertAction(title: "No", style: .destructive, handler: nil))
+                    self.view?.window?.rootViewController?.present(alert, animated: true, completion: nil)
+                    //if alert answer == yes  {
+                    
+                    
+                    
+                }
+                
+                
+                
+            }
+            else { //if already bought this will enable it
+                if (UserDefaults.standard.object(forKey: "birdType") as! String) != "derpyBird1" {
+                    //if robobird not selected, select it
+                    UserDefaults.standard.set("derpyBird1", forKey: "birdType")
+                }
+                else {
+                    //if robobird is selected, and clicked, unselect it and go back to default bird.
+                    UserDefaults.standard.set("bird1", forKey: "birdType")
+                    
+                }
+            }
+        }    // still need to change image        }
         else if (nodes(at: (touches.first?.location(in: self))!)[0] as? SKSpriteNode)! == buySixthBtn {
             characters.append("robobird1")
             UserDefaults.standard.set(characters, forKey: "characters")
@@ -398,7 +438,7 @@ class NewSkinScene: SKScene {
     }
     
     func createFifthFriendBtn() {
-        buyFifthBtn = SKSpriteNode(imageNamed: "play")
+        buyFifthBtn = SKSpriteNode(imageNamed: "derpyBird1")
         buyFifthBtn.size = CGSize(width:100, height:100)
         buyFifthBtn.position = CGPoint(x: self.frame.midX / 2, y: self.frame.midY / 2)
         buyFifthBtn.zPosition = 8

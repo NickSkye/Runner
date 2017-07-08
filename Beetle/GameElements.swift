@@ -13,6 +13,7 @@ struct CollisionBitMask {
     static let scoreCategory:UInt32 = 0x1 << 5
     static let killerPillarCategory:UInt32 = 0x1 << 6
     static let bigBirdCategory:UInt32 = 0x1 << 7
+    static let invincibleCategory:UInt32 = 0x1 << 8
 }
 
 
@@ -362,8 +363,8 @@ extension GameScene{
         }
         
         //BOOST
-        let randomNumberBoost = Int(random(min: 0, max: 30))
-        if randomNumberBoost == 15 && randomNumberBoost != 5 {
+        let randomNumberBoost = Int(random(min: 0, max: 10))
+        if randomNumberBoost == 7 && randomNumberBoost != 5 {
             wallPair.addChild(boostNode)
             boostNode.run(SKAction.scale(to: 1.0, duration: 1))
         }
