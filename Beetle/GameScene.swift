@@ -64,6 +64,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var pauseRestart = SKSpriteNode()
     var feedback = UIImpactFeedbackGenerator(style: .heavy)
     
+    //Instance of GameData
+    var gameData: GameData = GameData()
+    
     override func didMove(to view: SKView) {
         createScene()
         
@@ -833,6 +836,37 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 ////
             }
         }
+    }
+    
+    /*
+     processScore:
+     Does not return a value. Meant to be run while the game is being played and the score change
+     */
+    func processScore(){
+        //Set hScore as the value that stores the users highest score
+        let hScore = gameData.highScore
+        
+        //Check if the users high score is greater than the score they currently have in-game
+        //If high score is less than current score then reset the high score to match the current score.
+        if hScore < Int(scoreLbl.text!)!{
+            
+            //Set current in-game score to a variable to be used for setting the high score
+            let cScore = Int(scoreLbl.text!)
+            gameData.highScore = cScore!
+        }
+    }
+    
+    /*
+     processTokens:
+     Does not return a value. Meant to be run while the game is being played and the token count changes when
+     collected
+     */
+    func processTokens(){
+        
+        let cTokens = gameData.coins
+        let tTokens = gameData.totalCoins + Int(cTokens)
+        
+        gameData.totalCoins = Int(tTokens)
     }
 }
 
