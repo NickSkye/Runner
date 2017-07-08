@@ -3,3 +3,5 @@
 //
 
  #import <VungleSDK/VungleSDK.h>
+
+#import "GameData.h"
