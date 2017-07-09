@@ -139,6 +139,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         
         if gameStarted == false{
+            isTouching = true
             MusicHelper.sharedHelper.playBackgroundMusic()
             gameStarted =  true
             
@@ -784,11 +785,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     bird.position.x = self.frame.width * 0.74
                 }
                 
-                
+                if birdType == "fatBird1" {
                 if isTouching {
-                    bird.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 2.5))
+                    bird.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: -1)) //2.5
                 } else {
-                    bird.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 0.0))
+                    bird.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 3.5)) //0
+                }
+                } else {
+                    if isTouching {
+                        bird.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 2.5)) //2.5
+                    } else {
+                        bird.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 0)) //0
+                    }
                 }
                
                 if pauseRestart.isHidden == false && isPaused == false{
