@@ -457,6 +457,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         // CHECKS WHAT BIRD IS BEING USED
+        //UserDefaults.standard.removeObject(forKey: "birdType")
         if UserDefaults.standard.object(forKey: "birdType") != nil {
             birdType = UserDefaults.standard.string(forKey: "birdType")!
         } else {
@@ -476,15 +477,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         else if birdType == "robobird1" {
             birdSprites.append(birdAtlas.textureNamed("robobird1"))
-            birdSprites.append(birdAtlas.textureNamed("robobird2"))
-            birdSprites.append(birdAtlas.textureNamed("robobird3"))
-            birdSprites.append(birdAtlas.textureNamed("robobird4"))
+            birdSprites.append(birdAtlas.textureNamed("robobird1"))
+            birdSprites.append(birdAtlas.textureNamed("robobird1"))
+            birdSprites.append(birdAtlas.textureNamed("robobird1"))
         }
         else if birdType == "rainbowbird1" {
             birdSprites.append(birdAtlas.textureNamed("rainbowbird1"))
-            birdSprites.append(birdAtlas.textureNamed("rainbowbird2"))
-            birdSprites.append(birdAtlas.textureNamed("rainbowbird3"))
-            birdSprites.append(birdAtlas.textureNamed("rainbowbird4"))
+            birdSprites.append(birdAtlas.textureNamed("rainbowbird1"))
+            birdSprites.append(birdAtlas.textureNamed("rainbowbird1"))
+            birdSprites.append(birdAtlas.textureNamed("rainbowbird1"))
         }
         else if birdType == "steveBird1" {
             birdSprites.append(birdAtlas.textureNamed("steveBird1"))
@@ -500,7 +501,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             birdSprites.append(birdAtlas.textureNamed("derpyBird1"))
             
         }
-        
+        else if birdType == "fatBird1" {
+            birdSprites.append(birdAtlas.textureNamed("fatBird1"))
+            birdSprites.append(birdAtlas.textureNamed("fatBird1"))
+            birdSprites.append(birdAtlas.textureNamed("fatBird1"))
+            birdSprites.append(birdAtlas.textureNamed("fatBird1"))
+            
+        }
         
         
         self.bird = createBird(birdType: birdType)
