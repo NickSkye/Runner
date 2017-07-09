@@ -49,7 +49,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let birdAtlas = SKTextureAtlas(named:"player")
     var birdSprites = Array<SKTexture>()
     var bird = SKSpriteNode()
-    
+
     var repeatActionbird = SKAction()
     var delay = SKAction()
     var delayBigBird = SKAction()
@@ -63,6 +63,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var timeBigBird = CGFloat()
     var pauseRestart = SKSpriteNode()
     var feedback = UIImpactFeedbackGenerator(style: .heavy)
+    
+    var isTouching = false
     
     override func didMove(to view: SKView) {
         createScene()
@@ -211,7 +213,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         } else {
             if died == false {
                 //change speed and shit here
-                
+                isTouching = true
                 if self.bird.position.x > self.frame.width {
                     print("ERRORRRRR")
                 }
@@ -219,7 +221,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                
                 bird.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
                 bird.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 40))
-               
+                
                 
                 distance = CGFloat(self.frame.width + wallPair.frame.width)
                 
@@ -397,7 +399,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //////
     }
     
-    
+    override func touchesEnded(_ touches: Set<UITouch>,
+                      with event: UIEvent?){
+        isTouching = false
+    }
     
     func restartScene(){
         self.removeAllChildren()
@@ -780,7 +785,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 }
                 
                 
-                
+                if isTouching {
+                    bird.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 2.5))
+                } else {
+                    bird.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 0.0))
+                }
                
                 if pauseRestart.isHidden == false && isPaused == false{
                     pauseRestart.isHidden = true
