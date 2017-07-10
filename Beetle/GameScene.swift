@@ -27,6 +27,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var taptoplayLbl = SKLabelNode()
     var restartBtn = SKSpriteNode()
     var adBtn = SKSpriteNode()
+    var secondChanceBtn = SKSpriteNode()
     var scoreLbl = SKLabelNode()
     var tokenLbl = SKLabelNode()
     var pauseBtn = SKSpriteNode()
@@ -210,7 +211,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             moveAndRemoveBigBird = SKAction.sequence([moveBigBird, removeBigBird])
             
             bird.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
-            bird.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 40))
+            bird.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 30))
         } else {
             if died == false {
                 //change speed and shit here
@@ -221,16 +222,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
                
                 bird.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
-                bird.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 40))
+                bird.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 30))
                 
                 
                 distance = CGFloat(self.frame.width + wallPair.frame.width)
                 
-                if score < 50 {
+                if score < 65 {
                     time = (0.008 * distance) - (CGFloat(score)/25.0)
                 }
                 else {
-                    time = 1.312 //2.168
+                    time = 1.112 //2.168
                 }
                 //moves pipes/walls and all items such as coins and boosts and sabers across and off the screen
                 movePipes = SKAction.moveBy(x: -distance - 50, y: 0, duration: TimeInterval(time))
@@ -317,8 +318,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     
                     
                     restartScene()
-                }
-            } else if pauseBtn.contains(location){
+                
+            } /*else if secondChanceBtn.contains(location){
+                //for score
+                ////////////////PUT AD HERE?
+                
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NotificationIdentifier"), object: nil)
+                extraChance()
+                
+                
+            }
+        
+                 } */ }
+        else if pauseBtn.contains(location){
                 if self.isPaused == false{
                     self.isPaused = true
                     // MusicHelper.sharedHelper.stopBackgroundMusic()
@@ -413,6 +425,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         score = 0
         tokens = 0
         createScene()
+    }
+    
+    func extraChance(){
+        
+        died = false
+        gameStarted = true
+        //remove restartBTN and adBtn
+        self.removeChildren(in: [restartBtn, adBtn])
+        self.bird.position = CGPoint(x:self.frame.midX, y:self.frame.midY)
     }
     
     func createSkinScene() {

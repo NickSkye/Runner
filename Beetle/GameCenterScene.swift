@@ -89,6 +89,9 @@ class GameCenterScene: SKScene {
     
     
     func createGCScene() {
+        
+        self.view?.window?.rootViewController?.present(GameCenterViewController(), animated: true, completion: nil)
+        
         let hour = Calendar.current.component(.hour, from: Date())
         print("hour \(hour)")
         var background = SKSpriteNode(imageNamed: "city")
