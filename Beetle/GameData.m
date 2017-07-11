@@ -189,6 +189,24 @@ static NSString* const SSGameDataChecksumKey = @"SSGameDataChecksumKey";
     
     //Store total coins
     self.totalCoins = cloudTotalCoins;
+    
+    //Sends notifcation that the gamedata has been updated from iCloud
+    [[NSNotificationCenter defaultCenter] postNotificationName: SSGameDataUpdatedFromiCloud object:nil];
+}
+
+//Function: dealloc
+//Returns: nothing
+//Process: Deallocates the memory of the GameData notification. Keeps Memory in balance
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:SSGameDataUpdatedFromiCloud object:nil];
+}
+
+
+//Not complete yet
+- (void)didUpdateGameData:(NSNotification*)n
+{
+    
 }
 
 //Function: reset
