@@ -22,6 +22,22 @@ static NSString* const SSGameDataTotalCoinsSpentKey = @"totalCoinsSpent";
 //Key Variables for Keychain Wrapper Checksum
 static NSString* const SSGameDataChecksumKey = @"SSGameDataChecksumKey";
 
+//Custom init: updateFromIcloud when there is a notification from iCloud of new data
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        //1
+        if([NSUbiquitousKeyValueStore defaultStore]) {
+            //2
+            [[NSNotificationCenter defaultCenter] addObserver:self
+                                                     selector:@selector(updateFromiCloud:)
+                                                         name:NSUbiquitousKeyValueStoreDidChangeExternallyNotification
+                                                       object:nil];
+        }
+    }
+    return self;
+}
 
 + (instancetype)sharedGameData
 {
@@ -35,6 +51,9 @@ static NSString* const SSGameDataChecksumKey = @"SSGameDataChecksumKey";
     return sharedInstance;
 }
 
+//Function: filePath
+//Returns: String filePath
+//Creates a filepath ending with "gameData", to store gameData
 + (NSString*) filePath
 {
     static NSString* filePath = nil;
@@ -44,7 +63,9 @@ static NSString* const SSGameDataChecksumKey = @"SSGameDataChecksumKey";
     return filePath;
 }
 
-//Load file instance from a file
+//Function: loadInstance
+//Returns: gameData
+//Load file instance from a file, and returns or initilizes the gameData that has been collected
 + (instancetype)loadInstance
 {
     NSData* decodedData = [NSData dataWithContentsOfFile: [GameData filePath]];
@@ -67,7 +88,9 @@ static NSString* const SSGameDataChecksumKey = @"SSGameDataChecksumKey";
     return [[GameData alloc] init];
 }
 
-//Writing the data to a file atomically
+//Function: save
+//Returns: nothing
+//Writing the data to a file atomically and updates iCloud
 - (void) save {
     NSData* encodedData = [NSKeyedArchiver archivedDataWithRootObject: self];
     [encodedData writeToFile:[GameData filePath] atomically:YES];
@@ -81,6 +104,12 @@ static NSString* const SSGameDataChecksumKey = @"SSGameDataChecksumKey";
     } else {
         [KeychainWrapper createKeychainValue:checksum forIdentifier:SSGameDataChecksumKey];
     }
+    
+    //Updates iCloud
+    if([NSUbiquitousKeyValueStore defaultStore]) {
+        [self updateiCloud];
+    }
+    
 }
 
 
@@ -88,6 +117,7 @@ static NSString* const SSGameDataChecksumKey = @"SSGameDataChecksumKey";
 //Encoder
 - (void)encodeWithCoder:(NSCoder *)encoder
 {
+    //Encode values used for the game
     [encoder encodeDouble:self.highScore forKey:SSGameDataHighScoreKey];
     [encoder encodeDouble:self.totalDistance forKey: SSGameDataTotalDistanceKey];
     [encoder encodeDouble:self.totalCoins forKey:SSGameDataTotalCoinsKey];
@@ -101,6 +131,7 @@ static NSString* const SSGameDataChecksumKey = @"SSGameDataChecksumKey";
 {
     self = [self init];
     if (self){
+        //Decode values used for the game
         _highScore = [aDecoder decodeDoubleForKey: SSGameDataHighScoreKey];
         _totalDistance = [aDecoder decodeDoubleForKey:SSGameDataTotalDistanceKey];
         _totalCoins = [aDecoder decodeDoubleForKey:SSGameDataTotalCoinsKey];
@@ -111,6 +142,45 @@ static NSString* const SSGameDataChecksumKey = @"SSGameDataChecksumKey";
     return self;
 }
 
+//NOT COMPLETE YET
+//Function: updateiCloud
+//Returns: Nothing
+//Process: Updates values in iCloud such as high score, coins, etc.
+- (void)updateiCloud
+{
+    //Access iCloud key value
+    NSUbiquitousKeyValueStore *iCloudStore = [NSUbiquitousKeyValueStore defaultStore];
+    
+    //Get high score from cloud
+    long cloudHighScore = [iCloudStore doubleForKey: SSGameDataHighScoreKey];
+    
+    //If local high score is greater than iCloud highscore, then update it
+    if (self.highScore > cloudHighScore){
+        [iCloudStore setDouble:self.highScore forKey: SSGameDataHighScoreKey];
+        [iCloudStore synchronize];
+    }
+}
+
+//NOT COMPLETE YET
+//Function: updateFromiCloud
+//Returns: nothing
+//Process: Checks if there is data from iCloud that is different from local, and changes it. This is helpful
+//for people playing accross different iOS devices.
+-(void)updateFromiCloud:(NSNotification*) notificationObject
+{
+    //Get iCloudStore key
+    NSUbiquitousKeyValueStore *iCloudStore = [NSUbiquitousKeyValueStore defaultStore];
+    
+    //Get highscore from iCloud
+    long cloudHighScore = [iCloudStore doubleForKey: SSGameDataHighScoreKey];
+    
+    //Store High score
+    self.highScore = MAX(cloudHighScore, self.highScore);
+}
+
+//Function: reset
+//Returns: nothing
+//Process: resets all local scores to 0 after each game instance
 - (void)reset
 {
     self.score = 0;
