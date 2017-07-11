@@ -61,7 +61,7 @@ class GameCenterViewController: UIViewController, GKGameCenterControllerDelegate
         let button = UIButton(frame: CGRect(x: 50, y: 50, width: 100, height: 50))
         button.backgroundColor = .green
         
-        button.setTitle("Test Button", for: .normal)
+        button.setTitle("Back", for: .normal)
         button.addTarget(self, action: #selector(goBack), for: .touchUpInside)
         view.addSubview(button)
     }
