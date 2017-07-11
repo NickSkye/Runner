@@ -334,7 +334,7 @@ extension GameScene{
         btmWall.physicsBody?.contactTestBitMask = CollisionBitMask.birdCategory
         btmWall.physicsBody?.isDynamic = false
         btmWall.physicsBody?.affectedByGravity = false
-        btmWall.name = "backgroundStuff"
+        btmWall.name = "bottomwall"
         
         topWall.zRotation = CGFloat(M_PI)
         

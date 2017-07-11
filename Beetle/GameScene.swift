@@ -627,25 +627,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
         }
         else if firstBody.categoryBitMask == CollisionBitMask.birdCategory && secondBody.categoryBitMask == CollisionBitMask.groundCategory {
-            
+            //GROUND
             bird.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 30))
             
         } else if firstBody.categoryBitMask == CollisionBitMask.groundCategory && secondBody.categoryBitMask == CollisionBitMask.birdCategory {
-            
+            //GROUND
             bird.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 30))
             
         }
         else if firstBody.categoryBitMask == CollisionBitMask.birdCategory && secondBody.categoryBitMask == CollisionBitMask.pillarCategory {
-            //HERE
-            if bird.position.y < self.frame.height * 0.75 {
-                bird.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 30))
+            //PILLAR BOUNCE
+            if bird.position.y < self.frame.height * 0.75 && secondBody.node?.name == "bottomwall" {
+                bird.physicsBody?.applyImpulse(CGVector(dx: 3, dy: 30))
             }
             
         } else if firstBody.categoryBitMask == CollisionBitMask.pillarCategory && secondBody.categoryBitMask == CollisionBitMask.birdCategory {
-            //HERE
+            //PILLAR BOUNCE
            
-            if bird.position.y < self.frame.height * 0.75 {
-                bird.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 30))
+            if bird.position.y < self.frame.height * 0.75 && firstBody.node?.name == "bottomwall" {
+                bird.physicsBody?.applyImpulse(CGVector(dx: 3, dy: 30))
             }
             
         } else if firstBody.categoryBitMask == CollisionBitMask.birdCategory && secondBody.categoryBitMask == CollisionBitMask.boostCategory {
