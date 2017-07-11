@@ -67,6 +67,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     //Instance of GameData
     var gameData: GameData = GameData()
+    var isTouching = false
     
     override func didMove(to view: SKView) {
         createScene()
