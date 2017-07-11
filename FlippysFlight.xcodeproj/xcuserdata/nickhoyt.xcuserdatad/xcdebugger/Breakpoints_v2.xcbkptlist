@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Beetle/GameScene.swift"
-            timestampString = "521355085.188344"
+            timestampString = "521488255.959475"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "658"
-            endingLineNumber = "658"
+            startingLineNumber = "681"
+            endingLineNumber = "681"
             landmarkName = "didBegin(_:)"
             landmarkType = "7">
          </BreakpointContent>

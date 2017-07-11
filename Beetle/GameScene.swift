@@ -625,7 +625,30 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             feedback.impactOccurred()
             firstBody.node?.removeFromParent()
             
-        }  else if firstBody.categoryBitMask == CollisionBitMask.birdCategory && secondBody.categoryBitMask == CollisionBitMask.boostCategory {
+        }
+        else if firstBody.categoryBitMask == CollisionBitMask.birdCategory && secondBody.categoryBitMask == CollisionBitMask.groundCategory {
+            
+            bird.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 30))
+            
+        } else if firstBody.categoryBitMask == CollisionBitMask.groundCategory && secondBody.categoryBitMask == CollisionBitMask.birdCategory {
+            
+            bird.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 30))
+            
+        }
+        else if firstBody.categoryBitMask == CollisionBitMask.birdCategory && secondBody.categoryBitMask == CollisionBitMask.pillarCategory {
+            //HERE
+            if bird.position.y < self.frame.height * 0.75 {
+                bird.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 30))
+            }
+            
+        } else if firstBody.categoryBitMask == CollisionBitMask.pillarCategory && secondBody.categoryBitMask == CollisionBitMask.birdCategory {
+            //HERE
+           
+            if bird.position.y < self.frame.height * 0.75 {
+                bird.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 30))
+            }
+            
+        } else if firstBody.categoryBitMask == CollisionBitMask.birdCategory && secondBody.categoryBitMask == CollisionBitMask.boostCategory {
             //BOOST HIT
             invincibleCounter = 0
             invincibleBall.fillColor = UIColor(red: CGFloat(0.0 / 255.0), green: CGFloat(0.0 / 255.0), blue: CGFloat(150.0 / 255.0), alpha: CGFloat(0.5))
@@ -729,6 +752,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         else if firstBody.categoryBitMask == CollisionBitMask.birdCategory && secondBody.categoryBitMask == CollisionBitMask.bigBirdCategory && invincible == false {
             //BIG BIRD
+            
             feedback.impactOccurred()
             self.bird.removeFromParent()
             MusicHelper.sharedHelper.stopBackgroundMusic()
