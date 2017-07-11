@@ -19,12 +19,52 @@ class GameCenterViewController: UIViewController, GKGameCenterControllerDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+       // self.view.backgroundColor = UIColor(patternImage: UIImage(named: "city")!)
+        assignbackground()
         print("GOT HERE")
         // Call the GC authentication controller
         authenticateLocalPlayer()
-        
+        //checkGCLeaderboard()
+        addScoreAndSubmitToGC()
+        self.checkGCLeaderboard()
            }
+    
+    func goBack() {
+        //self.performSegue(withIdentifier: "toMain", sender: self)
+        self.dismiss(animated: true , completion: nil)
+        //self.present(GameViewController(), animated: false, completion: nil)
+        /*
+        let scene = GameScene(size: view.bounds.size)
+        let skView = view as! SKView
+        skView.showsFPS = false
+        skView.showsNodeCount = false
+        skView.ignoresSiblingOrder = false
+        scene.scaleMode = .resizeFill
+        skView.presentScene(scene, transition: SKTransition.doorway(withDuration: 3))
+ */
+    }
+    
+    
+    func assignbackground(){
+        /*
+        let background = UIImage(named: "city")
+        
+        var imageView : UIImageView!
+        imageView = UIImageView(frame: view.bounds)
+        imageView.contentMode =  UIViewContentMode.scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = background
+        imageView.center = view.center
+        view.addSubview(imageView)
+        self.view.sendSubview(toBack: imageView)
+        */
+        let button = UIButton(frame: CGRect(x: 50, y: 50, width: 100, height: 50))
+        button.backgroundColor = .green
+        
+        button.setTitle("Test Button", for: .normal)
+        button.addTarget(self, action: #selector(goBack), for: .touchUpInside)
+        view.addSubview(button)
+    }
     
     // MARK: - AUTHENTICATE LOCAL PLAYER
     func authenticateLocalPlayer() {
@@ -43,7 +83,7 @@ class GameCenterViewController: UIViewController, GKGameCenterControllerDelegate
                     if error != nil { print(error)
                     } else { self.gcDefaultLeaderBoard = leaderboardIdentifer! }
                 })
-                
+                self.checkGCLeaderboard()
             } else {
                 // 3. Game center is not enabled on the users device
                 self.gcEnabled = false
@@ -54,10 +94,15 @@ class GameCenterViewController: UIViewController, GKGameCenterControllerDelegate
     }
     
     // MARK: - ADD 10 POINTS TO THE SCORE AND SUBMIT THE UPDATED SCORE TO GAME CENTER
-    @IBAction func addScoreAndSubmitToGC(_ sender: AnyObject) {
+    func addScoreAndSubmitToGC() {
         // Add 10 points to current score
-        score += 10
-        //scoreLabel.text = "\(score)"
+        if UserDefaults.standard.object(forKey: "highestScore") != nil {
+            
+            score = UserDefaults.standard.integer(forKey: "highestScore")
+            
+        } else {
+            UserDefaults.standard.set(0, forKey: "highestScore")
+        }
         
         // Submit score to GC leaderboard
         let bestScoreInt = GKScore(leaderboardIdentifier: LEADERBOARD_ID)
@@ -78,7 +123,7 @@ class GameCenterViewController: UIViewController, GKGameCenterControllerDelegate
     }
     
     // MARK: - OPEN GAME CENTER LEADERBOARD
-    @IBAction func checkGCLeaderboard(_ sender: AnyObject) {
+     func checkGCLeaderboard() {
         let gcVC = GKGameCenterViewController()
         gcVC.gameCenterDelegate = self
         gcVC.viewState = .leaderboards
