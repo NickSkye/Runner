@@ -37,8 +37,8 @@ class GameCenterScene: SKScene {
     
     override func didMove(to view: SKView) {
         print("HERE")
-        createGCScene()
         
+        createGCScene()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -86,9 +86,12 @@ class GameCenterScene: SKScene {
         ////
         //////
     }
-    
+
     
     func createGCScene() {
+        
+        self.view?.window?.rootViewController?.present(GameCenterViewController(), animated: true, completion: nil)
+       // showLeaderboard()
         let hour = Calendar.current.component(.hour, from: Date())
         print("hour \(hour)")
         var background = SKSpriteNode(imageNamed: "city")

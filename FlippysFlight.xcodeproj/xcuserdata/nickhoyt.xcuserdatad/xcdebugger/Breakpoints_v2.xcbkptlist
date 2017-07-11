@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Beetle/GameScene.swift"
-            timestampString = "521178484.043896"
+            timestampString = "521355085.188344"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "588"
-            endingLineNumber = "588"
+            startingLineNumber = "622"
+            endingLineNumber = "622"
             landmarkName = "didBegin(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Beetle/GameScene.swift"
-            timestampString = "521177856.158286"
+            timestampString = "521353623.802518"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "240"
-            endingLineNumber = "240"
+            startingLineNumber = "244"
+            endingLineNumber = "244"
             landmarkName = "touchesBegan(_:with:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Beetle/GameScene.swift"
-            timestampString = "521178748.657761"
+            timestampString = "521355085.188344"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "624"
-            endingLineNumber = "624"
+            startingLineNumber = "658"
+            endingLineNumber = "658"
             landmarkName = "didBegin(_:)"
             landmarkType = "7">
          </BreakpointContent>

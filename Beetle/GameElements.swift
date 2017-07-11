@@ -20,7 +20,7 @@ struct CollisionBitMask {
 
 extension GameScene{
     
-    //CHANGE all values affecting size x,y to be x/414 * width or y/736 * height
+    //CHANGE all values affecting size x,y to be x/414 * frame.width or y/736 * frame.height <-- users width and height
     
     func createBird(birdType: String) -> SKSpriteNode {
         //navar
@@ -44,7 +44,7 @@ extension GameScene{
     
     func createRestartBtn() {
         restartBtn = SKSpriteNode(imageNamed: "restart")
-        restartBtn.size = CGSize(width:100, height:100)
+        restartBtn.size = CGSize(width: (0.2422 * self.frame.width), height: (0.136 * self.frame.height))
         restartBtn.position = CGPoint(x: self.frame.width / 4, y: self.frame.height / 2)
         restartBtn.zPosition = 6
         restartBtn.setScale(0)
@@ -52,12 +52,22 @@ extension GameScene{
         print("restartbuttoncreated")
         
         adBtn = SKSpriteNode(imageNamed: "double-coins")
-        adBtn.size = CGSize(width:100, height:100)
+        adBtn.size = CGSize(width: (0.2422 * self.frame.width), height: (0.136 * self.frame.height))
         adBtn.position = CGPoint(x: self.frame.width * 0.75, y: self.frame.height / 2)
         adBtn.zPosition = 6
         adBtn.setScale(0)
         self.addChild(adBtn)
-        print("restartbuttoncreated")
+        print("adbuttoncreated")
+        
+        /*
+        secondChanceBtn = SKSpriteNode(imageNamed: "play")
+        secondChanceBtn.size = CGSize(width:100, height:100)
+        secondChanceBtn.position = CGPoint(x: self.frame.width * 0.75, y: self.frame.midY / 2)
+        secondChanceBtn.zPosition = 6
+        secondChanceBtn.setScale(0)
+        self.addChild(secondChanceBtn)
+        print("secondChanceBtn")
+ */
         /*
         statLbl = SKLabelNode(fontNamed: "Chalkduster")
         statLbl.text = "" //You Win!"
@@ -67,6 +77,7 @@ extension GameScene{
         
         addChild(statLbl)
         */
+       // secondChanceBtn.run(SKAction.scale(to: 1.0, duration: 0.3))
         adBtn.run(SKAction.scale(to: 1.0, duration: 0.3))
         restartBtn.run(SKAction.scale(to: 1.0, duration: 0.3))
     }
@@ -75,8 +86,8 @@ extension GameScene{
     
     func createPauseBtn() {
         pauseBtn = SKSpriteNode(imageNamed: "pause")
-        pauseBtn.size = CGSize(width:40, height:40)
-        pauseBtn.position = CGPoint(x: self.frame.width - 30, y: 30)
+        pauseBtn.size = CGSize(width: (0.097 * self.frame.width), height: (0.054 * self.frame.height))
+        pauseBtn.position = CGPoint(x: self.frame.width - (0.072 * self.frame.width), y: (0.041 * self.frame.height))
         pauseBtn.zPosition = 6
         self.addChild(pauseBtn)
     }
@@ -92,7 +103,7 @@ extension GameScene{
             tokensshop = 0
         }
         let tokenshopLbl = SKLabelNode()
-        tokenshopLbl.position = CGPoint(x: 0 , y: -30)
+        tokenshopLbl.position = CGPoint(x: 0 , y: -(0.041 * self.frame.height))
         tokenshopLbl.text = "\(tokensshop) Coins"
         tokenshopLbl.zPosition = 5
         tokenshopLbl.fontSize = 12
@@ -100,7 +111,7 @@ extension GameScene{
         tokenshopLbl.fontName = "HelveticaNeue-Bold"
         
         shopBtn = SKSpriteNode(imageNamed: "shop")
-        shopBtn.size = CGSize(width:80, height:80)
+        shopBtn.size = CGSize(width: (0.193 * self.frame.width), height: (0.109 * self.frame.height))
         shopBtn.position = CGPoint(x: self.frame.midX / 3 , y: self.frame.height * 0.1)
         shopBtn.zPosition = 7
         self.addChild(shopBtn)
@@ -109,15 +120,15 @@ extension GameScene{
     
     func createProfileBtn() {
         profileBtn = SKSpriteNode(imageNamed: "profile")
-        profileBtn.size = CGSize(width:70, height:70)
-        profileBtn.position = CGPoint(x: self.frame.width - 50, y: self.frame.height - 70)
+        profileBtn.size = CGSize(width: (0.169 * self.frame.width), height: (0.095 * self.frame.height))
+        profileBtn.position = CGPoint(x: (self.frame.width - (0.121 * self.frame.width)), y: (self.frame.height - (0.095 * self.frame.height)))
         profileBtn.zPosition = 7
         self.addChild(profileBtn)
     }
     
     func createGameCenterBtn() {
         gcBtn = SKSpriteNode(imageNamed: "gamecenter")
-        gcBtn.size = CGSize(width:70, height:70)
+        gcBtn.size = CGSize(width: (0.169 * self.frame.width), height: (0.095 * self.frame.height))
         gcBtn.position = CGPoint(x: self.frame.width * 0.8 , y: self.frame.height * 0.1)
         gcBtn.zPosition = 7
         self.addChild(gcBtn)
@@ -125,8 +136,8 @@ extension GameScene{
     
     func createBackBtn() {
         backBtn = SKSpriteNode(imageNamed: "pause")
-        backBtn.size = CGSize(width:60, height:40)
-        backBtn.position = CGPoint(x: self.frame.midX / 6, y: self.frame.height - 50)
+        backBtn.size = CGSize(width: (0.145 * self.frame.width), height: (0.054 * self.frame.height))
+        backBtn.position = CGPoint(x: self.frame.midX / 6, y: (self.frame.height - (0.068 * self.frame.height)))
         backBtn.zPosition = 8
         self.addChild(backBtn)
     }
@@ -185,7 +196,7 @@ extension GameScene{
     
     func createHighscoreLabel() -> SKLabelNode {
         let highscoreLbl = SKLabelNode()
-        highscoreLbl.position = CGPoint(x: self.frame.width - 80, y: self.frame.height - 22)
+        highscoreLbl.position = CGPoint(x: (self.frame.width - (0.193 * self.frame.width)), y: (self.frame.height - (0.03 * self.frame.height)))
         if let highestScore = UserDefaults.standard.object(forKey: "highestScore"){
             highscoreLbl.text = "Highest Score: \(highestScore)"
         } else {
@@ -200,8 +211,8 @@ extension GameScene{
     func createLogo() {
         logoImg = SKSpriteNode()
         logoImg = SKSpriteNode(imageNamed: "logo")
-        logoImg.size = CGSize(width: 272, height: 150)
-        logoImg.position = CGPoint(x:self.frame.midX, y:self.frame.midY + 130)
+        logoImg.size = CGSize(width: (0.657 * self.frame.width), height: (0.204 * self.frame.height))
+        logoImg.position = CGPoint(x:self.frame.midX, y: (self.frame.midY + (0.177 * self.frame.height)))
         logoImg.setScale(0.5)
         self.addChild(logoImg)
         logoImg.run(SKAction.scale(to: 1.0, duration: 0.3))
@@ -209,7 +220,7 @@ extension GameScene{
     
     func createTaptoplayLabel() -> SKLabelNode {
         let taptoplayLbl = SKLabelNode()
-        taptoplayLbl.position = CGPoint(x:self.frame.midX, y:self.frame.midY - 100)
+        taptoplayLbl.position = CGPoint(x:self.frame.midX, y: (self.frame.midY - (0.136 * self.frame.height)))
         taptoplayLbl.text = "Tap anywhere to play"
         taptoplayLbl.fontColor = UIColor(red: 63/255, green: 79/255, blue: 145/255, alpha: 1.0)
         taptoplayLbl.zPosition = 5
@@ -220,8 +231,8 @@ extension GameScene{
     
     func createWalls() -> SKNode  {
         let coinNode = SKSpriteNode(imageNamed: "flower")
-        coinNode.size = CGSize(width: 40, height: 40)
-        coinNode.position = CGPoint(x: self.frame.width + 25, y: self.frame.height / 2)
+        coinNode.size = CGSize(width: (0.097 * self.frame.width), height: (0.054 * self.frame.height))
+        coinNode.position = CGPoint(x: (self.frame.width + (0.06 * self.frame.width)), y: self.frame.height / 2)
         coinNode.physicsBody = SKPhysicsBody(rectangleOf: coinNode.size)
         coinNode.physicsBody?.affectedByGravity = false
         coinNode.physicsBody?.isDynamic = false
@@ -234,8 +245,8 @@ extension GameScene{
         ///////
         let boostChange = CGFloat(random(min: -100.0, max: 100.0))
         let boostNode = SKSpriteNode(imageNamed: "portal")
-        boostNode.size = CGSize(width: 70, height: 100)
-        boostNode.position = CGPoint(x: self.frame.width + 25, y: (self.frame.height / 2) + boostChange)
+        boostNode.size = CGSize(width: (0.169 * self.frame.width), height: (0.136 * self.frame.height))
+        boostNode.position = CGPoint(x: (self.frame.width + (0.06 * self.frame.width)), y: (self.frame.height / 2) + boostChange)
         boostNode.physicsBody = SKPhysicsBody(rectangleOf: boostNode.size)
         boostNode.physicsBody?.affectedByGravity = false
         boostNode.physicsBody?.isDynamic = false
@@ -250,7 +261,7 @@ extension GameScene{
         ///////
         let scorerNode = SKSpriteNode(imageNamed: "pillar")
         scorerNode.size = CGSize(width: 10, height: self.frame.height * 2)
-        scorerNode.position = CGPoint(x: self.frame.width + 25, y: self.frame.height / 2)
+        scorerNode.position = CGPoint(x: (self.frame.width + (0.242 * self.frame.width)), y: self.frame.height / 2)
         scorerNode.physicsBody = SKPhysicsBody(rectangleOf: scorerNode.size)
         scorerNode.physicsBody?.affectedByGravity = false
         scorerNode.physicsBody?.isDynamic = false
@@ -259,13 +270,13 @@ extension GameScene{
         scorerNode.physicsBody?.collisionBitMask = 0
         scorerNode.physicsBody?.contactTestBitMask = CollisionBitMask.birdCategory
         scorerNode.color = SKColor.blue
-        scorerNode.alpha = 0.2
+        scorerNode.alpha = 0.05
         scorerNode.name = "backgroundStuff"
         
         
-        //////
+        ////// FINISH GOING THROUGH FIXING NUMBERS HERE
         let killerPillarNode = SKSpriteNode(imageNamed: "laserbeam")
-        killerPillarNode.size = CGSize(width: 40, height: self.frame.height)
+        killerPillarNode.size = CGSize(width: (0.097 * self.frame.width), height: self.frame.height)
         killerPillarNode.position = CGPoint(x: self.frame.width + 25, y: self.frame.height / 2)
         killerPillarNode.physicsBody = SKPhysicsBody(rectangleOf: killerPillarNode.size)
         killerPillarNode.physicsBody?.affectedByGravity = false
@@ -279,7 +290,7 @@ extension GameScene{
         
         
         let killerPillarTopNode = SKSpriteNode(imageNamed: "laserbeam")
-        killerPillarTopNode.size = CGSize(width: 40, height: self.frame.height)
+        killerPillarTopNode.size = CGSize(width: (0.097 * self.frame.width), height: self.frame.height)
         killerPillarTopNode.position = CGPoint(x: self.frame.width + 25, y: self.frame.height / 2)
         killerPillarTopNode.physicsBody = SKPhysicsBody(rectangleOf: killerPillarTopNode.size)
         killerPillarTopNode.physicsBody?.affectedByGravity = false
@@ -342,7 +353,7 @@ extension GameScene{
             run(saberSound)
         }
         
-         let randomDoubleLaser = Int(random(min: 0, max: 30))
+         let randomDoubleLaser = Int(random(min: 0, max: 25))
         if randomDoubleLaser == 15 {
             wallPair.removeAllChildren()
             run(saberSound)
@@ -365,21 +376,21 @@ extension GameScene{
             wallPair.addChild(coinNode)
             
         }
-        let randomWallMove = Int(random(min: 0, max: 8))
-        if randomWallMove == 6 {
+        let randomWallMove = Int(random(min: 0, max: 6))
+        if randomWallMove == 5 {
             //wallPair.run(SKAction .moveTo(y: wallPair.position.y + 150, duration: 4.0))
             wallPair.run(SKAction .moveBy(x: 0, y: 150, duration: 4.0))
             
         }
         
-        if randomWallMove == 4 {
+        if randomWallMove == 3 {
             //wallPair.run(SKAction .moveTo(y: wallPair.position.y - 150, duration: 4.0))
             wallPair.run(SKAction .moveBy(x: 0, y: -150, duration: 4.0))
         }
         
         //BOOST
-        let randomNumberBoost = Int(random(min: 0, max: 10))
-        if randomNumberBoost == 7 && randomNumberBoost != 5 {
+        let randomNumberBoost = Int(random(min: 0, max: 30))
+        if randomNumberBoost == 15 && randomNumberFlower != 5 {
             wallPair.addChild(boostNode)
             boostNode.run(SKAction.scale(to: 1.0, duration: 1))
         }
@@ -418,10 +429,10 @@ extension GameScene{
         
         
         //Randomly removes top or bottom wall or both// can change to different type of wall
-        let randomBigBird = Int(random(min: 0, max: 20))
-        if randomBigBird == 10 && score > 10{
+        let randomBigBird = Int(random(min: 0, max: 30))
+        if randomBigBird == 15 && score > 20{
             bigBirdObstacle.addChild(bigBirdNode)
-            print("BIG BIRD CREATED")
+            //print("BIG BIRD CREATED")
             run(hawk)
             
         }

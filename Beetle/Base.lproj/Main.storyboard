@@ -27,5 +27,40 @@
             </objects>
             <point key="canvasLocation" x="-231.19999999999999" y="154.27286356821591"/>
         </scene>
+        <!--Game Center View Controller-->
+        <scene sceneID="VQL-at-H0f">
+            <objects>
+                <viewController id="9KR-iP-Fmr" customClass="GameCenterViewController" customModule="Flippys_Flight" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="OXB-L3-PQ8"/>
+                        <viewControllerLayoutGuide type="bottom" id="7qI-EL-6u1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VLb-l3-Gxb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="city" translatesAutoresizingMaskIntoConstraints="NO" id="drB-2k-8lw">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jaM-py-oWh">
+                                <rect key="frame" x="16" y="20" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="BV1-FR-VrT" kind="presentation" identifier="toMain" id="yMf-pD-ag9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6gn-Gg-vZX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="480.80000000000001" y="162.3688155922039"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="city" width="1275" height="1650"/>
+    </resources>
 </document>

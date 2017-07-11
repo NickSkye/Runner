@@ -27,6 +27,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var taptoplayLbl = SKLabelNode()
     var restartBtn = SKSpriteNode()
     var adBtn = SKSpriteNode()
+    var secondChanceBtn = SKSpriteNode()
     var scoreLbl = SKLabelNode()
     var tokenLbl = SKLabelNode()
     var pauseBtn = SKSpriteNode()
@@ -49,7 +50,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let birdAtlas = SKTextureAtlas(named:"player")
     var birdSprites = Array<SKTexture>()
     var bird = SKSpriteNode()
-    
+
     var repeatActionbird = SKAction()
     var delay = SKAction()
     var delayBigBird = SKAction()
@@ -140,6 +141,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         
         if gameStarted == false{
+            isTouching = true
             MusicHelper.sharedHelper.playBackgroundMusic()
             gameStarted =  true
             
@@ -210,27 +212,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             moveAndRemoveBigBird = SKAction.sequence([moveBigBird, removeBigBird])
             
             bird.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
-            bird.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 40))
+            bird.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 30))
         } else {
             if died == false {
                 //change speed and shit here
-                
+                isTouching = true
                 if self.bird.position.x > self.frame.width {
                     print("ERRORRRRR")
                 }
                 
                
                 bird.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
-                bird.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 40))
-               
+                bird.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 30))
+                
                 
                 distance = CGFloat(self.frame.width + wallPair.frame.width)
                 
-                if score < 50 {
+                if score < 65 {
                     time = (0.008 * distance) - (CGFloat(score)/25.0)
                 }
                 else {
-                    time = 1.312 //2.168
+                    time = 1.112 //2.168
                 }
                 //moves pipes/walls and all items such as coins and boosts and sabers across and off the screen
                 movePipes = SKAction.moveBy(x: -distance - 50, y: 0, duration: TimeInterval(time))
@@ -317,8 +319,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     
                     
                     restartScene()
-                }
-            } else if pauseBtn.contains(location){
+                
+            } /*else if secondChanceBtn.contains(location){
+                //for score
+                ////////////////PUT AD HERE?
+                
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NotificationIdentifier"), object: nil)
+                extraChance()
+                
+                
+            }
+        
+                 } */ }
+        else if pauseBtn.contains(location){
                 if self.isPaused == false{
                     self.isPaused = true
                     // MusicHelper.sharedHelper.stopBackgroundMusic()
@@ -400,7 +413,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //////
     }
     
-    
+    override func touchesEnded(_ touches: Set<UITouch>,
+                      with event: UIEvent?){
+        isTouching = false
+    }
     
     func restartScene(){
         self.removeAllChildren()
@@ -410,6 +426,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         score = 0
         tokens = 0
         createScene()
+    }
+    
+    func extraChance(){
+        
+        died = false
+        gameStarted = true
+        //remove restartBTN and adBtn
+        self.removeChildren(in: [restartBtn, adBtn])
+        self.bird.position = CGPoint(x:self.frame.midX, y:self.frame.midY)
     }
     
     func createSkinScene() {
@@ -460,6 +485,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         // CHECKS WHAT BIRD IS BEING USED
+        //UserDefaults.standard.removeObject(forKey: "birdType")
         if UserDefaults.standard.object(forKey: "birdType") != nil {
             birdType = UserDefaults.standard.string(forKey: "birdType")!
         } else {
@@ -479,15 +505,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         else if birdType == "robobird1" {
             birdSprites.append(birdAtlas.textureNamed("robobird1"))
-            birdSprites.append(birdAtlas.textureNamed("robobird2"))
-            birdSprites.append(birdAtlas.textureNamed("robobird3"))
-            birdSprites.append(birdAtlas.textureNamed("robobird4"))
+            birdSprites.append(birdAtlas.textureNamed("robobird1"))
+            birdSprites.append(birdAtlas.textureNamed("robobird1"))
+            birdSprites.append(birdAtlas.textureNamed("robobird1"))
         }
         else if birdType == "rainbowbird1" {
             birdSprites.append(birdAtlas.textureNamed("rainbowbird1"))
-            birdSprites.append(birdAtlas.textureNamed("rainbowbird2"))
-            birdSprites.append(birdAtlas.textureNamed("rainbowbird3"))
-            birdSprites.append(birdAtlas.textureNamed("rainbowbird4"))
+            birdSprites.append(birdAtlas.textureNamed("rainbowbird1"))
+            birdSprites.append(birdAtlas.textureNamed("rainbowbird1"))
+            birdSprites.append(birdAtlas.textureNamed("rainbowbird1"))
         }
         else if birdType == "steveBird1" {
             birdSprites.append(birdAtlas.textureNamed("steveBird1"))
@@ -503,7 +529,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             birdSprites.append(birdAtlas.textureNamed("derpyBird1"))
             
         }
-        
+        else if birdType == "fatBird1" {
+            birdSprites.append(birdAtlas.textureNamed("fatBird1"))
+            birdSprites.append(birdAtlas.textureNamed("fatBird1"))
+            birdSprites.append(birdAtlas.textureNamed("fatBird1"))
+            birdSprites.append(birdAtlas.textureNamed("fatBird1"))
+            
+        }
         
         
         self.bird = createBird(birdType: birdType)
@@ -775,8 +807,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     bird.position.x = self.frame.width * 0.74
                 }
                 
-                
-                
+                if birdType == "fatBird1" {
+                if isTouching {
+                    bird.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: -1)) //2.5
+                } else {
+                    bird.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 3.5)) //0
+                }
+                } else {
+                    if isTouching {
+                        bird.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 2.5)) //2.5
+                    } else {
+                        bird.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 0)) //0
+                    }
+                }
                
                 if pauseRestart.isHidden == false && isPaused == false{
                     pauseRestart.isHidden = true
