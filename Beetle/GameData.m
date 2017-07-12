@@ -15,6 +15,7 @@
 //Key variables for GameData
 static NSString* const SSGameDataHighScoreKey = @"highScore";
 static NSString* const SSGameDataTotalDistanceKey = @"totalDistance";
+static NSString* const SSGameDataCoins = @"numCoins";
 static NSString* const SSGameDataTotalCoinsKey = @"totalCoins";
 static NSString* const SSGameDataNumTimesPlayedKey = @"numTimesPlayed";
 static NSString* const SSGameDataTotalCoinsSpentKey = @"totalCoinsSpent";
@@ -121,6 +122,7 @@ static NSString* const SSGameDataChecksumKey = @"SSGameDataChecksumKey";
     [encoder encodeDouble:self.totalCoins forKey:SSGameDataTotalCoinsKey];
     [encoder encodeDouble:self.numTimesPlayed forKey: SSGameDataNumTimesPlayedKey];
     [encoder encodeDouble:self.coinsSpent forKey:SSGameDataTotalCoinsSpentKey];
+    [encoder encodeDouble:self.coins forKey: SSGameDataCoins];
 }
 
 //Decoder
@@ -134,6 +136,7 @@ static NSString* const SSGameDataChecksumKey = @"SSGameDataChecksumKey";
         _totalCoins = [aDecoder decodeDoubleForKey:SSGameDataTotalCoinsKey];
         _numTimesPlayed = [aDecoder decodeDoubleForKey:SSGameDataNumTimesPlayedKey];
         _totalCoinsSpent = [aDecoder decodeDoubleForKey:SSGameDataTotalCoinsSpentKey];
+        _coins = [aDecoder decodeDoubleForKey: SSGameDataCoins];
     }
     
     return self;
@@ -189,6 +192,17 @@ static NSString* const SSGameDataChecksumKey = @"SSGameDataChecksumKey";
         //Call synchonize function
         [iCloudStore synchronize];
     }
+    
+    //Get number of current coins from iCloud
+    long cloudCoins = [iCloudStore doubleForKey: SSGameDataCoins];
+    
+    //If current amount of coins is different from iCloud, then update it
+    if (self.currCoins != cloudCoins){
+        [iCloudStore setDouble:self.coins forKey:SSGameDataCoins];
+        
+        //Call synchonize function
+        [iCloudStore synchronize];
+    }
 }
 
 //NOT COMPLETE YET
@@ -213,6 +227,9 @@ static NSString* const SSGameDataChecksumKey = @"SSGameDataChecksumKey";
     //Get num times played from iCloud
     long cloudNumTimesPlayed = [iCloudStore doubleForKey: SSGameDataNumTimesPlayedKey];
     
+    //Get number of current coins from iCloud
+    long cloudCoins = [iCloudStore doubleForKey: SSGameDataCoins];
+    
     //Store High score
     self.highScore = MAX(cloudHighScore, self.highScore);
     
@@ -224,6 +241,9 @@ static NSString* const SSGameDataChecksumKey = @"SSGameDataChecksumKey";
     
     //Store numTimesPlayed
     self.numTimesPlayed = cloudNumTimesPlayed;
+    
+    //Store number of coins
+    self.currCoins = cloudCoins;
     
     //Sends notifcation that the gamedata has been updated from iCloud
     [[NSNotificationCenter defaultCenter] postNotificationName: SSGameDataUpdatedFromiCloud object:nil];
