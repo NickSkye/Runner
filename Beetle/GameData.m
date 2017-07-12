@@ -83,6 +83,7 @@ static NSString* const SSGameDataChecksumKey = @"SSGameDataChecksumKey";
         }
     }
     
+    //Calls custom init function
     return [[GameData alloc] init];
 }
 
@@ -105,12 +106,11 @@ static NSString* const SSGameDataChecksumKey = @"SSGameDataChecksumKey";
     
     //Updates iCloud
     if([NSUbiquitousKeyValueStore defaultStore]) {
+        //Calls updateiClound function
         [self updateiCloud];
     }
     
 }
-
-
 
 //Encoder
 - (void)encodeWithCoder:(NSCoder *)encoder
@@ -121,7 +121,6 @@ static NSString* const SSGameDataChecksumKey = @"SSGameDataChecksumKey";
     [encoder encodeDouble:self.totalCoins forKey:SSGameDataTotalCoinsKey];
     [encoder encodeDouble:self.numTimesPlayed forKey: SSGameDataNumTimesPlayedKey];
     [encoder encodeDouble:self.coinsSpent forKey:SSGameDataTotalCoinsSpentKey];
-    
 }
 
 //Decoder
@@ -164,6 +163,8 @@ static NSString* const SSGameDataChecksumKey = @"SSGameDataChecksumKey";
     //If local total coins is different from iCloud, update it
     if (self.totalCoins != cloudTotalCoins){
         [iCloudStore setDouble:self.totalCoins forKey:SSGameDataTotalCoinsKey];
+        
+        //Call synchronize function
         [iCloudStore synchronize];
     }
 }
