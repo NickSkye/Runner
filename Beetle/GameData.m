@@ -167,6 +167,28 @@ static NSString* const SSGameDataChecksumKey = @"SSGameDataChecksumKey";
         //Call synchronize function
         [iCloudStore synchronize];
     }
+    
+    //Get total coins spent from iCloud
+    long cloudTotalCoinsSpent = [iCloudStore doubleForKey: SSGameDataTotalCoinsSpentKey];
+    
+    //If local total coins spent is different from iCloud, then update it
+    if (self.totalCoinsSpent > cloudTotalCoinsSpent){
+        [iCloudStore setDouble:self.totalCoinsSpent forKey:SSGameDataTotalCoinsSpentKey];
+        
+        //Call synchonize function
+        [iCloudStore synchronize];
+    }
+    
+    //Get num times played from iCloud
+    long cloudNumTimesPlayed = [iCloudStore doubleForKey: SSGameDataNumTimesPlayedKey];
+    
+    //If local numTimesPlayed is different from iCloud, then update it
+    if (self.numTimesPlayed > cloudTotalCoinsSpent){
+        [iCloudStore setDouble:self.numTimesPlayed forKey:SSGameDataNumTimesPlayedKey];
+        
+        //Call synchonize function
+        [iCloudStore synchronize];
+    }
 }
 
 //NOT COMPLETE YET
@@ -185,11 +207,23 @@ static NSString* const SSGameDataChecksumKey = @"SSGameDataChecksumKey";
     //Get total coins from iCloud
     long cloudTotalCoins = [iCloudStore doubleForKey: SSGameDataTotalCoinsKey];
     
+    //Get total coins spent from iCloud
+    long cloudTotalCoinsSpent = [iCloudStore doubleForKey: SSGameDataTotalCoinsSpentKey];
+    
+    //Get num times played from iCloud
+    long cloudNumTimesPlayed = [iCloudStore doubleForKey: SSGameDataNumTimesPlayedKey];
+    
     //Store High score
     self.highScore = MAX(cloudHighScore, self.highScore);
     
     //Store total coins
     self.totalCoins = cloudTotalCoins;
+    
+    //Store total coins spent
+    self.totalCoinsSpent = cloudTotalCoinsSpent;
+    
+    //Store numTimesPlayed
+    self.numTimesPlayed = cloudNumTimesPlayed;
     
     //Sends notifcation that the gamedata has been updated from iCloud
     [[NSNotificationCenter defaultCenter] postNotificationName: SSGameDataUpdatedFromiCloud object:nil];
