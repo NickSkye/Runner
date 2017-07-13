@@ -20,7 +20,7 @@ struct CollisionBitMask {
 
 extension GameScene{
     
-    //CHANGE all values affecting size x,y to be x/414 * frame.width or y/736 * frame.height <-- users width and height
+    //CHANGE all values affecting size x,y to be x/414 * frame.width or y/736 * frame.height <-- users width and heights
     
     func createBird(birdType: String) -> SKSpriteNode {
         //navar
