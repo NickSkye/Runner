@@ -55,15 +55,14 @@ class GameViewController: UIViewController {
         do {
         var sdk = VungleSDK.shared()
         try sdk?.playAd(self, withOptions: nil)
+            
         } catch {
             print("ERROR")
         }
         
     }
     
-    
-    
-    
+   
 
     
       override var shouldAutorotate: Bool {
