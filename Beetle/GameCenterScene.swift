@@ -10,6 +10,7 @@ class GameCenterScene: SKScene {
     let coinSound = SKAction.playSoundFileNamed("CoinSound.mp3", waitForCompletion: false)
     
     var score = Int(0)
+    var hscore = Int(0)
     var scoreLbl = SKLabelNode()
     var highscoreLbl = SKLabelNode()
     var taptoplayLbl = SKLabelNode()
@@ -32,6 +33,7 @@ class GameCenterScene: SKScene {
     var spawn = SKAction()
     var time = CGFloat()
     var backBtn = SKSpriteNode()
+   
     
     //add stuff to game elements such as createSkinsButton and then implement in createSkinScene.
     
@@ -48,7 +50,7 @@ class GameCenterScene: SKScene {
         // Create the method you want to call (see target before)
         
         // put all menu items on scene here as else if using same notation. CTRL-f menu items to find where to remove them on this page
-        
+        if type(of: nodes(at: (touches.first?.location(in: self))!)[0]) != type(of: SKLabelNode()) && type(of: nodes(at: (touches.first?.location(in: self))!)[0]) != type(of: SKShapeNode()) {
         if (nodes(at: (touches.first?.location(in: self))!)[0] as? SKSpriteNode)! == backBtn {
             let scene = GameScene(size: (view?.bounds.size)!)
             let skView = view!
@@ -61,6 +63,7 @@ class GameCenterScene: SKScene {
         
         //
         
+        }
         
         
         /// was here V
@@ -86,6 +89,24 @@ class GameCenterScene: SKScene {
         ////
         //////
     }
+    
+    func createHSLbl() {
+        if UserDefaults.standard.object(forKey: "highestScore") != nil {
+            print("ERROR1")
+            hscore = UserDefaults.standard.integer(forKey: "highestScore")
+            
+        } else {
+            UserDefaults.standard.set(0, forKey: "highestScore")
+        }
+
+        highscoreLbl.position = CGPoint(x: self.frame.midX , y: self.frame.height - 100)
+        highscoreLbl.text = "High Score: \(hscore)"
+        highscoreLbl.zPosition = 5
+        highscoreLbl.fontSize = 30
+        highscoreLbl.fontColor = UIColor(red: 0/255, green: 255/255, blue: 130/255, alpha: 1)
+        highscoreLbl.fontName = "HelveticaNeue-Bold"
+        self.addChild(highscoreLbl)
+    }
 
     
     func createGCScene() {
@@ -106,7 +127,7 @@ class GameCenterScene: SKScene {
         self.addChild(background)
         
         createBackBtn()
-        
+        createHSLbl()
         
         
     }

@@ -54,7 +54,7 @@ class ShopScene: SKScene {
         // Create the method you want to call (see target before)
         
         // put all menu items on scene here as else if using same notation. CTRL-f menu items to find where to remove them on this page
-        
+        if type(of: nodes(at: (touches.first?.location(in: self))!)[0]) != type(of: SKLabelNode()) && type(of: nodes(at: (touches.first?.location(in: self))!)[0]) != type(of: SKShapeNode()) {
         if (nodes(at: (touches.first?.location(in: self))!)[0] as? SKSpriteNode)! == backBtn {
             let scene = GameScene(size: (view?.bounds.size)!)
             let skView = view!
@@ -98,7 +98,7 @@ class ShopScene: SKScene {
         
         //
         
-        
+        }
         
         /// was here V
         ///moved touches here
