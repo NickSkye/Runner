@@ -35,6 +35,9 @@ class ShopScene: SKScene {
     var backBtn = SKSpriteNode()
     var newSkinBtn = SKSpriteNode()
     var buyTokensBtn = SKSpriteNode()
+    var freeTokenBtn = SKSpriteNode()
+    let tokenshopLbl = SKLabelNode()
+    var tokensshop = Int(0)
     
 //add stuff to game elements such as createSkinsButton and then implement in createSkinScene.
 
@@ -78,6 +81,19 @@ class ShopScene: SKScene {
             skView.ignoresSiblingOrder = false
             scene.scaleMode = .resizeFill
             skView.presentScene(scene, transition: SKTransition.doorsOpenHorizontal(withDuration: 1))
+        }
+        else if (nodes(at: (touches.first?.location(in: self))!)[0] as? SKSpriteNode)! == freeTokenBtn {
+            
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NotificationIdentifier"), object: nil)
+            
+            
+            
+                       //for tokens ; currenttokens means all they have to spend ; tokens is what they have this round
+            
+                UserDefaults.standard.set((UserDefaults.standard.integer(forKey: "currentTokens") + 2), forKey: "currentTokens")
+            tokensshop = UserDefaults.standard.integer(forKey: "currentTokens")
+            tokenshopLbl.text = "\(tokensshop) Coins"
+            
         }
         
         //
@@ -128,29 +144,40 @@ class ShopScene: SKScene {
         createNewSkinBtn()
         createCoinsAmount()
         createBuyTokensBtn()
+        createAdBtn()
         
     }
     
     func createLogo() {
         logoImg = SKSpriteNode()
         logoImg = SKSpriteNode(imageNamed: "shopLbl")
-        logoImg.size = CGSize(width: 272, height: 150)
+        logoImg.size = CGSize(width: (0.657 * self.frame.width), height: (0.204 * self.frame.height))
         logoImg.position = CGPoint(x:self.frame.midX, y:self.frame.height * 0.9)
         logoImg.setScale(0.2)
         self.addChild(logoImg)
         logoImg.run(SKAction.scale(to: 0.6, duration: 0.5))
     }
     
+    func createAdBtn() {
+        freeTokenBtn = SKSpriteNode(imageNamed: "double-coins")
+        freeTokenBtn.size = CGSize(width: (0.2422 * self.frame.width), height: (0.136 * self.frame.height))
+        freeTokenBtn.position = CGPoint(x: self.frame.width / 4, y: self.frame.height / 2)
+        freeTokenBtn.zPosition = 6
+        
+        self.addChild(freeTokenBtn)
+        print("freeTokenBtnCreated")
+    }
+    
     func createCoinsAmount() {
-        var tokensshop = Int(0)
+        
         if UserDefaults.standard.object(forKey: "currentTokens") != nil {
             tokensshop = UserDefaults.standard.integer(forKey: "currentTokens")
         } else {
             tokensshop = 0
         }
         
-        let tokenshopLbl = SKLabelNode()
-        tokenshopLbl.position = CGPoint(x: self.frame.width - 75 , y: self.frame.height - 50)
+        
+        tokenshopLbl.position = CGPoint(x: self.frame.width - (0.181 * self.frame.width) , y: self.frame.height - (0.068 * self.frame.height))
         if tokensshop < 1000 {
             tokenshopLbl.text = "\(tokensshop) Coins"
         } else {
@@ -172,7 +199,7 @@ class ShopScene: SKScene {
     
     func createNewSkinBtn() {
         newSkinBtn = SKSpriteNode(imageNamed: "flippys-friends")
-        newSkinBtn.size = CGSize(width:100, height:100)
+        newSkinBtn.size = CGSize(width: (0.242 * self.frame.width), height: (0.136 * self.frame.height))
         newSkinBtn.position = CGPoint(x: self.frame.width / 4, y: self.frame.height * 0.75)
         newSkinBtn.zPosition = 8
         self.addChild(newSkinBtn)
@@ -180,7 +207,7 @@ class ShopScene: SKScene {
     
     func createBuyTokensBtn() {
         buyTokensBtn = SKSpriteNode(imageNamed: "buy-coins")
-        buyTokensBtn.size = CGSize(width:100, height:100)
+        buyTokensBtn.size = CGSize(width: (0.242 * self.frame.width), height: (0.136 * self.frame.height))
         buyTokensBtn.position = CGPoint(x: self.frame.width * 0.75, y: self.frame.height * 0.75)
         buyTokensBtn.zPosition = 8
         self.addChild(buyTokensBtn)

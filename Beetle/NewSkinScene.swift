@@ -477,7 +477,7 @@ class NewSkinScene: SKScene {
             tokensshop = 0
         }
         
-        tokenshopLbl.position = CGPoint(x: self.frame.width - 50 , y: self.frame.height - 50)
+        tokenshopLbl.position = CGPoint(x: self.frame.width - (0.121 * self.frame.width) , y: self.frame.height - (0.068 * self.frame.height))
         tokenshopLbl.text = "\(tokensshop)"
         tokenshopLbl.fontColor = UIColor(red: 238/255, green: 221/255, blue: 130/255, alpha: 1)
         tokenshopLbl.zPosition = 5
@@ -488,7 +488,7 @@ class NewSkinScene: SKScene {
     
     func createBackBtn() {
         backBtn = SKSpriteNode(imageNamed: "backbutton")
-        backBtn.size = CGSize(width:60, height:40)
+        backBtn.size = CGSize(width:(0.145 * self.frame.width), height:(0.054 * self.frame.height))
         backBtn.position = CGPoint(x: self.frame.midX / 6, y: self.frame.height - 50)
         backBtn.zPosition = 8
         self.addChild(backBtn)
@@ -497,7 +497,7 @@ class NewSkinScene: SKScene {
     func createLogo() {
         logoImg = SKSpriteNode()
         logoImg = SKSpriteNode(imageNamed: "flippysfriends")
-        logoImg.size = CGSize(width: 272, height: 150)
+        logoImg.size = CGSize(width: (0.657 * self.frame.width), height: (0.204 * self.frame.height))
         logoImg.position = CGPoint(x:self.frame.midX, y:self.frame.height * 0.9)
         logoImg.setScale(0.5)
         self.addChild(logoImg)
@@ -511,7 +511,7 @@ class NewSkinScene: SKScene {
         else {
             buyFirstBtn = SKSpriteNode(imageNamed: "character-button-unselected")
         }
-        buyFirstBtn.size = CGSize(width:100, height:100)
+        buyFirstBtn.size = CGSize(width:(0.242 * self.frame.width), height: (0.136 * self.frame.height))
         buyFirstBtn.position = CGPoint(x: self.frame.midX / 2, y: self.frame.height * 0.7)
         buyFirstBtn.zPosition = 8
         buyFirstBtn.name = "bird1"
@@ -531,7 +531,7 @@ class NewSkinScene: SKScene {
         else { //if not bought
             buySecondBtn = SKSpriteNode(imageNamed: "character-button-locked2")
         }
-        buySecondBtn.size = CGSize(width:100, height:100)
+        buySecondBtn.size = CGSize(width:(0.242 * self.frame.width), height:(0.136 * self.frame.height))
         buySecondBtn.position = CGPoint(x: self.frame.width * 0.75, y: self.frame.height * 0.7)
         buySecondBtn.zPosition = 8
         buySecondBtn.name = "robobird1"
@@ -551,7 +551,7 @@ class NewSkinScene: SKScene {
         else { //if not bought
             buyThirdBtn = SKSpriteNode(imageNamed: "character-button-locked3")
         }
-        buyThirdBtn.size = CGSize(width:100, height:100)
+        buyThirdBtn.size = CGSize(width:(0.242 * self.frame.width), height:(0.136 * self.frame.height))
         buyThirdBtn.position = CGPoint(x: self.frame.midX / 2, y: self.frame.midY)
         buyThirdBtn.zPosition = 8
         buyThirdBtn.name = "rainbowbird1"
@@ -572,7 +572,7 @@ class NewSkinScene: SKScene {
             buyFourthBtn = SKSpriteNode(imageNamed: "character-button-locked4")
         }
         
-        buyFourthBtn.size = CGSize(width:100, height:100)
+        buyFourthBtn.size = CGSize(width:(0.242 * self.frame.width), height:(0.136 * self.frame.height))
         buyFourthBtn.position = CGPoint(x: self.frame.width * 0.75, y: self.frame.midY)
         buyFourthBtn.zPosition = 8
         buyFourthBtn.name = "steveBird1"
@@ -592,7 +592,7 @@ class NewSkinScene: SKScene {
         else { //if not bought
             buyFifthBtn = SKSpriteNode(imageNamed: "character-button-locked5")
         }
-        buyFifthBtn.size = CGSize(width:100, height:100)
+        buyFifthBtn.size = CGSize(width:(0.242 * self.frame.width), height:(0.136 * self.frame.height))
         buyFifthBtn.position = CGPoint(x: self.frame.midX / 2, y: self.frame.midY / 2)
         buyFifthBtn.zPosition = 8
         buyFifthBtn.name = "derpyBird1"
@@ -612,7 +612,7 @@ class NewSkinScene: SKScene {
         else { //if not bought
             buySixthBtn = SKSpriteNode(imageNamed: "character-button-locked6")
         }
-        buySixthBtn.size = CGSize(width:100, height:100)
+        buySixthBtn.size = CGSize(width:(0.242 * self.frame.width), height:(0.136 * self.frame.height))
         buySixthBtn.position = CGPoint(x: self.frame.width * 0.75, y: self.frame.midY / 2)
         buySixthBtn.zPosition = 8
         buySixthBtn.name = "fatBird1"
