@@ -274,7 +274,7 @@ extension GameScene{
         scorerNode.name = "backgroundStuff"
         
         
-        ////// FINISH GOING THROUGH FIXING NUMBERS HERE
+        ////// FINISH GOING THROUGH FIXING NUMBERS HEREs
         let killerPillarNode = SKSpriteNode(imageNamed: "laserbeam")
         killerPillarNode.size = CGSize(width: (0.097 * self.frame.width), height: self.frame.height)
         killerPillarNode.position = CGPoint(x: self.frame.width + (0.06 * self.frame.width), y: self.frame.height / 2)
