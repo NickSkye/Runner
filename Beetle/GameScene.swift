@@ -13,6 +13,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let saberSound = SKAction.playSoundFileNamed("saber.mp3", waitForCompletion: false)
     let hawk = SKAction.playSoundFileNamed("hawk.mp3", waitForCompletion: false)
     let chomp = SKAction.playSoundFileNamed("chomp.mp3", waitForCompletion: false)
+    let pop = SKAction.playSoundFileNamed("bubblepop.mp3", waitForCompletion: false)
     
     var score = Int(0)
     var invincibleCounter = Int(0)
@@ -592,6 +593,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         } */
         if bird.position.x <= 10 {
             
+            if invincible {
+                bird.run(SKAction .moveTo(x: self.frame.width * 0.3 , duration: 0.05))
+                invincibleCounter = 5
+                
+            }
+            else {
+            
+            
             feedback.impactOccurred()
             MusicHelper.sharedHelper.stopBackgroundMusic()
             enumerateChildNodes(withName: "wallPair", using: ({
@@ -606,6 +615,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 pauseBtn.removeFromParent()
                 self.bird.removeAllActions()
                 
+            }
             }
         }
         else if bird.position.x >= (self.frame.width * 0.75) {
@@ -697,6 +707,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 invincible = false
                 invincibleCounter = 0
                 invincibleBall.alpha = 0.0
+                run(pop)
                 
             }
 
@@ -714,6 +725,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 invincible = false
                 invincibleCounter = 0
                 invincibleBall.alpha = 0.0
+                run(pop)
             }
 
         }
@@ -816,6 +828,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 } */
                 
                 if bird.position.x <= 10 {
+                    if invincible {
+                        bird.run(SKAction .moveTo(x: self.frame.width * 0.3 , duration: 0.05))
+                        invincibleCounter = 5
+                        feedback.impactOccurred()
+                    }
+                    else {
                     
                     feedback.impactOccurred()
                     MusicHelper.sharedHelper.stopBackgroundMusic()
@@ -831,6 +849,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         pauseBtn.removeFromParent()
                         self.bird.removeAllActions()
                         
+                    }
                     }
                 }
                 else if bird.position.x >= (self.frame.width * 0.75) {

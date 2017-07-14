@@ -381,8 +381,8 @@ class BuyTokensScene: SKScene, SKPaymentTransactionObserver, SKProductsRequestDe
     }
     
     func createAdBtn() {
-        freeTokenBtn = SKSpriteNode(imageNamed: "double-coins")
-        freeTokenBtn.size = CGSize(width: (0.242 * self.frame.width), height: (0.136 * self.frame.height))
+        freeTokenBtn = SKSpriteNode(imageNamed: "free-coins")
+        freeTokenBtn.size = CGSize(width: (0.242 * self.frame.width), height: 1.5 * (0.242 * self.frame.width))
         freeTokenBtn.position = CGPoint(x: self.frame.width / 4, y: self.frame.midY / 2)
         freeTokenBtn.zPosition = 6
         

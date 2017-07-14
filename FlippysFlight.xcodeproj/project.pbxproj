@@ -33,6 +33,7 @@
 		F3B460991F05EC5800AEBEF0 /* teleport.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F3B460981F05EC5800AEBEF0 /* teleport.mp3 */; };
 		F3B4609B1F05F15A00AEBEF0 /* Arabesque.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F3B4609A1F05F15A00AEBEF0 /* Arabesque.mp3 */; };
 		F3BD4CFD1EFD69C50016DC52 /* BuyTokensScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3BD4CFC1EFD69C50016DC52 /* BuyTokensScene.swift */; };
+		F3D29E7C1F197EEE004874B4 /* bubblepop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F3D29E7B1F197EEE004874B4 /* bubblepop.mp3 */; };
 		F3D619581F04AF5300090217 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3D619571F04AF5300090217 /* AdSupport.framework */; };
 		F3D6195A1F04AFB500090217 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3D619591F04AFB500090217 /* AudioToolbox.framework */; };
 		F3D6195C1F04AFF900090217 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3D6195B1F04AFF900090217 /* AVFoundation.framework */; };
@@ -87,6 +88,7 @@
 		F3B460981F05EC5800AEBEF0 /* teleport.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = teleport.mp3; sourceTree = "<group>"; };
 		F3B4609A1F05F15A00AEBEF0 /* Arabesque.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Arabesque.mp3; sourceTree = "<group>"; };
 		F3BD4CFC1EFD69C50016DC52 /* BuyTokensScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuyTokensScene.swift; sourceTree = "<group>"; };
+		F3D29E7B1F197EEE004874B4 /* bubblepop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bubblepop.mp3; sourceTree = "<group>"; };
 		F3D619571F04AF5300090217 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		F3D619591F04AFB500090217 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		F3D6195B1F04AFF900090217 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -161,6 +163,7 @@
 		D9E9D9331E3483A900754A1A /* FlippysFlight */ = {
 			isa = PBXGroup;
 			children = (
+				F3D29E7B1F197EEE004874B4 /* bubblepop.mp3 */,
 				F3A624E61F158108001BF2CC /* CoinSound.mp3 */,
 				4133EDFB1F110500000BE200 /* KeychainWrapper.h */,
 				4133EDFC1F110500000BE200 /* KeychainWrapper.m */,
@@ -319,6 +322,7 @@
 				D9E9D9401E3483AA00754A1A /* Main.storyboard in Resources */,
 				F3FEED4F1F09F67B009F3ADC /* hawk.mp3 in Resources */,
 				F3FEED511F09F9A8009F3ADC /* chomp.mp3 in Resources */,
+				F3D29E7C1F197EEE004874B4 /* bubblepop.mp3 in Resources */,
 				F3FEED431F073701009F3ADC /* scream.mp3 in Resources */,
 				D9E9D9371E3483AA00754A1A /* GameScene.sks in Resources */,
 				D9E9D9421E3483AA00754A1A /* Assets.xcassets in Resources */,

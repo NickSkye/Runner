@@ -159,7 +159,7 @@ class ShopScene: SKScene {
     }
     
     func createAdBtn() {
-        freeTokenBtn = SKSpriteNode(imageNamed: "double-coins")
+        freeTokenBtn = SKSpriteNode(imageNamed: "free-coins-simple")
         freeTokenBtn.size = CGSize(width: (0.2422 * self.frame.width), height: (0.136 * self.frame.height))
         freeTokenBtn.position = CGPoint(x: self.frame.width / 4, y: self.frame.height / 2)
         freeTokenBtn.zPosition = 6

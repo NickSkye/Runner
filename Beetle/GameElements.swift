@@ -400,8 +400,8 @@ extension GameScene{
         }
         
         //BOOST
-        let randomNumberBoost = Int(random(min: 0, max: 50))
-        if randomNumberBoost == 25 && randomNumberFlower != 5 && score > 20{
+        let randomNumberBoost = Int(random(min: 0, max: 10)) //50
+        if randomNumberBoost == 6 && randomNumberFlower != 5 && score > 10{ //25
             print("BOOST")
             wallPair.addChild(boostNode)
             boostNode.run(SKAction.scale(to: 1.0, duration: 1))
