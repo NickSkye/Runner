@@ -186,7 +186,7 @@ static NSString* const SSGameDataChecksumKey = @"SSGameDataChecksumKey";
     long cloudNumTimesPlayed = [iCloudStore doubleForKey: SSGameDataNumTimesPlayedKey];
     
     //If local numTimesPlayed is different from iCloud, then update it
-    if (self.numTimesPlayed > cloudTotalCoinsSpent){
+    if (self.numTimesPlayed > cloudNumTimesPlayed){
         [iCloudStore setDouble:self.numTimesPlayed forKey:SSGameDataNumTimesPlayedKey];
         
         //Call synchonize function
