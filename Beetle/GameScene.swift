@@ -725,7 +725,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 invincible = false
                 invincibleCounter = 0
                 invincibleBall.alpha = 0.0
-                run(pop)
+                run(pop) //makes popping sound
             }
 
         }
