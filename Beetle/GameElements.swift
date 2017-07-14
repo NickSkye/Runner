@@ -20,7 +20,7 @@ struct CollisionBitMask {
 
 extension GameScene{
     
-    //CHANGE all values affecting size x,y to be x/414 * frame.width or y/736 * frame.height <-- users width and height
+    //CHANGE all values affecting size x,y to be x/414 * frame.width or y/736 * frame.height <-- users width and heights
     
     func createBird(birdType: String) -> SKSpriteNode {
         //navar
@@ -217,11 +217,22 @@ extension GameScene{
         self.addChild(logoImg)
         logoImg.run(SKAction.scale(to: 1.0, duration: 0.3))
     }
-    
+    //make this later
     func createTaptoplayLabel() -> SKLabelNode {
         let taptoplayLbl = SKLabelNode()
         taptoplayLbl.position = CGPoint(x:self.frame.midX, y: (self.frame.midY - (0.136 * self.frame.height)))
-        taptoplayLbl.text = "Tap anywhere to play"
+        taptoplayLbl.text = "Tip: Walls can be fun to bounce on" //Tap anywhere to play
+        taptoplayLbl.fontColor = UIColor(red: 63/255, green: 79/255, blue: 145/255, alpha: 1.0)
+        taptoplayLbl.zPosition = 5
+        taptoplayLbl.fontSize = 20
+        taptoplayLbl.fontName = "HelveticaNeue"
+        return taptoplayLbl
+    }
+    //make this later
+    func createTipLabel() -> SKLabelNode {
+        let taptoplayLbl = SKLabelNode()
+        taptoplayLbl.position = CGPoint(x:self.frame.midX, y: (self.frame.midY - (0.136 * self.frame.height)))
+        taptoplayLbl.text = "Tip: Walls can be fun to bounce on" //Tap anywhere to play
         taptoplayLbl.fontColor = UIColor(red: 63/255, green: 79/255, blue: 145/255, alpha: 1.0)
         taptoplayLbl.zPosition = 5
         taptoplayLbl.fontSize = 20
@@ -243,7 +254,7 @@ extension GameScene{
         coinNode.name = "backgroundStuff"
         
         ///////
-        let boostChange = CGFloat(random(min: -100.0, max: 100.0))
+        let boostChange = CGFloat(random(min: -(0.1359 * self.frame.height), max: (0.1359 * self.frame.height)))
         let boostNode = SKSpriteNode(imageNamed: "portal")
         boostNode.size = CGSize(width: (0.169 * self.frame.width), height: (0.136 * self.frame.height))
         boostNode.position = CGPoint(x: (self.frame.width + (0.06 * self.frame.width)), y: (self.frame.height / 2) + boostChange)
@@ -274,10 +285,10 @@ extension GameScene{
         scorerNode.name = "backgroundStuff"
         
         
-        ////// FINISH GOING THROUGH FIXING NUMBERS HERE
+        ////// FINISH GOING THROUGH FIXING NUMBERS HEREs
         let killerPillarNode = SKSpriteNode(imageNamed: "laserbeam")
         killerPillarNode.size = CGSize(width: (0.097 * self.frame.width), height: self.frame.height)
-        killerPillarNode.position = CGPoint(x: self.frame.width + 25, y: self.frame.height / 2)
+        killerPillarNode.position = CGPoint(x: self.frame.width + (0.06 * self.frame.width), y: self.frame.height / 2)
         killerPillarNode.physicsBody = SKPhysicsBody(rectangleOf: killerPillarNode.size)
         killerPillarNode.physicsBody?.affectedByGravity = false
         killerPillarNode.physicsBody?.isDynamic = false
@@ -291,7 +302,7 @@ extension GameScene{
         
         let killerPillarTopNode = SKSpriteNode(imageNamed: "laserbeam")
         killerPillarTopNode.size = CGSize(width: (0.097 * self.frame.width), height: self.frame.height)
-        killerPillarTopNode.position = CGPoint(x: self.frame.width + 25, y: self.frame.height / 2)
+        killerPillarTopNode.position = CGPoint(x: self.frame.width + (0.06 * self.frame.width), y: self.frame.height / 2)
         killerPillarTopNode.physicsBody = SKPhysicsBody(rectangleOf: killerPillarTopNode.size)
         killerPillarTopNode.physicsBody?.affectedByGravity = false
         killerPillarTopNode.physicsBody?.isDynamic = false
@@ -311,12 +322,12 @@ extension GameScene{
         let topWall = SKSpriteNode(imageNamed: "pillar")
         let btmWall = SKSpriteNode(imageNamed: "pillar")
         
-        let randomWidth = random(min: 380, max: 440)
+        let randomWidth = random(min: 380, max: 440) //(min: (0.516 * self.frame.height), max: (0.598 * self.frame.height))
         
-        topWall.position = CGPoint(x: self.frame.width + 25, y: self.frame.height / 2 + randomWidth)
-        btmWall.position = CGPoint(x: self.frame.width + 25, y: self.frame.height / 2 - randomWidth)
-        killerPillarNode.position = CGPoint(x: self.frame.width + 25, y: self.frame.height / 2 - 450)
-        killerPillarTopNode.position = CGPoint(x: self.frame.width + 25, y: self.frame.height / 2 + 450)
+        topWall.position = CGPoint(x: self.frame.width + (0.06 * self.frame.width), y: (self.frame.height / 2) + randomWidth)
+        btmWall.position = CGPoint(x: self.frame.width + (0.06 * self.frame.width), y: (self.frame.height / 2) - randomWidth)
+        killerPillarNode.position = CGPoint(x: self.frame.width + (0.06 * self.frame.width), y: self.frame.height / 2 - (0.6114 * self.frame.height))
+        killerPillarTopNode.position = CGPoint(x: self.frame.width + (0.06 * self.frame.width), y: self.frame.height / 2 + (0.6114 * self.frame.height))
         topWall.setScale(0.5)
         btmWall.setScale(0.5)
         
@@ -366,7 +377,7 @@ extension GameScene{
         
         wallPair.zPosition = 1
         
-        let randomPosition = random(min: -210, max: 210)
+        let randomPosition = random(min: -(0.285 * self.frame.height), max: (0.285 * self.frame.height))
         wallPair.position.y = wallPair.position.y +  randomPosition
         
         //make random here
@@ -379,13 +390,13 @@ extension GameScene{
         let randomWallMove = Int(random(min: 0, max: 6))
         if randomWallMove == 5 {
             //wallPair.run(SKAction .moveTo(y: wallPair.position.y + 150, duration: 4.0))
-            wallPair.run(SKAction .moveBy(x: 0, y: 150, duration: 4.0))
+            wallPair.run(SKAction .moveBy(x: 0, y: (0.204 * self.frame.height), duration: 4.0))
             
         }
         
         if randomWallMove == 3 {
             //wallPair.run(SKAction .moveTo(y: wallPair.position.y - 150, duration: 4.0))
-            wallPair.run(SKAction .moveBy(x: 0, y: -150, duration: 4.0))
+            wallPair.run(SKAction .moveBy(x: 0, y: -(0.204 * self.frame.height), duration: 4.0))
         }
         
         //BOOST
@@ -406,7 +417,7 @@ extension GameScene{
         
         
         let bigBirdNode = SKSpriteNode(imageNamed: "eagle")
-        bigBirdNode.size = CGSize(width: 50, height: 50)
+        bigBirdNode.size = CGSize(width: (0.121 * self.frame.width), height: (0.068 * self.frame.height))
         
         bigBirdNode.physicsBody = SKPhysicsBody(rectangleOf: bigBirdNode.size)
         bigBirdNode.physicsBody?.affectedByGravity = false
@@ -425,7 +436,7 @@ extension GameScene{
         
         //let randomWidthBird = random(min: -150, max: 150)
         
-       bigBirdNode.position = CGPoint(x: self.frame.width - 25, y: self.frame.midY) // + randomWidthBird)
+       bigBirdNode.position = CGPoint(x: self.frame.width - (0.06 * self.frame.width), y: self.frame.midY) // + randomWidthBird)
         
         
         //Randomly removes top or bottom wall or both// can change to different type of wall
@@ -441,7 +452,7 @@ extension GameScene{
         
         bigBirdObstacle.zPosition = 10
         
-        let randomPosition = random(min: -250, max: 250)
+        let randomPosition = random(min: -(0.3397 * self.frame.height), max: (0.3397 * self.frame.height))
         bigBirdObstacle.position.y = bigBirdObstacle.position.y +  randomPosition
         
         //make random here

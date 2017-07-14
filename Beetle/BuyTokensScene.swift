@@ -39,7 +39,7 @@ class BuyTokensScene: SKScene, SKPaymentTransactionObserver, SKProductsRequestDe
     var buyThirtyBtn = SKSpriteNode()
     var buySeventyFiveBtn = SKSpriteNode()
     var buyTwoHundredBtn = SKSpriteNode()
-    
+    var freeTokenBtn = SKSpriteNode()
     
     //add stuff to game elements such as createSkinsButton and then implement in createSkinScene.
     
@@ -211,7 +211,7 @@ class BuyTokensScene: SKScene, SKPaymentTransactionObserver, SKProductsRequestDe
         // Create the method you want to call (see target before)
         
         // put all menu items on scene here as else if using same notation. CTRL-f menu items to find where to remove them on this page
-        
+        if type(of: nodes(at: (touches.first?.location(in: self))!)[0]) != type(of: SKLabelNode()) && type(of: nodes(at: (touches.first?.location(in: self))!)[0]) != type(of: SKShapeNode()) {
         if (nodes(at: (touches.first?.location(in: self))!)[0] as? SKSpriteNode)! == backBtn {
             let scene = GameScene(size: (view?.bounds.size)!)
             let skView = view!
@@ -230,6 +230,8 @@ class BuyTokensScene: SKScene, SKPaymentTransactionObserver, SKProductsRequestDe
                     break;
                 }
             }
+            tokensshop = UserDefaults.standard.integer(forKey: "currentTokens")
+            tokenshopLbl.text = "\(tokensshop) Coins"
         }
         else if (nodes(at: (touches.first?.location(in: self))!)[0] as? SKSpriteNode)! == buyThirtyBtn {
             for product in list {
@@ -240,6 +242,8 @@ class BuyTokensScene: SKScene, SKPaymentTransactionObserver, SKProductsRequestDe
                     break;
                 }
             }
+            tokensshop = UserDefaults.standard.integer(forKey: "currentTokens")
+            tokenshopLbl.text = "\(tokensshop) Coins"
         }
         else if (nodes(at: (touches.first?.location(in: self))!)[0] as? SKSpriteNode)! == buySeventyFiveBtn {
             for product in list {
@@ -250,6 +254,8 @@ class BuyTokensScene: SKScene, SKPaymentTransactionObserver, SKProductsRequestDe
                     break;
                 }
             }
+            tokensshop = UserDefaults.standard.integer(forKey: "currentTokens")
+            tokenshopLbl.text = "\(tokensshop) Coins"
         }
         else if (nodes(at: (touches.first?.location(in: self))!)[0] as? SKSpriteNode)! == buyTwoHundredBtn {
             for product in list {
@@ -260,11 +266,25 @@ class BuyTokensScene: SKScene, SKPaymentTransactionObserver, SKProductsRequestDe
                     break;
                 }
             }
+            tokensshop = UserDefaults.standard.integer(forKey: "currentTokens")
+            tokenshopLbl.text = "\(tokensshop) Coins"
+        }
+        else if (nodes(at: (touches.first?.location(in: self))!)[0] as? SKSpriteNode)! == freeTokenBtn {
+            
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NotificationIdentifier"), object: nil)
+            
+            
+            
+            //for tokens ; currenttokens means all they have to spend ; tokens is what they have this round
+            
+            UserDefaults.standard.set((UserDefaults.standard.integer(forKey: "currentTokens") + 2), forKey: "currentTokens")
+            tokensshop = UserDefaults.standard.integer(forKey: "currentTokens")
+            tokenshopLbl.text = "\(tokensshop) Coins"
         }
         
         //
         
-        
+        }
         
         /// was here V
         ///moved touches here
@@ -312,12 +332,13 @@ class BuyTokensScene: SKScene, SKPaymentTransactionObserver, SKProductsRequestDe
         createBuySeventyFiveBtn()
         createBuyTwoHundredBtn()
         createCoinsAmount()
+        createAdBtn()
         
     }
     
     func createBackBtn() {
         backBtn = SKSpriteNode(imageNamed: "backbutton")
-        backBtn.size = CGSize(width:60, height:40)
+        backBtn.size = CGSize(width: (0.145 * self.frame.width), height: (0.054 * self.frame.height))
         backBtn.position = CGPoint(x: self.frame.midX / 6, y: self.frame.height - 50)
         backBtn.zPosition = 8
         self.addChild(backBtn)
@@ -325,7 +346,7 @@ class BuyTokensScene: SKScene, SKPaymentTransactionObserver, SKProductsRequestDe
     
     func createBuyFiveBtn() {
         buyFiveBtn = SKSpriteNode(imageNamed: "play")
-        buyFiveBtn.size = CGSize(width:100, height:100)
+        buyFiveBtn.size = CGSize(width: (0.242 * self.frame.width), height: (0.136 * self.frame.height))
         buyFiveBtn.position = CGPoint(x: self.frame.midX / 2, y: self.frame.height * 0.75)
         buyFiveBtn.zPosition = 8
         buyFiveBtn.name = "buyFiveButton"
@@ -334,7 +355,7 @@ class BuyTokensScene: SKScene, SKPaymentTransactionObserver, SKProductsRequestDe
     
     func createBuyThirtyBtn() {
         buyThirtyBtn = SKSpriteNode(imageNamed: "play")
-        buyThirtyBtn.size = CGSize(width:100, height:100)
+        buyThirtyBtn.size = CGSize(width: (0.242 * self.frame.width), height: (0.136 * self.frame.height))
         buyThirtyBtn.position = CGPoint(x: self.frame.width * 0.75, y: self.frame.height * 0.75)
         buyThirtyBtn.zPosition = 8
         buyThirtyBtn.name = "buyThirtyButton"
@@ -343,8 +364,8 @@ class BuyTokensScene: SKScene, SKPaymentTransactionObserver, SKProductsRequestDe
     
     func createBuySeventyFiveBtn() {
         buySeventyFiveBtn = SKSpriteNode(imageNamed: "play")
-        buySeventyFiveBtn.size = CGSize(width:100, height:100)
-        buySeventyFiveBtn.position = CGPoint(x: self.frame.midX / 2, y: self.frame.midY / 2)
+        buySeventyFiveBtn.size = CGSize(width: (0.242 * self.frame.width), height: (0.136 * self.frame.height))
+        buySeventyFiveBtn.position = CGPoint(x: self.frame.midX / 2, y: self.frame.midY)
         buySeventyFiveBtn.zPosition = 8
         buySeventyFiveBtn.name = "buySeventyFiveButton"
         self.addChild(buySeventyFiveBtn)
@@ -352,11 +373,21 @@ class BuyTokensScene: SKScene, SKPaymentTransactionObserver, SKProductsRequestDe
     
     func createBuyTwoHundredBtn() {
         buyTwoHundredBtn = SKSpriteNode(imageNamed: "play")
-        buyTwoHundredBtn.size = CGSize(width:100, height:100)
-        buyTwoHundredBtn.position = CGPoint(x: self.frame.width * 0.75, y: self.frame.midY / 2)
+        buyTwoHundredBtn.size = CGSize(width: (0.242 * self.frame.width), height: (0.136 * self.frame.height))
+        buyTwoHundredBtn.position = CGPoint(x: self.frame.width * 0.75, y: self.frame.midY)
         buyTwoHundredBtn.zPosition = 8
         buyTwoHundredBtn.name = "buyTwoHundredButton"
         self.addChild(buyTwoHundredBtn)
+    }
+    
+    func createAdBtn() {
+        freeTokenBtn = SKSpriteNode(imageNamed: "double-coins")
+        freeTokenBtn.size = CGSize(width: (0.242 * self.frame.width), height: (0.136 * self.frame.height))
+        freeTokenBtn.position = CGPoint(x: self.frame.width / 4, y: self.frame.midY / 2)
+        freeTokenBtn.zPosition = 6
+        
+        self.addChild(freeTokenBtn)
+        print("freeTokenBtnCreated")
     }
     
     func createCoinsAmount() {

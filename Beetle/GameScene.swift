@@ -213,7 +213,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             moveAndRemoveBigBird = SKAction.sequence([moveBigBird, removeBigBird])
             
             bird.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
-            bird.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 30))
+            bird.physicsBody?.applyImpulse(CGVector(dx: 0, dy: (0.041 * self.frame.height)))
         } else {
             if died == false {
                 //change speed and shit here
@@ -224,7 +224,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
                
                 bird.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
-                bird.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 30))
+                print((0.041 * self.frame.height))
+                bird.physicsBody?.applyImpulse(CGVector(dx: 0, dy: (0.041 * self.frame.height)))
                 
                 
                 distance = CGFloat(self.frame.width + wallPair.frame.width)
@@ -565,6 +566,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         taptoplayLbl = createTaptoplayLabel()
         self.addChild(taptoplayLbl)
+        
+        
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
@@ -628,24 +631,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         else if firstBody.categoryBitMask == CollisionBitMask.birdCategory && secondBody.categoryBitMask == CollisionBitMask.groundCategory {
             //GROUND
-            bird.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 30))
+            bird.physicsBody?.applyImpulse(CGVector(dx: 0, dy: (0.041 * self.frame.height)))
             
         } else if firstBody.categoryBitMask == CollisionBitMask.groundCategory && secondBody.categoryBitMask == CollisionBitMask.birdCategory {
             //GROUND
-            bird.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 30))
+            bird.physicsBody?.applyImpulse(CGVector(dx: 0, dy: (0.041 * self.frame.height)))
             
         }
         else if firstBody.categoryBitMask == CollisionBitMask.birdCategory && secondBody.categoryBitMask == CollisionBitMask.pillarCategory {
             //PILLAR BOUNCE
             if bird.position.y < self.frame.height * 0.75 && secondBody.node?.name == "bottomwall" {
-                bird.physicsBody?.applyImpulse(CGVector(dx: 3, dy: 30))
+                bird.physicsBody?.applyImpulse(CGVector(dx: 2, dy: (0.041 * self.frame.height)))
+                
             }
             
         } else if firstBody.categoryBitMask == CollisionBitMask.pillarCategory && secondBody.categoryBitMask == CollisionBitMask.birdCategory {
             //PILLAR BOUNCE
            
             if bird.position.y < self.frame.height * 0.75 && firstBody.node?.name == "bottomwall" {
-                bird.physicsBody?.applyImpulse(CGVector(dx: 3, dy: 30))
+                bird.physicsBody?.applyImpulse(CGVector(dx: 2, dy: (0.041 * self.frame.height)))
+                
             }
             
         } else if firstBody.categoryBitMask == CollisionBitMask.birdCategory && secondBody.categoryBitMask == CollisionBitMask.boostCategory {
@@ -836,11 +841,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 if isTouching {
                     bird.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: -1)) //2.5
                 } else {
-                    bird.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 3.5)) //0
+                    bird.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: (0.004755 * self.frame.height))) //0
                 }
                 } else {
                     if isTouching {
-                        bird.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 2.5)) //2.5
+                        bird.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: (0.003397 * self.frame.height))) //2.5
                     } else {
                         bird.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 0)) //0
                     }

@@ -31,7 +31,7 @@ class GameCenterViewController: UIViewController, GKGameCenterControllerDelegate
     
     func goBack() {
         //self.performSegue(withIdentifier: "toMain", sender: self)
-        self.dismiss(animated: true , completion: nil)
+        self.dismiss(animated: false , completion: nil)
         //self.present(GameViewController(), animated: false, completion: nil)
         /*
         let scene = GameScene(size: view.bounds.size)
@@ -46,7 +46,7 @@ class GameCenterViewController: UIViewController, GKGameCenterControllerDelegate
     
     
     func assignbackground(){
-        /*
+        
         let background = UIImage(named: "city")
         
         var imageView : UIImageView!
@@ -57,13 +57,14 @@ class GameCenterViewController: UIViewController, GKGameCenterControllerDelegate
         imageView.center = view.center
         view.addSubview(imageView)
         self.view.sendSubview(toBack: imageView)
-        */
-        let button = UIButton(frame: CGRect(x: 50, y: 50, width: 100, height: 50))
+ 
+       /* let button = UIButton(frame: CGRect(x: 50, y: 50, width: 100, height: 50))
         button.backgroundColor = .green
         
         button.setTitle("Back", for: .normal)
         button.addTarget(self, action: #selector(goBack), for: .touchUpInside)
         view.addSubview(button)
+ */
     }
     
     // MARK: - AUTHENTICATE LOCAL PLAYER
@@ -120,6 +121,7 @@ class GameCenterViewController: UIViewController, GKGameCenterControllerDelegate
     // Delegate to dismiss the GC controller
     func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
         gameCenterViewController.dismiss(animated: true, completion: nil)
+        goBack()
     }
     
     // MARK: - OPEN GAME CENTER LEADERBOARD
