@@ -257,7 +257,7 @@ extension GameScene{
         let boostChange = CGFloat(random(min: -(0.1359 * self.frame.height), max: (0.1359 * self.frame.height)))
         let boostNode = SKSpriteNode(imageNamed: "portal")
         boostNode.size = CGSize(width: (0.169 * self.frame.width), height: (0.136 * self.frame.height))
-        boostNode.position = CGPoint(x: (self.frame.width + (0.06 * self.frame.width)), y: (self.frame.height / 2) + boostChange)
+        boostNode.position = CGPoint(x: (self.frame.width) -  (0.171 * self.frame.width), y: (self.frame.height / 2) + boostChange)
         boostNode.physicsBody = SKPhysicsBody(rectangleOf: boostNode.size)
         boostNode.physicsBody?.affectedByGravity = false
         boostNode.physicsBody?.isDynamic = false
@@ -400,8 +400,9 @@ extension GameScene{
         }
         
         //BOOST
-        let randomNumberBoost = Int(random(min: 0, max: 30))
-        if randomNumberBoost == 15 && randomNumberFlower != 5 {
+        let randomNumberBoost = Int(random(min: 0, max: 50))
+        if randomNumberBoost == 25 && randomNumberFlower != 5 && score > 20{
+            print("BOOST")
             wallPair.addChild(boostNode)
             boostNode.run(SKAction.scale(to: 1.0, duration: 1))
         }
