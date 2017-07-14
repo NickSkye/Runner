@@ -217,11 +217,22 @@ extension GameScene{
         self.addChild(logoImg)
         logoImg.run(SKAction.scale(to: 1.0, duration: 0.3))
     }
-    
+    //make this later
     func createTaptoplayLabel() -> SKLabelNode {
         let taptoplayLbl = SKLabelNode()
         taptoplayLbl.position = CGPoint(x:self.frame.midX, y: (self.frame.midY - (0.136 * self.frame.height)))
-        taptoplayLbl.text = "Tap anywhere to play"
+        taptoplayLbl.text = "Tip: Walls can be fun to bounce on" //Tap anywhere to play
+        taptoplayLbl.fontColor = UIColor(red: 63/255, green: 79/255, blue: 145/255, alpha: 1.0)
+        taptoplayLbl.zPosition = 5
+        taptoplayLbl.fontSize = 20
+        taptoplayLbl.fontName = "HelveticaNeue"
+        return taptoplayLbl
+    }
+    //make this later
+    func createTipLabel() -> SKLabelNode {
+        let taptoplayLbl = SKLabelNode()
+        taptoplayLbl.position = CGPoint(x:self.frame.midX, y: (self.frame.midY - (0.136 * self.frame.height)))
+        taptoplayLbl.text = "Tip: Walls can be fun to bounce on" //Tap anywhere to play
         taptoplayLbl.fontColor = UIColor(red: 63/255, green: 79/255, blue: 145/255, alpha: 1.0)
         taptoplayLbl.zPosition = 5
         taptoplayLbl.fontSize = 20

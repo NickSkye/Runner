@@ -566,6 +566,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         taptoplayLbl = createTaptoplayLabel()
         self.addChild(taptoplayLbl)
+        
+        
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
