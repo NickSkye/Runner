@@ -3,7 +3,7 @@ import UIKit
 import SpriteKit
 
 
-class GameViewController: UIViewController {
+class GameViewController: UIViewController, VungleSDKDelegate {
 
     
    let notificationName = Notification.Name("NotificationIdentifier")
@@ -51,19 +51,25 @@ class GameViewController: UIViewController {
     }
 
 
+
     func playVungleAd() {
         do {
+            
         var sdk = VungleSDK.shared()
         try sdk?.playAd(self, withOptions: nil)
+            
             
         } catch {
             print("ERROR")
         }
         
+        
     }
     
-   
-
+    
+    func vungleSDKwillCloseAd(withViewInfo viewInfo: [AnyHashable : Any]!, willPresentProductSheet: Bool){
+        print(viewInfo)
+    }
     
       override var shouldAutorotate: Bool {
         return false

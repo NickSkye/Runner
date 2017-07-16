@@ -270,7 +270,7 @@ class BuyTokensScene: SKScene, SKPaymentTransactionObserver, SKProductsRequestDe
             tokenshopLbl.text = "\(tokensshop) Coins"
         }
         else if (nodes(at: (touches.first?.location(in: self))!)[0] as? SKSpriteNode)! == freeTokenBtn {
-            
+            MusicHelper.sharedHelper.stopBackgroundMusic()
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NotificationIdentifier"), object: nil)
             
             
