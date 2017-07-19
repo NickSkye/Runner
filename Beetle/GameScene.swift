@@ -36,7 +36,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var profileBtn = SKSpriteNode()
     var gcBtn = SKSpriteNode()
     var background = SKSpriteNode(imageNamed: "city")
-   // var skinBtn = UIButton()
+   // var skinBtn = UIButton()//
     var backBtn = SKSpriteNode()
     var logoImg = SKSpriteNode()
     var wallPair = SKNode()
