@@ -287,11 +287,12 @@ extension GameScene{
         
         ////// FINISH GOING THROUGH FIXING NUMBERS HEREs
         let killerPillarNode = SKSpriteNode(imageNamed: "laserbeam")
-        killerPillarNode.size = CGSize(width: (0.097 * self.frame.width), height: self.frame.height)
+        killerPillarNode.size = CGSize(width: (0.097 * self.frame.width), height: self.frame.height / 4)
         killerPillarNode.position = CGPoint(x: self.frame.width + (0.06 * self.frame.width), y: self.frame.height / 2)
         killerPillarNode.physicsBody = SKPhysicsBody(rectangleOf: killerPillarNode.size)
         killerPillarNode.physicsBody?.affectedByGravity = false
         killerPillarNode.physicsBody?.isDynamic = false
+       
         killerPillarNode.setScale(1)
         killerPillarNode.physicsBody?.categoryBitMask = CollisionBitMask.killerPillarCategory
         killerPillarNode.physicsBody?.collisionBitMask = 0
@@ -299,7 +300,7 @@ extension GameScene{
         killerPillarNode.color = SKColor.blue
         killerPillarNode.name = "backgroundStuff"
         
-        
+ /*
         let killerPillarTopNode = SKSpriteNode(imageNamed: "laserbeam")
         killerPillarTopNode.size = CGSize(width: (0.097 * self.frame.width), height: self.frame.height)
         killerPillarTopNode.position = CGPoint(x: self.frame.width + (0.06 * self.frame.width), y: self.frame.height / 2)
@@ -314,23 +315,24 @@ extension GameScene{
         
         killerPillarTopNode.zRotation = CGFloat(M_PI)
         killerPillarTopNode.name = "backgroundStuff"
-        
+  */
         /////
         wallPair = SKNode()
         wallPair.name = "wallPair"
         
-        let topWall = SKSpriteNode(imageNamed: "pillar")
+       // let topWall = SKSpriteNode(imageNamed: "pillar")
         let btmWall = SKSpriteNode(imageNamed: "pillar")
         
         let randomWidth = random(min: 380, max: 440) //(min: (0.516 * self.frame.height), max: (0.598 * self.frame.height))
         
-        topWall.position = CGPoint(x: self.frame.width + (0.06 * self.frame.width), y: (self.frame.height / 2) + randomWidth)
-        btmWall.position = CGPoint(x: self.frame.width + (0.06 * self.frame.width), y: (self.frame.height / 2) - randomWidth)
-        killerPillarNode.position = CGPoint(x: self.frame.width + (0.06 * self.frame.width), y: self.frame.height / 2 - (0.6114 * self.frame.height))
-        killerPillarTopNode.position = CGPoint(x: self.frame.width + (0.06 * self.frame.width), y: self.frame.height / 2 + (0.6114 * self.frame.height))
-        topWall.setScale(0.5)
+      //  topWall.position = CGPoint(x: self.frame.width + (0.06 * self.frame.width), y: (self.frame.height / 2))
+        btmWall.position = CGPoint(x: self.frame.width * 2, y: (self.frame.midY / 20))
+       // killerPillarNode.position = CGPoint(x: self.frame.width + (0.06 * self.frame.width), y: self.frame.height / 2 - (0.6114 * self.frame.height))
+       // killerPillarTopNode.position = CGPoint(x: self.frame.width + (0.06 * self.frame.width), y: self.frame.height / 2 + (0.6114 * self.frame.height))
+        //topWall.setScale(0.5)
+        btmWall.size = CGSize(width: (self.frame.width * 6), height: btmWall.size.height)
         btmWall.setScale(0.5)
-        
+        /*
         topWall.physicsBody = SKPhysicsBody(rectangleOf: topWall.size)
         topWall.physicsBody?.categoryBitMask = CollisionBitMask.pillarCategory
         topWall.physicsBody?.collisionBitMask = CollisionBitMask.birdCategory
@@ -338,7 +340,7 @@ extension GameScene{
         topWall.physicsBody?.isDynamic = false
         topWall.physicsBody?.affectedByGravity = false
         topWall.name = "backgroundStuff"
-        
+        */
         btmWall.physicsBody = SKPhysicsBody(rectangleOf: btmWall.size)
         btmWall.physicsBody?.categoryBitMask = CollisionBitMask.pillarCategory
         btmWall.physicsBody?.collisionBitMask = CollisionBitMask.birdCategory
@@ -347,38 +349,35 @@ extension GameScene{
         btmWall.physicsBody?.affectedByGravity = false
         btmWall.name = "bottomwall"
         
-        topWall.zRotation = CGFloat(M_PI)
+       // topWall.zRotation = CGFloat(M_PI)
         
         //Randomly removes top or bottom wall or both// can change to different type of wall
-        let randomTopWall = Int(random(min: 0, max: 20))
-        if randomTopWall != 5 {
-            wallPair.addChild(topWall)
-            
-        }
+        //let randomTopWall = Int(random(min: 0, max: 20))
+        
         let randomBottomWall = Int(random(min: 0, max: 10))
-        if randomBottomWall != 5 {
+        if randomBottomWall == 1 || randomBottomWall == 2 {
+            btmWall.size = CGSize(width: (self.frame.width * 3), height: btmWall.size.height)
+            wallPair.addChild(killerPillarNode)
             wallPair.addChild(btmWall)
             
-        } else {
-            wallPair.addChild(killerPillarNode)
-            run(saberSound)
-        }
-        
-         let randomDoubleLaser = Int(random(min: 0, max: 25))
-        if randomDoubleLaser == 15 {
-            wallPair.removeAllChildren()
             run(saberSound)
             
-            wallPair.addChild(killerPillarNode)
-            wallPair.addChild(killerPillarTopNode)
         }
-        
+        else if randomBottomWall == 3 || randomBottomWall == 4 {
+            btmWall.size = CGSize(width: (self.frame.width * 3), height: btmWall.size.height/2)
+            btmWall.physicsBody = SKPhysicsBody(rectangleOf: btmWall.size)
+            wallPair.addChild(btmWall)
+        }
+        else {
+            wallPair.addChild(btmWall)
+            
+        }
         
         
         wallPair.zPosition = 1
         
-        let randomPosition = random(min: -(0.285 * self.frame.height), max: (0.285 * self.frame.height))
-        wallPair.position.y = wallPair.position.y +  randomPosition
+      //  let randomPosition = random(min: -(0.285 * self.frame.height), max: (0.285 * self.frame.height))
+      //  wallPair.position.y = wallPair.position.y +  randomPosition
         
         //make random here
         //TOKEN
@@ -387,6 +386,7 @@ extension GameScene{
             wallPair.addChild(coinNode)
             
         }
+        /*
         let randomWallMove = Int(random(min: 0, max: 6))
         if randomWallMove == 5 {
             //wallPair.run(SKAction .moveTo(y: wallPair.position.y + 150, duration: 4.0))
@@ -398,7 +398,7 @@ extension GameScene{
             //wallPair.run(SKAction .moveTo(y: wallPair.position.y - 150, duration: 4.0))
             wallPair.run(SKAction .moveBy(x: 0, y: -(0.204 * self.frame.height), duration: 4.0))
         }
-        
+        */
         //BOOST
         let randomNumberBoost = Int(random(min: 0, max: 10)) //50
         if randomNumberBoost == 6 && randomNumberFlower != 5 && score > 10{ //25
